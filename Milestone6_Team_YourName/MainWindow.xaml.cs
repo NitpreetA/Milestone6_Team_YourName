@@ -24,5 +24,10 @@ namespace Milestone6_Team_YourName
         {
             InitializeComponent();
         }
+
+        private void btn_closePage(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
