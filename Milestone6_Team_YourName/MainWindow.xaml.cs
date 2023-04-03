@@ -23,6 +23,10 @@ namespace Milestone6_Team_YourName
         public MainWindow()
         {
             InitializeComponent();
+            comboBox1.Items.Add("Chicken");
+            comboBox1.Items.Add("Nuggets");
+            comboBox1.Items.Add("Pizza");
+
         }
 
         private void btn_closePage(object sender, RoutedEventArgs e)
