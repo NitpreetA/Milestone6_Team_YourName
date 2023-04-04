@@ -46,7 +46,6 @@ namespace Milestone6_Team_YourName
             openFileDialog.InitialDirectory = initialDirectory;
             if (openFileDialog.ShowDialog() == true)
             {
-
             }
             
         }
@@ -54,25 +53,15 @@ namespace Milestone6_Team_YourName
         private void btn_AddExpense(object sender, RoutedEventArgs e)
         {
             bool errorWhileAddingAnExpense = false;
-            int amountInNumericalValues = 0;
-            bool properAmountInputField;
             // find a way to 
 
-            properAmountInputField = int.TryParse(amount.Text, out amountInNumericalValues);
-
-            if (!properAmountInputField)
-                errorWhileAddingAnExpense = true;
-            else
-                errorWhileAddingAnExpense = false;
-
-            if (string.IsNullOrEmpty(expense.Text) || string.IsNullOrEmpty(description.Text) || errorWhileAddingAnExpense )
+            if(string.IsNullOrEmpty(expense.Text) || string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) )
             {
-              
                 errorWhileAddingAnExpense = true;
             }
             if (errorWhileAddingAnExpense)
             {
-                MessageBox.Show("Please fill out all of the form while respecting the input fields data types");
+                MessageBox.Show("Please fill out all of the input fields");
             }
             else
             {
@@ -91,5 +80,88 @@ namespace Milestone6_Team_YourName
             description.Text = string.Empty;
             amount.Text = string.Empty;
         }
+
+        private void BtnBlue_Click(object sender, RoutedEventArgs e)
+        {
+            Brush brush = new SolidColorBrush(Color.FromRgb(0, 255, 255));
+            MainGrid.Background = brush;
+            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
+            foreach (var element in stackPanel.Children)
+            {
+                if (element is TextBlock block)
+                {
+                    TextBlock text = (TextBlock)element;
+                    text.Foreground = brushText;
+                }
+            }
+        }
+
+        private void BtnRed_Click(object sender, RoutedEventArgs e)
+        {
+            Brush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            MainGrid.Background = brush;
+            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
+            foreach (var element in stackPanel.Children)
+            {
+                if (element is TextBlock block)
+                {
+                    TextBlock text = (TextBlock)element;
+                    text.Foreground = brushText;
+                }
+            }
+        }
+
+        private void BtnBlack_Click(object sender, RoutedEventArgs e)
+        {
+            Brush brush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            MainGrid.Background = brush;
+            Brush brushText = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+
+            foreach (var element in stackPanel.Children)
+            {
+                if (element is TextBlock block)
+                {
+                    TextBlock text = (TextBlock)element;
+                    text.Foreground = brushText;
+                }
+            }
+        }
+
+        private void BtnLight_Click(object sender, RoutedEventArgs e)
+        {
+            Brush brush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            MainGrid.Background = brush;
+            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
+            foreach (var element in stackPanel.Children)
+            {
+                if (element is TextBlock block)
+                {
+                    TextBlock text = (TextBlock)element;
+                    text.Foreground = brushText;
+                }
+            }
+        }
+
+        private void BtnBeige_Click(object sender, RoutedEventArgs e)
+        {
+            Brush brush = new SolidColorBrush(Color.FromRgb(245, 245, 220));
+            MainGrid.Background = brush;
+            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
+            foreach (var element in stackPanel.Children)
+            {
+                if (element is TextBlock block)
+                {
+                    TextBlock text = (TextBlock)element;
+                    text.Foreground = brushText;
+                }
+            }
+        }
+
+
+
     }
 }

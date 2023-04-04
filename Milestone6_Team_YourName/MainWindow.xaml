@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Milestone6_Team_YourName"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Background="#faecb9">
+    <Grid Background="#faecb9" x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="563*"></ColumnDefinition>
             <ColumnDefinition Width="179*"></ColumnDefinition>
@@ -34,18 +34,18 @@
 
             </MenuItem>
             <MenuItem Header="Theme">
-                <MenuItem Header="Blue"></MenuItem>
-                <MenuItem Header="Dark"></MenuItem>
-                <MenuItem Header="Red" Icon=""></MenuItem>
-                <MenuItem Header="Light"></MenuItem>
-                <MenuItem Header="Beige"></MenuItem>
+                <MenuItem Header="Blue" Click="BtnBlue_Click"></MenuItem>
+                <MenuItem Header="Dark" Click="BtnBlack_Click"></MenuItem>
+                <MenuItem Header="Red" Click="BtnRed_Click" Icon=""></MenuItem>
+                <MenuItem Header="Light" Click="BtnLight_Click" ></MenuItem>
+                <MenuItem Header="Beige" Click="BtnBeige_Click"></MenuItem>
             </MenuItem>
             
 
         </Menu>
 
 
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" x:Name="stackPanel">
             <TextBlock Margin="5 0 0 0"><Run Text="Expense"/></TextBlock>
             <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"/>
 
