@@ -5,8 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Milestone6_Team_YourName"
         mc:Ignorable="d"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        ui:ThemeManager.RequestedTheme="Dark"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
+    <ui:SimpleStackPanel Margin="12" Spacing="24">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="246*"></ColumnDefinition>
+                <ColumnDefinition Width="28*"/>
+                <ColumnDefinition Width="411*"></ColumnDefinition>
+                <ColumnDefinition Width="91*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" ></RowDefinition>
+                <RowDefinition Height="8*" ></RowDefinition>
+            </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Background="White" BorderThickness="0" FontWeight="ExtraBold" Foreground="Red" Grid.Column="2" Click="btn_closePage" Margin="18,0,10,20" RenderTransformOrigin="-2.569,0.447">❌</Button>
+        <Button Grid.Row="0" Margin="10,2,438,22" Click="btnOpenBudgetFileLocation">Open Budget</Button>
+
+
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Margin="5 0 0 0"><Run Text="Expense"/></TextBlock>
+            <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"/>
+            
+            <TextBlock Margin="5 0 0 0"><Run Text="Description"/></TextBlock>
+            <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="description"/>
+            
+            <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
+            <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount"/>
+            
+            <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
+            <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"></DatePicker>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="left">
+                <Button Width="54" Margin="5 0 10 0" Click="btn_AddExpense">Add</Button>
+                    <Button Width="54" Click="btn_ClearExpense">Clear</Button>
+                    <Button Width="64" Click="btn_ChangeTheme">Theme</Button>
+                </StackPanel>
+            <!--need category-->
+        </StackPanel>
     </Grid>
+        <Button Grid.Column="3" Click="btn_closePage" Margin="10,0,0,0">Close</Button>
+    </ui:SimpleStackPanel>
 </Window>
