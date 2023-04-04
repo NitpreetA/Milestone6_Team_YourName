@@ -46,6 +46,7 @@ namespace Milestone6_Team_YourName
             openFileDialog.InitialDirectory = initialDirectory;
             if (openFileDialog.ShowDialog() == true)
             {
+
             }
             
         }
@@ -60,13 +61,9 @@ namespace Milestone6_Team_YourName
             properAmountInputField = int.TryParse(amount.Text, out amountInNumericalValues);
 
             if (!properAmountInputField)
-            {
                 errorWhileAddingAnExpense = true;
-            }
             else
-            {
                 errorWhileAddingAnExpense = false;
-            }
 
             if (string.IsNullOrEmpty(expense.Text) || string.IsNullOrEmpty(description.Text) || errorWhileAddingAnExpense )
             {

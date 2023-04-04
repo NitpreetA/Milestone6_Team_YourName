@@ -17,21 +17,44 @@
             <RowDefinition Height="8*" ></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Background="White" BorderThickness="0" FontWeight="ExtraBold" Foreground="Red" Grid.Column="2" Click="btn_closePage" Margin="18,0,10,20" RenderTransformOrigin="-2.569,0.447">❌</Button>
-        <Button Grid.Row="0" Margin="10,10,513,14" Click="btnOpenBudgetFileLocation">📁</Button>
+        <!--<Button Grid.Row="0" Background="White" BorderThickness="0" FontWeight="ExtraBold" Foreground="Red" Grid.Column="2" Click="btn_closePage" Margin="18,0,10,20" RenderTransformOrigin="-2.569,0.447">❌</Button>-->
+        <!--<Button Grid.Row="0" Margin="115,7,24,17"  Grid.Column="1">📁</Button>-->
 
+        <Menu Margin="0,0,0,29" Grid.ColumnSpan="3">
+            <MenuItem Header="File" >
+                <MenuItem HorizontalAlignment="Right" Header="Open" Click="btnOpenBudgetFileLocation">
+                    <MenuItem.Icon>
+                        <Image Source="TO DO">
+                            
+                        </Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem HorizontalAlignment="Right" Header="Close" Click="btn_closePage"></MenuItem>
+
+            </MenuItem>
+            <MenuItem Header="Theme">
+                <MenuItem Header="Blue"></MenuItem>
+                <MenuItem Header="Dark"></MenuItem>
+                <MenuItem Header="Red" Icon=""></MenuItem>
+                <MenuItem Header="Light"></MenuItem>
+                <MenuItem Header="Beige"></MenuItem>
+            </MenuItem>
+            
+
+        </Menu>
 
 
         <StackPanel Grid.Row="1">
             <TextBlock Margin="5 0 0 0"><Run Text="Expense"/></TextBlock>
             <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"/>
-            
+
             <TextBlock Margin="5 0 0 0"><Run Text="Description"/></TextBlock>
             <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="description"/>
-            
+
             <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
             <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount"/>
-            
+
             <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
             <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="date"></DatePicker>
 
