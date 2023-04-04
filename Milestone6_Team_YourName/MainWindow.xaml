@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" Background="White" BorderThickness="0" FontWeight="ExtraBold" Foreground="Red" Grid.Column="2" Click="btn_closePage" Margin="18,0,10,20" RenderTransformOrigin="-2.569,0.447">❌</Button>
-        <Button Grid.Row="0" Margin="10,2,438,22" Click="btnOpenBudgetFileLocation">Open Budget</Button>
+        <Button Grid.Row="0" Margin="10,10,513,14" Click="btnOpenBudgetFileLocation">📁</Button>
 
 
 

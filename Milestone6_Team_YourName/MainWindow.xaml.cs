@@ -53,15 +53,29 @@ namespace Milestone6_Team_YourName
         private void btn_AddExpense(object sender, RoutedEventArgs e)
         {
             bool errorWhileAddingAnExpense = false;
+            int amountInNumericalValues = 0;
+            bool properAmountInputField;
             // find a way to 
 
-            if(string.IsNullOrEmpty(expense.Text) || string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) )
+            properAmountInputField = int.TryParse(amount.Text, out amountInNumericalValues);
+
+            if (!properAmountInputField)
             {
+                errorWhileAddingAnExpense = true;
+            }
+            else
+            {
+                errorWhileAddingAnExpense = false;
+            }
+
+            if (string.IsNullOrEmpty(expense.Text) || string.IsNullOrEmpty(description.Text) || errorWhileAddingAnExpense )
+            {
+              
                 errorWhileAddingAnExpense = true;
             }
             if (errorWhileAddingAnExpense)
             {
-                MessageBox.Show("Please fill out all of the input fields");
+                MessageBox.Show("Please fill out all of the form while respecting the input fields data types");
             }
             else
             {
