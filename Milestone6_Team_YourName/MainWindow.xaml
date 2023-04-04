@@ -5,18 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Milestone6_Team_YourName"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"></ColumnDefinition>
-            <ColumnDefinition Width="4.5*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" ></RowDefinition>
-            <RowDefinition Height="8*" ></RowDefinition>
-        </Grid.RowDefinitions>
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        Title="MainWindow" Height="450" Width="800"
+        >
+    <ui:SimpleStackPanel Margin="12" Spacing="24">
+        <TextBlock Text="My first ModernWPF app" Style="{StaticResource HeaderTextBlockStyle}"/>
+        <Button Content="I am a button" />
+        <Button Click="Button_Click" Content="I am an accent button" Style="{StaticResource AccentButtonStyle}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="246*"></ColumnDefinition>
+                <ColumnDefinition Width="28*"/>
+                <ColumnDefinition Width="411*"></ColumnDefinition>
+                <ColumnDefinition Width="91*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" ></RowDefinition>
+                <RowDefinition Height="8*" ></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="2" Click="btn_closePage" Margin="10 10 10 10">Close</Button>
-    </Grid>
+            <Button Grid.Column="3" Click="btn_closePage" Margin="10,0,0,0">Close</Button>
+        </Grid>
+    </ui:SimpleStackPanel>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ModernWpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace Milestone6_Team_YourName
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ApplicationTheme _theme = ApplicationTheme.Dark;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,6 +31,12 @@ namespace Milestone6_Team_YourName
         private void btn_closePage(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ThemeManager.Current.ApplicationTheme = (ThemeManager.Current.ApplicationTheme == ApplicationTheme.Dark) ? ApplicationTheme.Light : ApplicationTheme.Dark;
+            ThemeManager.Current.AccentColor = Colors.Red;
         }
     }
 }
