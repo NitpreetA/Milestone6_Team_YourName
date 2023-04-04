@@ -86,18 +86,87 @@ namespace Milestone6_Team_YourName
             amount.Text = string.Empty;
         }
 
-        private void btn_ChangeTheme(object sender, RoutedEventArgs e)
+        private void BtnBlue_Click(object sender, RoutedEventArgs e)
         {
-           //Using the ModernWPF library, change the dark theme's colors to the following:
-           //Background: Red
-           //Foreground: Blue
-           //Accent Color: Green
-           //After changing the dark theme's colors, change the window's theme to dark.
+            Brush brush = new SolidColorBrush(Color.FromRgb(0, 255, 255));
+            MainGrid.Background = brush;
+            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
 
-            ColorPaletteResources dark = new ColorPaletteResources();
-            dark. = new SolidColorBrush(Colors.Red);
-
-
+            foreach (var element in stackPanel.Children)
+            {
+                if (element is TextBlock block)
+                {
+                    TextBlock text = (TextBlock)element;
+                    text.Foreground = brushText;
+                }
+            }
         }
+
+        private void BtnRed_Click(object sender, RoutedEventArgs e)
+        {
+            Brush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            MainGrid.Background = brush;
+            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
+            foreach (var element in stackPanel.Children)
+            {
+                if (element is TextBlock block)
+                {
+                    TextBlock text = (TextBlock)element;
+                    text.Foreground = brushText;
+                }
+            }
+        }
+
+        private void BtnBlack_Click(object sender, RoutedEventArgs e)
+        {
+            Brush brush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            MainGrid.Background = brush;
+            Brush brushText = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+
+            foreach (var element in stackPanel.Children)
+            {
+                if (element is TextBlock block)
+                {
+                    TextBlock text = (TextBlock)element;
+                    text.Foreground = brushText;
+                }
+            }
+        }
+
+        private void BtnLight_Click(object sender, RoutedEventArgs e)
+        {
+            Brush brush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            MainGrid.Background = brush;
+            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
+            foreach (var element in stackPanel.Children)
+            {
+                if (element is TextBlock block)
+                {
+                    TextBlock text = (TextBlock)element;
+                    text.Foreground = brushText;
+                }
+            }
+        }
+
+        private void BtnBeige_Click(object sender, RoutedEventArgs e)
+        {
+            Brush brush = new SolidColorBrush(Color.FromRgb(245, 245, 220));
+            MainGrid.Background = brush;
+            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
+            foreach (var element in stackPanel.Children)
+            {
+                if (element is TextBlock block)
+                {
+                    TextBlock text = (TextBlock)element;
+                    text.Foreground = brushText;
+                }
+            }
+        }
+
+
+
     }
 }
