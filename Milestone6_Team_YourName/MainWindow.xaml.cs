@@ -55,7 +55,7 @@ namespace Milestone6_Team_YourName
             
         }
 
-        private void btn_AddExpense(object sender, RoutedEventArgs e)
+        private void btn_AddExpense_Clck(object sender, RoutedEventArgs e)
         {
             bool errorWhileAddingAnExpense = false;
             // find a way to 
@@ -79,7 +79,7 @@ namespace Milestone6_Team_YourName
             }
         }
 
-        private void btn_ClearExpense(object sender, RoutedEventArgs e)
+        private void btn_ClearExpense_Clck(object sender, RoutedEventArgs e)
         {
             expense.Text = string.Empty;
             description.Text = string.Empty;
@@ -90,6 +90,7 @@ namespace Milestone6_Team_YourName
         {
             Brush brush = new SolidColorBrush(Color.FromRgb(0, 255, 255));
             MainGrid.Background = brush;
+            AllWindow.Background = brush;
             Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
 
             foreach (var element in stackPanel.Children)
@@ -106,6 +107,7 @@ namespace Milestone6_Team_YourName
         {
             Brush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
             MainGrid.Background = brush;
+            AllWindow.Background = brush;
             Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
 
             foreach (var element in stackPanel.Children)
@@ -122,6 +124,7 @@ namespace Milestone6_Team_YourName
         {
             Brush brush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
             MainGrid.Background = brush;
+            AllWindow.Background = brush;
             Brush brushText = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 
             foreach (var element in stackPanel.Children)
@@ -138,7 +141,12 @@ namespace Milestone6_Team_YourName
         {
             Brush brush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
             MainGrid.Background = brush;
+            AllWindow.Background = brush;
             Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
+            btn_AddExpense.Foreground = brushText;
+            btn_ClearExpense.Foreground = brushText;
+
 
             foreach (var element in stackPanel.Children)
             {
@@ -154,7 +162,12 @@ namespace Milestone6_Team_YourName
         {
             Brush brush = new SolidColorBrush(Color.FromRgb(245, 245, 220));
             MainGrid.Background = brush;
+            AllWindow.Background = brush;
             Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+
+
+            btn_AddExpense.Foreground = brushText;
+            btn_ClearExpense.Foreground = brushText;
 
             foreach (var element in stackPanel.Children)
             {

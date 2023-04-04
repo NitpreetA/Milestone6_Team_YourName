@@ -10,8 +10,8 @@
         ui:ThemeManager.RequestedTheme="Dark"
         Title="MainWindow" Height="450" Width="800">
 
-    <ui:SimpleStackPanel Margin="12" Spacing="24">
-        <Grid>
+    <ui:SimpleStackPanel Margin="12" Spacing="24" x:Name="AllWindow">
+        <Grid x:Name="MainGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="246*"></ColumnDefinition>
                 <ColumnDefinition Width="28*"/>
@@ -23,55 +23,53 @@
                 <RowDefinition Height="8*" ></RowDefinition>
             </Grid.RowDefinitions>
 
-        <!--<Button Grid.Row="0" Background="White" BorderThickness="0" FontWeight="ExtraBold" Foreground="Red" Grid.Column="2" Click="btn_closePage" Margin="18,0,10,20" RenderTransformOrigin="-2.569,0.447">❌</Button>-->
-        <!--<Button Grid.Row="0" Margin="115,7,24,17"  Grid.Column="1">📁</Button>-->
+            <!--<Button Grid.Row="0" Background="White" BorderThickness="0" FontWeight="ExtraBold" Foreground="Red" Grid.Column="2" Click="btn_closePage" Margin="18,0,10,20" RenderTransformOrigin="-2.569,0.447">❌</Button>-->
+            <!--<Button Grid.Row="0" Margin="115,7,24,17"  Grid.Column="1">📁</Button>-->
 
-        <Menu Margin="0,0,0,29" Grid.ColumnSpan="3">
-            <MenuItem Header="File" >
-                <MenuItem HorizontalAlignment="Right" Header="Open" Click="btnOpenBudgetFileLocation">
-                    <MenuItem.Icon>
-                        <Image Source="TO DO">
-                            
-                        </Image>
-                    </MenuItem.Icon>
+            <Menu Margin="0,0,0,29" Grid.ColumnSpan="3" Background="Gray">
+                <MenuItem Header="File" >
+                    <MenuItem HorizontalAlignment="Right" Header="Open" Click="btnOpenBudgetFileLocation">
+                        <MenuItem.Icon>
+                            <Image Source="TO DO">
+
+                            </Image>
+                        </MenuItem.Icon>
+                    </MenuItem>
+
+                    <MenuItem HorizontalAlignment="Right" Header="Close" Click="btn_closePage"></MenuItem>
+
+                </MenuItem>
+                <MenuItem Header="Theme">
+                    <MenuItem Header="Blue" Click="BtnBlue_Click"></MenuItem>
+                    <MenuItem Header="Dark" Click="BtnBlack_Click"></MenuItem>
+                    <MenuItem Header="Red" Click="BtnRed_Click" Icon=""></MenuItem>
+                    <MenuItem Header="Light" Click="BtnLight_Click" ></MenuItem>
+                    <MenuItem Header="Beige" Click="BtnBeige_Click"></MenuItem>
                 </MenuItem>
 
-                <MenuItem HorizontalAlignment="Right" Header="Close" Click="btn_closePage"></MenuItem>
 
-            </MenuItem>
-            <MenuItem Header="Theme">
-                <MenuItem Header="Blue" Click="BtnBlue_Click"></MenuItem>
-                <MenuItem Header="Dark" Click="BtnBlack_Click"></MenuItem>
-                <MenuItem Header="Red" Click="BtnRed_Click" Icon=""></MenuItem>
-                <MenuItem Header="Light" Click="BtnLight_Click" ></MenuItem>
-                <MenuItem Header="Beige" Click="BtnBeige_Click"></MenuItem>
-            </MenuItem>
-            
-
-        </Menu>
+            </Menu>
 
 
-        <StackPanel Grid.Row="1" x:Name="stackPanel">
-            <TextBlock Margin="5 0 0 0"><Run Text="Expense"/></TextBlock>
-            <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"/>
+            <StackPanel Grid.Row="1" x:Name="stackPanel">
+                <TextBlock Margin="5 0 0 0"><Run Text="Expense"/></TextBlock>
+                <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"/>
 
-            <TextBlock Margin="5 0 0 0"><Run Text="Description"/></TextBlock>
-            <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="description"/>
+                <TextBlock Margin="5 0 0 0"><Run Text="Description"/></TextBlock>
+                <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="description"/>
 
-            <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
-            <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount"/>
+                <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
+                <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount"/>
 
-            <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
-            <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"></DatePicker>
+                <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
+                <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"></DatePicker>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="left">
-                <Button Width="54" Margin="5 0 10 0" Click="btn_AddExpense">Add</Button>
-                    <Button Width="54" Click="btn_ClearExpense">Clear</Button>
-                    <Button Width="64" Click="btn_ChangeTheme">Theme</Button>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="left">
+                    <Button Width="54" Margin="5 0 10 0" x:Name="btn_AddExpense" Click="btn_AddExpense_Clck">Add</Button>
+                    <Button Width="54" Click="btn_ClearExpense_Clck" x:Name="btn_ClearExpense">Clear</Button>
                 </StackPanel>
-            <!--need category-->
-        </StackPanel>
-    </Grid>
-        <Button Grid.Column="3" Click="btn_closePage" Margin="10,0,0,0">Close</Button>
+                <!--need category-->
+            </StackPanel>
+        </Grid>
     </ui:SimpleStackPanel>
 </Window>
