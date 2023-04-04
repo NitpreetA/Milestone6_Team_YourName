@@ -20,6 +20,7 @@
         <Button Grid.Row="0" Background="White" BorderThickness="0" FontWeight="ExtraBold" Foreground="Red" Grid.Column="2" Click="btn_closePage" Margin="18,0,10,20" RenderTransformOrigin="-2.569,0.447">❌</Button>
         <ComboBox Name="comboBox1" Margin="10,48,361,339" Grid.RowSpan="2">Hello</ComboBox>
         <!--bind this to the cat list --> 
-        <TextBox FocusManager.FocusedElement="{Binding ElementName=Box}" Grid.Row="0" Margin="10,2,371,22"></TextBox>
+        <Button Grid.Row="0" Margin="10,2,438,22" Click="btnOpenBudgetFileLocation">Open</Button>
+        
     </Grid>
 </Window>
