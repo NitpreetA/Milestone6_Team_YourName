@@ -27,9 +27,7 @@ namespace Milestone6_Team_YourName
         public MainWindow()
         {
             InitializeComponent();
-            comboBox1.Items.Add("Chicken");
-            comboBox1.Items.Add("Nuggets");
-            comboBox1.Items.Add("Pizza");
+      
 
             if (!Directory.Exists(initialDirectory))
             {
@@ -50,6 +48,37 @@ namespace Milestone6_Team_YourName
             {
             }
             
+        }
+
+        private void btn_AddExpense(object sender, RoutedEventArgs e)
+        {
+            bool errorWhileAddingAnExpense = false;
+            // find a way to 
+
+            if(string.IsNullOrEmpty(expense.Text) || string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) )
+            {
+                errorWhileAddingAnExpense = true;
+            }
+            if (errorWhileAddingAnExpense)
+            {
+                MessageBox.Show("Please fill out all of the input fields");
+            }
+            else
+            {
+                MessageBox.Show("Expense was successfully added");
+                expense.Text = string.Empty;
+                description.Text = string.Empty;
+                amount.Text = string.Empty;
+                //date.DataContext = DateTime.Now;
+                // find a way to add this to the expense list and have a display expenses button. 
+            }
+        }
+
+        private void btn_ClearExpense(object sender, RoutedEventArgs e)
+        {
+            expense.Text = string.Empty;
+            description.Text = string.Empty;
+            amount.Text = string.Empty;
         }
     }
 }

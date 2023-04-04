@@ -18,9 +18,28 @@
         </Grid.RowDefinitions>
 
         <Button Grid.Row="0" Background="White" BorderThickness="0" FontWeight="ExtraBold" Foreground="Red" Grid.Column="2" Click="btn_closePage" Margin="18,0,10,20" RenderTransformOrigin="-2.569,0.447">❌</Button>
-        <ComboBox Name="comboBox1" Margin="10,48,361,339" Grid.RowSpan="2">Hello</ComboBox>
-        <!--bind this to the cat list --> 
-        <Button Grid.Row="0" Margin="10,2,438,22" Click="btnOpenBudgetFileLocation">Open</Button>
-        
+        <Button Grid.Row="0" Margin="10,2,438,22" Click="btnOpenBudgetFileLocation">Open Budget</Button>
+
+
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Margin="5 0 0 0"><Run Text="Expense"/></TextBlock>
+            <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"/>
+            
+            <TextBlock Margin="5 0 0 0"><Run Text="Description"/></TextBlock>
+            <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="description"/>
+            
+            <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
+            <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount"/>
+            
+            <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
+            <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="date"></DatePicker>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="left">
+                <Button Width="54" Margin="5 0 10 0" Click="btn_AddExpense">Add</Button>
+                <Button Width="54" Click="btn_ClearExpense">Clear</Button>
+            </StackPanel>
+            <!--need category-->
+        </StackPanel>
     </Grid>
 </Window>
