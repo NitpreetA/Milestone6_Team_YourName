@@ -24,6 +24,7 @@ namespace Milestone6_Team_YourName
     public partial class MainWindow : Window
     {
         public ApplicationTheme _theme = ApplicationTheme.Dark;
+        public Color _accent = Colors.Blue;
          
 
         private static string budgetFolder = "Budgets";
@@ -86,38 +87,21 @@ namespace Milestone6_Team_YourName
             amount.Text = string.Empty;
         }
 
+        //-------------------------------------------------
+        //                  Color Menu
+        //-------------------------------------------------
         private void BtnBlue_Click(object sender, RoutedEventArgs e)
         {
-            Brush brush = new SolidColorBrush(Color.FromRgb(0, 255, 255));
-            MainGrid.Background = brush;
-            AllWindow.Background = brush;
-            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            _accent = Colors.Blue;
+            ThemeManager.Current.AccentColor = _accent;
 
-            foreach (var element in stackPanel.Children)
-            {
-                if (element is TextBlock block)
-                {
-                    TextBlock text = (TextBlock)element;
-                    text.Foreground = brushText;
-                }
-            }
         }
 
         private void BtnRed_Click(object sender, RoutedEventArgs e)
         {
-            Brush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-            MainGrid.Background = brush;
-            AllWindow.Background = brush;
-            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-
-            foreach (var element in stackPanel.Children)
-            {
-                if (element is TextBlock block)
-                {
-                    TextBlock text = (TextBlock)element;
-                    text.Foreground = brushText;
-                }
-            }
+            _accent = Colors.Red;
+            ThemeManager.Current.AccentColor = _accent;
+            
         }
 
         private void BtnBlack_Click(object sender, RoutedEventArgs e)
@@ -135,6 +119,10 @@ namespace Milestone6_Team_YourName
                     text.Foreground = brushText;
                 }
             }
+
+            _theme = ApplicationTheme.Dark;
+            ThemeManager.Current.ApplicationTheme = _theme;
+
         }
 
         private void BtnLight_Click(object sender, RoutedEventArgs e)
@@ -156,6 +144,9 @@ namespace Milestone6_Team_YourName
                     text.Foreground = brushText;
                 }
             }
+
+            _theme = ApplicationTheme.Light;
+            ThemeManager.Current.ApplicationTheme = _theme;
         }
 
         private void BtnBeige_Click(object sender, RoutedEventArgs e)
@@ -177,6 +168,10 @@ namespace Milestone6_Team_YourName
                     text.Foreground = brushText;
                 }
             }
+            
+            //Change WPFUI's theme
+            _theme = ApplicationTheme.Light;
+            ThemeManager.Current.ApplicationTheme = _theme;
         }
 
 
