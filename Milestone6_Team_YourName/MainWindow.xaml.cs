@@ -21,8 +21,12 @@ namespace Milestone6_Team_YourName
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+
     public partial class MainWindow : Window
     {
+        private List<string> milestoneNames = new List<string>();
         public ApplicationTheme _theme = ApplicationTheme.Dark;
          
 
@@ -32,12 +36,19 @@ namespace Milestone6_Team_YourName
         {
             InitializeComponent();
             expenseDate.SelectedDate = DateTime.Now;
-      
+            milestoneNames.Add("abc");
+            milestoneNames.Add("test");
+
+            CmbBox.ItemsSource = milestoneNames;
+                
 
             if (!Directory.Exists(initialDirectory))
             {
                 Directory.CreateDirectory(initialDirectory);
             }
+
+
+
         }
 
         private void btn_closePage(object sender, RoutedEventArgs e)

@@ -8,7 +8,7 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
         ui:ThemeManager.RequestedTheme="Dark"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="550" Width="800" >
 
     <ui:SimpleStackPanel Margin="12" Spacing="24" x:Name="AllWindow">
         <Grid x:Name="MainGrid">
@@ -63,13 +63,18 @@
 
                 <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
                 <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"></DatePicker>
+                <TextBlock Margin="5 0 0 0"><Run Text="Categories"/></TextBlock>
+                <ComboBox  Height="38" Width="247" Margin="5,0,0,10" x:Name="CmbBox" />
+
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="left">
                     <Button Width="54" Margin="5 0 10 0" x:Name="btn_AddExpense" Click="btn_AddExpense_Clck">Add</Button>
                     <Button Width="54" Click="btn_ClearExpense_Clck" x:Name="btn_ClearExpense">Clear</Button>
                 </StackPanel>
+                
                 <!--need category-->
             </StackPanel>
+
         </Grid>
     </ui:SimpleStackPanel>
 </Window>
