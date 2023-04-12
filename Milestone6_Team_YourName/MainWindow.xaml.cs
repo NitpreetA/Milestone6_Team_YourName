@@ -29,6 +29,8 @@ namespace Milestone6_Team_YourName
 
         private static string budgetFolder = "Budgets";
         private string initialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), budgetFolder);
+        
+        
         public MainWindow()
         {
             InitializeComponent();
