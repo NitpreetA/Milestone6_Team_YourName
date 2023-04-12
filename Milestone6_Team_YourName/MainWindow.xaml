@@ -52,6 +52,20 @@
 
 
             <StackPanel Grid.Row="1" x:Name="stackPanel">
+                <TextBlock x:Name="currentBudgetFile" >Current file: </TextBlock>
+
+                <!--<TextBlock Margin="5 0 0 0"><Run Text="Budget File Name"/></TextBlock>
+            <TextBox x:Name="customBudget" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Left" Margin="5 0 0 10" Height="22" Width="119" />-->
+                <RadioButton Content="New file" x:Name="NewFile" Click="NewFile_Click"/>
+
+
+                <StackPanel Orientation="Horizontal" Width="559">
+                    <TextBlock> Input File Name</TextBlock>
+                    <TextBox HorizontalAlignment="Left" IsEnabled="False" x:Name="budgetFileName" Margin="5 0 0 5" Width="120"></TextBox>
+                    <Button x:Name="SubmitFile" IsEnabled="False" Click="SubmitFile_Click_1" Width="100" Content="Sumbit" Margin="5,0,0,5"/>
+
+                </StackPanel>
+                
                 <TextBlock Margin="5 0 0 0"><Run Text="Expense"/></TextBlock>
                 <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"/>
 

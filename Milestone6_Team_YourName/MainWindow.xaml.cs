@@ -179,6 +179,38 @@ namespace Milestone6_Team_YourName
             }
         }
 
+        private void NewFile_Click(object sender, RoutedEventArgs e)
+        {
+            SubmitFile.IsEnabled = true;
+            budgetFileName.IsEnabled = true;
+        }
+
+        private void Existing_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SubmitFile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SubmitFile_Click_1(object sender, RoutedEventArgs e)
+        {
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (Directory.Exists(initialDirectory))
+            {
+                File.Create(initialDirectory + "\\" + budgetFileName.Text + ".db");
+                openFileDialog.InitialDirectory = initialDirectory;
+                currentBudgetFile.Text += " "+ budgetFileName.Text;
+                SubmitFile.IsEnabled = false;
+
+
+            }
+        }
+
 
 
     }
