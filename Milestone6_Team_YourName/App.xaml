@@ -11,17 +11,12 @@
                     <ui:ThemeResources.ThemeDictionaries>
                         <ResourceDictionary x:Key="Light">
                             <ResourceDictionary.MergedDictionaries>
-                                <ui:ColorPaletteResources TargetTheme="Light" Accent="Green" AltHigh="LightGray" />
+                                <ui:ColorPaletteResources TargetTheme="Light"/>
                             </ResourceDictionary.MergedDictionaries>
                         </ResourceDictionary>
                         <ResourceDictionary x:Key="Dark">
                             <ResourceDictionary.MergedDictionaries>
-                                <ui:ColorPaletteResources TargetTheme="Dark" Accent="Red" AltHigh="DarkGray" />
-                            </ResourceDictionary.MergedDictionaries>
-                        </ResourceDictionary>
-                        <ResourceDictionary x:Key="Blue">
-                            <ResourceDictionary.MergedDictionaries>
-                                <ui:ColorPaletteResources TargetTheme="Dark" Accent="Blue" AltHigh="AliceBlue" />
+                                <ui:ColorPaletteResources TargetTheme="Dark"/>
                             </ResourceDictionary.MergedDictionaries>
                         </ResourceDictionary>
                     </ui:ThemeResources.ThemeDictionaries>
