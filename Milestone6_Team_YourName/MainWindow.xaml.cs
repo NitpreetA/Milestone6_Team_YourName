@@ -40,9 +40,7 @@ namespace Milestone6_Team_YourName
         {
             InitializeComponent();
             expenseDate.SelectedDate = DateTime.Now;
-
-
-            
+            ExpenseFieldState(false);
                 
 
             if (!Directory.Exists(initialDirectory))
@@ -52,6 +50,17 @@ namespace Milestone6_Team_YourName
 
 
 
+        }
+
+        private void ExpenseFieldState(bool state)
+        {
+            expense.IsEnabled = state;
+            description.IsEnabled = state;
+            amount.IsEnabled = state;
+            expenseDate.IsEnabled = state;
+            categoryList.IsEnabled = state;
+            btn_AddExpense.IsEnabled = state;
+            btn_ClearExpense.IsEnabled = state;
         }
 
         private void btn_closePage(object sender, RoutedEventArgs e)
@@ -66,6 +75,7 @@ namespace Milestone6_Team_YourName
             if (openFileDialog.ShowDialog() == true)
             {
                 currentBudgetFile.Text = openFileDialog.FileName;
+                ExpenseFieldState(true);
             }
             
         }
@@ -175,11 +185,11 @@ namespace Milestone6_Team_YourName
         {
             SubmitFile.IsEnabled = true;
             budgetFileName.IsEnabled = true;
+
         }
 
         private void Existing_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void SubmitFile_Click(object sender, RoutedEventArgs e)
@@ -198,14 +208,14 @@ namespace Milestone6_Team_YourName
                 openFileDialog.InitialDirectory = initialDirectory;
                 currentBudgetFile.Text = " "+ budgetFileName.Text;
                 SubmitFile.IsEnabled = false;
-
+                ExpenseFieldState(true);
 
             }
         }
 
         public void DiplayList(List<Category> categories)
         {
-            CmbBox.ItemsSource = categories;
+            categoryList.ItemsSource = categories;
         }
     }
 }

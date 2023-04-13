@@ -79,27 +79,27 @@
                     <Button x:Name="SubmitFile" IsEnabled="False" Click="SubmitFile_Click_1" Width="100" Content="Sumbit" Margin="5,0,0,5"/>
 
                 </StackPanel>
-                
-                <TextBlock Margin="5 0 0 0"><Run Text="Expense"/></TextBlock>
-                <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"/>
 
-                <TextBlock Margin="5 0 0 0"><Run Text="Description"/></TextBlock>
-                <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="description"/>
 
-                <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
-                <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount"/>
+                    <TextBlock Margin="5 0 0 0"><Run Text="Expense" /></TextBlock>
+                    <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"  IsReadOnlyCaretVisible="True"/>
 
-                <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
-                <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"></DatePicker>
-                <TextBlock Margin="5 0 0 0"><Run Text="Categories"/></TextBlock>
-                <ComboBox  Height="38" Width="247" Margin="5,0,0,10" x:Name="CmbBox" />
+                    <TextBlock Margin="5 0 0 0"><Run Text="Description"/></TextBlock>
+                    <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="description"/>
 
+                    <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
+                    <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount"/>
+
+                    <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
+                    <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"></DatePicker>
+               
+                    <TextBlock Margin="5 0 0 0"><Run Text="Categories"/></TextBlock>
+                    <ComboBox  Height="38" Width="247" Margin="5,0,0,10" x:Name="categoryList"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="left">
                     <Button Width="54" Style="{StaticResource AccentButtonStyle}" Margin="5 0 10 0" x:Name="btn_AddExpense" Click="btn_AddExpense_Clck">Add</Button>
                     <Button Width="54" Click="btn_ClearExpense_Clck" x:Name="btn_ClearExpense">Clear</Button>
                 </StackPanel>
-                
                 <!--need category-->
             </StackPanel>
 
