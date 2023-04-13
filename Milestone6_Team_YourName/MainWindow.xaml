@@ -64,7 +64,7 @@
             </Menu>
 
 
-            <StackPanel Grid.Row="1" x:Name="stackPanel">
+            <StackPanel Grid.Row="1" x:Name="stackPanel" Grid.ColumnSpan="3" Margin="0,0,364,0">
                 <TextBlock x:Name="currentBudgetFile" >Current file: </TextBlock>
 
                 <!--<TextBlock Margin="5 0 0 0"><Run Text="Budget File Name"/></TextBlock>
