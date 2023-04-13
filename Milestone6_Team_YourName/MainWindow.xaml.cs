@@ -28,10 +28,13 @@ namespace Milestone6_Team_YourName
     {
         private List<string> milestoneNames = new List<string>();
         public ApplicationTheme _theme = ApplicationTheme.Dark;
+        public Color _accent = Colors.Blue;
          
 
         private static string budgetFolder = "Budgets";
         private string initialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), budgetFolder);
+        
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -97,96 +100,105 @@ namespace Milestone6_Team_YourName
             amount.Text = string.Empty;
         }
 
-        private void BtnBlue_Click(object sender, RoutedEventArgs e)
-        {
-            Brush brush = new SolidColorBrush(Color.FromRgb(0, 255, 255));
-            MainGrid.Background = brush;
-            AllWindow.Background = brush;
-            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+        //-------------------------------------------------
+        //                   Accents Menu
+        //-------------------------------------------------
 
-            foreach (var element in stackPanel.Children)
-            {
-                if (element is TextBlock block)
-                {
-                    TextBlock text = (TextBlock)element;
-                    text.Foreground = brushText;
-                }
-            }
+        private void AccentBtnRed_Click(object sender, RoutedEventArgs e)
+        {
+            _accent = Colors.Red;
+            ThemeManager.Current.AccentColor = _accent;
         }
 
-        private void BtnRed_Click(object sender, RoutedEventArgs e)
+        private void AccentBtnBlue_Click(object sender, RoutedEventArgs e)
         {
-            Brush brush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-            MainGrid.Background = brush;
-            AllWindow.Background = brush;
-            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            _accent = Colors.Blue;
+            ThemeManager.Current.AccentColor = _accent;
+        }
+        
+        private void AccentBtnYellow_Click(object sender, RoutedEventArgs e) => SetAccent("#FFB900");
 
-            foreach (var element in stackPanel.Children)
-            {
-                if (element is TextBlock block)
-                {
-                    TextBlock text = (TextBlock)element;
-                    text.Foreground = brushText;
-                }
-            }
+        private void AccentBtnOrange_Click(object sender, RoutedEventArgs e) => SetAccent("#F7630C");
+
+        private void AccentBtnPink_Click(object sender, RoutedEventArgs e) => SetAccent("#E3008C");
+
+        private void AccentBtnLavender_Click(object sender, RoutedEventArgs e) => SetAccent("#615FAE");
+
+        private void AccentBtnBlueGreen_Click(object sender, RoutedEventArgs e) => SetAccent("#00B294");
+
+        private void SetAccent(string colorCode)
+        {
+            Color color = (Color)ColorConverter.ConvertFromString(colorCode);
+            _accent = color;
+            ThemeManager.Current.AccentColor = _accent;
         }
 
-        private void BtnBlack_Click(object sender, RoutedEventArgs e)
-        {
-            Brush brush = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-            MainGrid.Background = brush;
-            AllWindow.Background = brush;
-            Brush brushText = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+        //-------------------------------------------------
+        //                  Background Menu
+        //-------------------------------------------------
 
-            foreach (var element in stackPanel.Children)
-            {
-                if (element is TextBlock block)
-                {
-                    TextBlock text = (TextBlock)element;
-                    text.Foreground = brushText;
-                }
-            }
+        private void BgBtnDefaultDark_Click(object sender, RoutedEventArgs e)
+        {
+            Brush brush = new SolidColorBrush(Colors.Black);
+            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
+            Window.Background = brush;
+
         }
 
-        private void BtnLight_Click(object sender, RoutedEventArgs e)
+        private void BgBtnDefaultLight_Click(object sender, RoutedEventArgs e)
         {
-            Brush brush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            MainGrid.Background = brush;
-            AllWindow.Background = brush;
-            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
-
-            btn_AddExpense.Foreground = brushText;
-            btn_ClearExpense.Foreground = brushText;
-
-
-            foreach (var element in stackPanel.Children)
-            {
-                if (element is TextBlock block)
-                {
-                    TextBlock text = (TextBlock)element;
-                    text.Foreground = brushText;
-                }
-            }
+            Brush brush = new SolidColorBrush(Colors.White);
+            ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
+            Window.Background = brush;
         }
 
-        private void BtnBeige_Click(object sender, RoutedEventArgs e)
+        private void BgBtnBlue_Click(object sender, RoutedEventArgs e) => SetBackground("#1DA9E2");
+
+        private void BgBtnSalmon_Click(object sender, RoutedEventArgs e) => SetBackground("#FA8072");
+
+        private void BgBtnEmerald_Click(object sender, RoutedEventArgs e) => SetBackground("#28643C");
+
+        private void BgBtnLavender_Click(object sender, RoutedEventArgs e) => SetBackground("#615FAE");
+
+        private void BgBtnCrimson_Click(object sender, RoutedEventArgs e) => SetBackground("#9A0E2A");
+        
+        private void SetBackground(string colorCode)
         {
-            Brush brush = new SolidColorBrush(Color.FromRgb(245, 245, 220));
-            MainGrid.Background = brush;
-            AllWindow.Background = brush;
-            Brush brushText = new SolidColorBrush(Color.FromRgb(0, 0, 0));
+            Color color = (Color)ColorConverter.ConvertFromString(colorCode);
+            Brush brush = new SolidColorBrush(color);
 
+            Window.Background = brush;
+        }
 
-            btn_AddExpense.Foreground = brushText;
-            btn_ClearExpense.Foreground = brushText;
+        private void NewFile_Click(object sender, RoutedEventArgs e)
+        {
+            SubmitFile.IsEnabled = true;
+            budgetFileName.IsEnabled = true;
+        }
 
-            foreach (var element in stackPanel.Children)
+        private void Existing_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SubmitFile_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SubmitFile_Click_1(object sender, RoutedEventArgs e)
+        {
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (Directory.Exists(initialDirectory))
             {
-                if (element is TextBlock block)
-                {
-                    TextBlock text = (TextBlock)element;
-                    text.Foreground = brushText;
-                }
+                File.Create(initialDirectory + "\\" + budgetFileName.Text + ".db");
+                openFileDialog.InitialDirectory = initialDirectory;
+                currentBudgetFile.Text += " "+ budgetFileName.Text;
+                SubmitFile.IsEnabled = false;
+
+
             }
         }
 

@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
-        ui:ThemeManager.RequestedTheme="Dark"
-        Title="MainWindow" Height="550" Width="800" >
+        ui:ThemeManager.RequestedTheme='Default'
+    Title="MainWindow" Height="550" Width="800"
+        x:Name="Window">
 
     <ui:SimpleStackPanel Margin="12" Spacing="24" x:Name="AllWindow">
         <Grid x:Name="MainGrid">
@@ -26,7 +27,7 @@
             <!--<Button Grid.Row="0" Background="White" BorderThickness="0" FontWeight="ExtraBold" Foreground="Red" Grid.Column="2" Click="btn_closePage" Margin="18,0,10,20" RenderTransformOrigin="-2.569,0.447">❌</Button>-->
             <!--<Button Grid.Row="0" Margin="115,7,24,17"  Grid.Column="1">📁</Button>-->
 
-            <Menu Margin="0,0,0,29" Grid.ColumnSpan="3" Background="Gray">
+            <Menu Margin="0,0,0,29" Grid.ColumnSpan="3">
                 <MenuItem Header="File" >
                     <MenuItem HorizontalAlignment="Right" Header="Open" Click="btnOpenBudgetFileLocation">
                         <MenuItem.Icon>
@@ -39,12 +40,24 @@
                     <MenuItem HorizontalAlignment="Right" Header="Close" Click="btn_closePage"></MenuItem>
 
                 </MenuItem>
-                <MenuItem Header="Theme">
-                    <MenuItem Header="Blue" Click="BtnBlue_Click"></MenuItem>
-                    <MenuItem Header="Dark" Click="BtnBlack_Click"></MenuItem>
-                    <MenuItem Header="Red" Click="BtnRed_Click" Icon=""></MenuItem>
-                    <MenuItem Header="Light" Click="BtnLight_Click" ></MenuItem>
-                    <MenuItem Header="Beige" Click="BtnBeige_Click"></MenuItem>
+                <MenuItem Header="Accents">
+                    <MenuItem Header="Red" Click="AccentBtnRed_Click" />
+                    <MenuItem Header="Blue" Click="AccentBtnBlue_Click" />
+                    <MenuItem Header="Yellow" Click="AccentBtnYellow_Click" />
+                    <MenuItem Header="Orange" Click="AccentBtnOrange_Click" />
+                    <MenuItem Header="Pink" Click="AccentBtnPink_Click" />
+                    <MenuItem Header="Lavender" Click="AccentBtnLavender_Click" />
+                    <MenuItem Header="Blue Green" Click="AccentBtnBlueGreen_Click" />
+                </MenuItem>
+                <MenuItem Header="Backgrounds">
+                    <MenuItem Header="Default Dark" Click="BgBtnDefaultDark_Click" />
+                    <MenuItem Header="Default Light" Click="BgBtnDefaultLight_Click" />
+                    <Separator />
+                    <MenuItem Header="Blue" Click="BgBtnBlue_Click" />
+                    <MenuItem Header="Salmon" Click="BgBtnSalmon_Click" />
+                    <MenuItem Header="Emerald" Click="BgBtnEmerald_Click" />
+                    <MenuItem Header="Lavender" Click="BgBtnLavender_Click" />
+                    <MenuItem Header="Crimson" Click="BgBtnCrimson_Click" />
                 </MenuItem>
 
 
@@ -52,6 +65,20 @@
 
 
             <StackPanel Grid.Row="1" x:Name="stackPanel">
+                <TextBlock x:Name="currentBudgetFile" >Current file: </TextBlock>
+
+                <!--<TextBlock Margin="5 0 0 0"><Run Text="Budget File Name"/></TextBlock>
+            <TextBox x:Name="customBudget" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Left" Margin="5 0 0 10" Height="22" Width="119" />-->
+                <RadioButton Content="New file" x:Name="NewFile" Click="NewFile_Click"/>
+
+
+                <StackPanel Orientation="Horizontal" Width="559">
+                    <TextBlock> Input File Name</TextBlock>
+                    <TextBox HorizontalAlignment="Left" IsEnabled="False" x:Name="budgetFileName" Margin="5 0 0 5" Width="120"></TextBox>
+                    <Button x:Name="SubmitFile" IsEnabled="False" Click="SubmitFile_Click_1" Width="100" Content="Sumbit" Margin="5,0,0,5"/>
+
+                </StackPanel>
+                
                 <TextBlock Margin="5 0 0 0"><Run Text="Expense"/></TextBlock>
                 <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"/>
 
@@ -68,7 +95,7 @@
 
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="left">
-                    <Button Width="54" Margin="5 0 10 0" x:Name="btn_AddExpense" Click="btn_AddExpense_Clck">Add</Button>
+                    <Button Width="54" Style="{StaticResource AccentButtonStyle}" Margin="5 0 10 0" x:Name="btn_AddExpense" Click="btn_AddExpense_Clck">Add</Button>
                     <Button Width="54" Click="btn_ClearExpense_Clck" x:Name="btn_ClearExpense">Clear</Button>
                 </StackPanel>
                 
