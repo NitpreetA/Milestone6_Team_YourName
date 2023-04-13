@@ -25,12 +25,12 @@ namespace Milestone6_Team_YourName
     /// 
 
 
-    public partial class MainWindow : ViewInterface
+    public partial class MainWindow : Window, ViewInterface
     {
 
         public ApplicationTheme _theme = ApplicationTheme.Dark;
         public Color _accent = Colors.Blue;
-         
+        private Presenter p;
 
         private static string budgetFolder = "Budgets";
         private string initialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), budgetFolder);
@@ -39,6 +39,8 @@ namespace Milestone6_Team_YourName
         public MainWindow()
         {
             InitializeComponent();
+            p = new Presenter(this);
+            
             expenseDate.SelectedDate = DateTime.Now;
             ExpenseFieldState(false);
                 
@@ -75,6 +77,7 @@ namespace Milestone6_Team_YourName
             if (openFileDialog.ShowDialog() == true)
             {
                 currentBudgetFile.Text = openFileDialog.FileName;
+                p.Connection(currentBudgetFile.Text,true);
                 ExpenseFieldState(true);
             }
             
