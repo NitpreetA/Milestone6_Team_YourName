@@ -8,10 +8,10 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
         ui:ThemeManager.RequestedTheme='Default'
-    Title="MainWindow" Height="550" Width="800"
+    Title="MainWindow" Height="575" Width="800"
         x:Name="Window">
 
-    <ui:SimpleStackPanel Margin="12" Spacing="24" x:Name="AllWindow">
+    <ui:SimpleStackPanel Margin="12,12,12,16" Spacing="24" x:Name="AllWindow">
         <Grid x:Name="MainGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="246*"></ColumnDefinition>
