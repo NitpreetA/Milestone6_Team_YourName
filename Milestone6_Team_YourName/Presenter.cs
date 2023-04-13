@@ -9,13 +9,16 @@ namespace Milestone6_Team_YourName
 {
     internal class Presenter
     {
-        public Presenter() 
+        private ViewInterface view;
+        public Presenter(ViewInterface v) 
         {
+            view = v;
             
         }
-        public void Connection(string filename)
+        public void Connection(string filename,bool existing)
         {
-            HomeBudget budget = new HomeBudget(filename);
+            HomeBudget budget = new HomeBudget(filename,existing);
+            view.DiplayList(budget.categories.List());
             
         }
 
