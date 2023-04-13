@@ -27,7 +27,7 @@ namespace Milestone6_Team_YourName
 
     public partial class MainWindow : Window, ViewInterface
     {
-
+        private bool existing;
         public ApplicationTheme _theme = ApplicationTheme.Dark;
         public Color _accent = Colors.Blue;
         private Presenter p;
@@ -76,8 +76,9 @@ namespace Milestone6_Team_YourName
             openFileDialog.InitialDirectory = initialDirectory;
             if (openFileDialog.ShowDialog() == true)
             {
+                existing = false;
                 currentBudgetFile.Text = openFileDialog.FileName;
-                p.Connection(currentBudgetFile.Text,true);
+                p.Connection(currentBudgetFile.Text,existing);
                 ExpenseFieldState(true);
             }
             
@@ -207,10 +208,10 @@ namespace Milestone6_Team_YourName
 
             if (Directory.Exists(initialDirectory))
             {
-                File.Create(initialDirectory + "\\" + budgetFileName.Text + ".db");
-                openFileDialog.InitialDirectory = initialDirectory;
-                currentBudgetFile.Text = " "+ budgetFileName.Text;
-                SubmitFile.IsEnabled = false;
+
+                
+                existing = true;
+                p.Connection(initialDirectory + "\\" + budgetFileName.Text + ".db", existing);
                 ExpenseFieldState(true);
 
             }
