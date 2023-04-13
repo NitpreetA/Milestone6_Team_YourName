@@ -29,7 +29,7 @@ namespace Milestone6_Team_YourName
     {
 
         public ApplicationTheme _theme = ApplicationTheme.Dark;
-        public Color _accent = Colors.Blue;
+        internal Color _accent = Colors.Blue;
         private Presenter p;
 
         private static string budgetFolder = "Budgets";
