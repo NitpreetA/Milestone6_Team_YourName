@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
+using Budget;
 
 namespace Milestone6_Team_YourName
 {
@@ -24,9 +25,9 @@ namespace Milestone6_Team_YourName
     /// 
 
 
-    public partial class MainWindow : Window
+    public partial class MainWindow : ViewInterface
     {
-        private List<string> milestoneNames = new List<string>();
+
         public ApplicationTheme _theme = ApplicationTheme.Dark;
         public Color _accent = Colors.Blue;
          
@@ -39,10 +40,9 @@ namespace Milestone6_Team_YourName
         {
             InitializeComponent();
             expenseDate.SelectedDate = DateTime.Now;
-            milestoneNames.Add("abc");
-            milestoneNames.Add("test");
 
-            CmbBox.ItemsSource = milestoneNames;
+
+            
                 
 
             if (!Directory.Exists(initialDirectory))
@@ -65,6 +65,7 @@ namespace Milestone6_Team_YourName
             openFileDialog.InitialDirectory = initialDirectory;
             if (openFileDialog.ShowDialog() == true)
             {
+                currentBudgetFile.Text = openFileDialog.FileName;
             }
             
         }
@@ -195,14 +196,16 @@ namespace Milestone6_Team_YourName
             {
                 File.Create(initialDirectory + "\\" + budgetFileName.Text + ".db");
                 openFileDialog.InitialDirectory = initialDirectory;
-                currentBudgetFile.Text += " "+ budgetFileName.Text;
+                currentBudgetFile.Text = " "+ budgetFileName.Text;
                 SubmitFile.IsEnabled = false;
 
 
             }
         }
 
-
-
+        public void DiplayList(List<Category> categories)
+        {
+            CmbBox.ItemsSource = categories;
+        }
     }
 }

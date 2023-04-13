@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Budget;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,17 @@ namespace Milestone6_Team_YourName
 {
     internal class Presenter
     {
+        public Presenter() 
+        {
+            
+        }
+        public void Connection(string filename)
+        {
+            HomeBudget budget = new HomeBudget(filename);
+            
+        }
+
     }
+
+
 }
