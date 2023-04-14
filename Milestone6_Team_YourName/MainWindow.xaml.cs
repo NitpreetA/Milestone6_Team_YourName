@@ -116,6 +116,8 @@ namespace Milestone6_Team_YourName
             bool errorWhileAddingAnExpense = false;
             // find a way to 
 
+            //if
+
             if(string.IsNullOrEmpty(expense.Text) || string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) )
             {
                 errorWhileAddingAnExpense = true;
@@ -140,6 +142,7 @@ namespace Milestone6_Team_YourName
             expense.Text = string.Empty;
             description.Text = string.Empty;
             amount.Text = string.Empty;
+            categoryList.SelectedIndex = -1;
         }
 
         
