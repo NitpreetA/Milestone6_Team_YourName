@@ -145,7 +145,7 @@ namespace Milestone6_Team_YourName
                 existing = true;
                 p.Connection(initialDirectory + "\\" + budgetFileName.Text + ".db", existing);
                 ExpenseFieldState(true);
-
+                SubmitFile.IsEnabled = false;
             }
         }
 
