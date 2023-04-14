@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using Budget;
+using ModernWpf.Controls;
 
 namespace Milestone6_Team_YourName
 {
@@ -34,6 +35,8 @@ namespace Milestone6_Team_YourName
 
         private static string budgetFolder = "Budgets";
         private string initialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), budgetFolder);
+
+        private string openBudget = string.Empty;
         
         
         public MainWindow()
@@ -43,15 +46,39 @@ namespace Milestone6_Team_YourName
             
             expenseDate.SelectedDate = DateTime.Now;
             ExpenseFieldState(false);
+
+            
+            PropertiesSet();
+            PropertiesToTheme();
+            LastOpenFile();         
                 
 
             if (!Directory.Exists(initialDirectory))
             {
                 Directory.CreateDirectory(initialDirectory);
             }
+        }
 
+        private void LastOpenFile()
+        {
+            string lastOpenDB = App.Current.Properties["LastOpenDB"].ToString();
 
-
+            if (File.Exists(lastOpenDB))
+            {
+                var response = MessageBox.Show("You had a database open last time, would you like " +
+                    "to reopen it?", "Database Relaunching", MessageBoxButton.YesNo);
+                if (response == MessageBoxResult.Yes)
+                {
+                    currentBudgetFile.Text = lastOpenDB;
+                    openBudget = currentBudgetFile.Text;
+                    p.Connection(currentBudgetFile.Text, existing);
+                    ExpenseFieldState(true);
+                }
+                else
+                {
+                    openBudget = "";
+                }
+            }
         }
 
         private void ExpenseFieldState(bool state)
@@ -78,6 +105,7 @@ namespace Milestone6_Team_YourName
             {
                 existing = false;
                 currentBudgetFile.Text = openFileDialog.FileName;
+                openBudget = currentBudgetFile.Text;
                 p.Connection(currentBudgetFile.Text,existing);
                 ExpenseFieldState(true);
             }
@@ -88,6 +116,8 @@ namespace Milestone6_Team_YourName
         {
             bool errorWhileAddingAnExpense = false;
             // find a way to 
+
+            //if
 
             if(string.IsNullOrEmpty(expense.Text) || string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) )
             {
@@ -113,6 +143,7 @@ namespace Milestone6_Team_YourName
             expense.Text = string.Empty;
             description.Text = string.Empty;
             amount.Text = string.Empty;
+            categoryList.SelectedIndex = -1;
         }
 
         
@@ -152,6 +183,33 @@ namespace Milestone6_Team_YourName
         public void DiplayList(List<Category> categories)
         {
             categoryList.ItemsSource = categories;
+        }
+
+        private void PropertiesSet()
+        {
+            if (!App.Current.Properties.Contains("BackgroundColor"))
+                App.Current.Properties.Add("BackgroundColor", Window.Background);
+
+            if (!App.Current.Properties.Contains("AccentColor"))
+                App.Current.Properties.Add("AccentColor", _accent);
+
+            if (!App.Current.Properties.Contains("LastOpenDB"))
+                App.Current.Properties.Add("LastOpenDB", "");
+        }
+
+        private void PropertiesToTheme()
+        {
+            string accent = App.Current.Properties["AccentColor"].ToString();
+            string background = App.Current.Properties["BackgroundColor"].ToString();
+            SetAccent(accent);
+            SetBackground(background);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            App.Current.Properties["BackgroundColor"] = Window.Background;
+            App.Current.Properties["AccentColor"] = _accent;
+            App.Current.Properties["LastOpenDB"] = openBudget;
         }
     }
 }
