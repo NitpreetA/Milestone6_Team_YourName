@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
-        ui:ThemeManager.RequestedTheme='Default'
     Title="MainWindow" Height="655" Width="800"
+        Closing="Window_Closing"
         x:Name="Window">
 
     <ui:SimpleStackPanel Margin="12,12,12,16" Spacing="24" x:Name="AllWindow">

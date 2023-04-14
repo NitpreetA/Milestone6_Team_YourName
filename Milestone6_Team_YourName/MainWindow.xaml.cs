@@ -39,6 +39,9 @@ namespace Milestone6_Team_YourName
         public MainWindow()
         {
             InitializeComponent();
+            PropertiesSet();
+            PropertiesToTheme();
+
             p = new Presenter(this);
             
             expenseDate.SelectedDate = DateTime.Now;
@@ -49,9 +52,6 @@ namespace Milestone6_Team_YourName
             {
                 Directory.CreateDirectory(initialDirectory);
             }
-
-
-
         }
 
         private void ExpenseFieldState(bool state)
@@ -152,6 +152,32 @@ namespace Milestone6_Team_YourName
         public void DiplayList(List<Category> categories)
         {
             categoryList.ItemsSource = categories;
+        }
+
+        private void PropertiesSet()
+        {
+            if (!App.Current.Properties.Contains("BackgroundColor"))
+            {
+                App.Current.Properties.Add("BackgroundColor", Window.Background);
+            }
+            if (!App.Current.Properties.Contains("AccentColor"))
+            {
+                App.Current.Properties.Add("AccentColor", _accent);
+            }
+        }
+
+        private void PropertiesToTheme()
+        {
+            string accent = App.Current.Properties["AccentColor"].ToString();
+            string background = App.Current.Properties["BackgroundColor"].ToString();
+            SetAccent(accent);
+            SetBackground(background);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            App.Current.Properties["BackgroundColor"] = Window.Background;
+            App.Current.Properties["AccentColor"] = _accent;
         }
     }
 }

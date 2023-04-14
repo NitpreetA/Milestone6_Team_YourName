@@ -85,7 +85,7 @@ namespace Milestone6_Team_YourName
 
         private void BgBtnCrimson_Click(object sender, RoutedEventArgs e) => SetBackground("#9A0E2A");
 
-        private void SetBackground(string colorCode)
+        private void SetBackground(string colorCode) 
         {
             Color color = (Color)ColorConverter.ConvertFromString(colorCode);
             Brush brush = new SolidColorBrush(color);
