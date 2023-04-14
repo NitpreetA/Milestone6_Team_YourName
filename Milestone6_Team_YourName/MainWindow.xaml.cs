@@ -37,7 +37,6 @@ namespace Milestone6_Team_YourName
 
         private static string budgetFolder = "Budgets";
         private string initialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), budgetFolder);
-        private List<Category> updateCategoriesList = new List<Category>();
         private bool createdNewCategory = false;
 
 
@@ -49,6 +48,8 @@ namespace Milestone6_Team_YourName
             
             expenseDate.SelectedDate = DateTime.Now;
             ExpenseFieldState(false);
+
+            p.DisplayDefCatType();
                 
 
             if (!Directory.Exists(initialDirectory))
@@ -163,7 +164,7 @@ namespace Milestone6_Team_YourName
 
             categoryList.ItemsSource = categories;
 
-            updateCategoriesList = categories;
+        
 
             if (createdNewCategory)
             {
@@ -175,11 +176,25 @@ namespace Milestone6_Team_YourName
 
         private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)
         {
-            createdNewCategory = true;  
-            DisplayList(updateCategoriesList);
+            createdNewCategory = true;
+            if (createCategory.Text == "")
+            {
+                MessageBox.Show("Must Input a name for the category you want to add.");
+            }
+            else
+            {
+                p.CreateCat(createCategory.Text, CategoryType.SelectedIndex);
+                createCategory.Text = ""; // clear the textbox
+            }
+           
 
-            createCategory.Text = ""; // clear the textbox
 
+        }
+
+        public void DisplayCatTypes(List<CategoryType> categoryTypes)
+        {
+            CategoryType.ItemsSource = categoryTypes;
+            CategoryType.SelectedIndex = 1;
         }
     }
 }

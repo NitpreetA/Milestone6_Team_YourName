@@ -107,7 +107,7 @@
                     <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="createCategory"  IsReadOnlyCaretVisible="True" Height="14"/>
                     <Button  Margin="5 0 0 10" Height="30" FontSize="8" Width="41" x:Name="btn_CreateNewCategory" Click="btn_CreateNewCategory_Click">➕</Button>
                 </StackPanel>
-
+                <ComboBox Margin="5" x:Name="CategoryType"  Width="169"></ComboBox>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="left">
                     <Button Width="54" Style="{StaticResource AccentButtonStyle}" Margin="5 0 10 0" x:Name="btn_AddExpense" Click="btn_AddExpense_Clck">Add</Button>
                     <Button Width="54" Click="btn_ClearExpense_Clck" x:Name="btn_ClearExpense">Clear</Button>
