@@ -61,7 +61,7 @@
                 </MenuItem>
                 <Button Height="40" Width="40" Click="BtnDarkLightSwitch_Click">
                     <Button.Background>
-                    <ImageBrush ImageSource="Images\brightness-and-contrast.png"/>
+                        <ImageBrush ImageSource="Images\brightness-and-contrast.png"/>
                     </Button.Background>
                 </Button>
             </Menu>
@@ -69,7 +69,7 @@
 
             <StackPanel Grid.Row="1" x:Name="stackPanel" Grid.ColumnSpan="3" Margin="0,0,364,0">
                 <TextBlock FontStyle="Italic" FontWeight="ExtraBold" FontSize="21"> ADD Expenses</TextBlock>
-                <TextBlock x:Name="currentBudgetFile" >Current file: </TextBlock>
+                <TextBlock x:Name="currentBudgetFile" >Current file:</TextBlock>
 
                 <!--<TextBlock Margin="5 0 0 0"><Run Text="Budget File Name"/></TextBlock>
             <TextBox x:Name="customBudget" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Left" Margin="5 0 0 10" Height="22" Width="119" />-->
@@ -84,20 +84,29 @@
                 </StackPanel>
 
 
-                    <TextBlock Margin="5 0 0 0"><Run Text="Expense" /></TextBlock>
-                    <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"  IsReadOnlyCaretVisible="True"/>
+                <TextBlock Margin="5 0 0 0"><Run Text="Expense" /></TextBlock>
+                <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expense"  IsReadOnlyCaretVisible="True"/>
 
-                    <TextBlock Margin="5 0 0 0"><Run Text="Description"/></TextBlock>
-                    <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="description"/>
+                <TextBlock Margin="5 0 0 0"><Run Text="Description"/></TextBlock>
+                <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="description"/>
 
-                    <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
-                    <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount"/>
+                <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
+                <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount"/>
 
-                    <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
-                    <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"></DatePicker>
-               
-                    <TextBlock Margin="5 0 0 0"><Run Text="Categories"/></TextBlock>
-                    <ComboBox  Height="38" Width="247" Margin="5,0,0,10" x:Name="categoryList"/>
+                <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
+                <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"></DatePicker>
+
+                <TextBlock Margin="5 0 0 0"><Run Text="Categories"/></TextBlock>
+                <ComboBox  Height="38" Width="247" Margin="5,0,0,10" x:Name="categoryList"/>
+
+
+                <TextBlock Margin="5 0 0 0"><Run Text="Create New Category"/></TextBlock>
+
+                <StackPanel Orientation="Horizontal">
+
+                    <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="createCategory"  IsReadOnlyCaretVisible="True" Height="14"/>
+                    <Button  Margin="5 0 0 10" Height="30" FontSize="8" Width="41" x:Name="btn_CreateNewCategory" Click="btn_CreateNewCategory_Click">➕</Button>
+                </StackPanel>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="left">
                     <Button Width="54" Style="{StaticResource AccentButtonStyle}" Margin="5 0 10 0" x:Name="btn_AddExpense" Click="btn_AddExpense_Clck">Add</Button>
@@ -105,6 +114,7 @@
                 </StackPanel>
                 <!--need category-->
             </StackPanel>
+          
 
         </Grid>
     </ui:SimpleStackPanel>

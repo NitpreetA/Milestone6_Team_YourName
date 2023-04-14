@@ -18,7 +18,7 @@ namespace Milestone6_Team_YourName
         public void Connection(string filename,bool existing)
         {
             HomeBudget budget = new HomeBudget(filename,existing);
-            view.DiplayList(budget.categories.List());
+            view.DisplayList(budget.categories.List());
             
         }
 
