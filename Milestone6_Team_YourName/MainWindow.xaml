@@ -91,8 +91,8 @@
                     <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="description"/>
 
                     <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
-                <ui:NumberBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount" PlaceholderText="0.00" 
-                              ValidationMode="InvalidInputOverwritten" SpinButtonPlacementMode="Compact" />
+                <ui:NumberBox Width="160" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount" PlaceholderText="0.00" 
+                              ValidationMode="InvalidInputOverwritten" SpinButtonPlacementMode="Inline" />
 
                 <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
                     <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"></DatePicker>

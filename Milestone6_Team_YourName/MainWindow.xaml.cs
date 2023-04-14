@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using Budget;
+using ModernWpf.Controls;
 
 namespace Milestone6_Team_YourName
 {
@@ -75,7 +76,7 @@ namespace Milestone6_Team_YourName
                 }
                 else
                 {
-                    openBudget = lastOpenDB;
+                    openBudget = "";
                 }
             }
         }
