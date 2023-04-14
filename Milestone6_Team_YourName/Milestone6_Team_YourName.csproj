@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\brightness-and-contrast.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
   </ItemGroup>
@@ -16,6 +20,12 @@
     <Reference Include="HomeBudget">
       <HintPath>HomeBudgetDllandDocs\HomeBudget.dll</HintPath>
     </Reference>
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Resource Include="Images\brightness-and-contrast.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

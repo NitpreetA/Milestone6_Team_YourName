@@ -59,8 +59,11 @@
                     <MenuItem Header="Lavender" Click="BgBtnLavender_Click" />
                     <MenuItem Header="Crimson" Click="BgBtnCrimson_Click" />
                 </MenuItem>
-
-
+                <Button Height="40" Width="40" Click="BtnDarkLightSwitch_Click">
+                    <Button.Background>
+                    <ImageBrush ImageSource="Images\brightness-and-contrast.png"/>
+                    </Button.Background>
+                </Button>
             </Menu>
 
 

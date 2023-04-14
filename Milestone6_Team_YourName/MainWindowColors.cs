@@ -11,6 +11,18 @@ namespace Milestone6_Team_YourName
 {
     public partial class MainWindow : Window, ViewInterface
     {
+        private void BtnDarkLightSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            var currentBackground = Window.Background;
+
+            _theme = (_theme == ApplicationTheme.Dark) ? ApplicationTheme.Light : ApplicationTheme.Dark;
+            ThemeManager.Current.ApplicationTheme = _theme;
+            Window.Background = currentBackground;
+        }
+
+
+
+
         //-------------------------------------------------
         //                   Accents Menu
         //-------------------------------------------------
