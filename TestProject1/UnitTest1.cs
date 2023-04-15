@@ -64,17 +64,67 @@ namespace TestProject1
         }
 
 
-
+        [Fact]
+        public void TestAccentBtnRedClicked()
+        {
+            AccentBtnRedClicked();
+            Assert.True(accentBtnRedClicked);
+        }
 
         [Fact]
-        public void TestCreateNewCategory()
+        public void TestAccentBtnBlueClicked()
         {
-            UnitTest1 test = new UnitTest1();
+            AccentBtnBlueClicked();
+            Assert.True(accentBtnBlueClicked);
+        }
 
-            test.CreateNewCategory_Click();
-          
+        [Fact]
+        public void TestAccentBtnYellowClicked()
+        {
+            AccentBtnYellowClicked();
+            Assert.True(accentBtnYellowClicked);
+        }
+
+        [Fact]
+        public void TestAccentBtnOrangeClicked()
+        {
+            AccentBtnOrangeClicked();
+            Assert.True(accentBtnOrangeClicked);
+        }
+
+        [Fact]
+        public void TestAccentBtnPinkClicked()
+        {
+            AccentBtnPinkClicked();
+            Assert.True(accentBtnPinkClicked);
+        }
+
+        [Fact]
+        public void TestAccentBtnLavenderClicked()
+        {
+            AccentBtnLavenderClicked();
+            Assert.True(accentBtnLavenderClicked);
+        }
+
+        [Fact]
+        public void TestAccentBtnBlueGreenClicked()
+        {
+            AccentBtnBlueGreenClicked();
+            Assert.True(accentBtnBlueGreenClicked);
+        }
+
+        [Fact]
+        public void TestNewFile_Click()
+        {
+            NewFile_Click();
+            Assert.True(newFile_Click);
+        }
+
+        [Fact]
+        public void TestCreateNewCategory_Click()
+        {
+            CreateNewCategory_Click();
             Assert.True(createNewCategory);
-           
         }
 
     }
