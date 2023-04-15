@@ -9,6 +9,8 @@ namespace Milestone6_Team_YourName
 {
     interface ViewInterface
     {
-        void DiplayList(List<Category> categories);
+        void DisplayList(List<Category> categories);
+
+        void DisplayCatTypes(List<Category.CategoryType> categoryTypes);
     }
 }

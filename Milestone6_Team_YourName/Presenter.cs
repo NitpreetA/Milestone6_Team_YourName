@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Milestone6_Team_YourName
 {
     internal class Presenter
     {
         private ViewInterface view;
+        private HomeBudget budget;
         public Presenter(ViewInterface v) 
         {
             view = v;
@@ -17,9 +19,42 @@ namespace Milestone6_Team_YourName
         }
         public void Connection(string filename,bool existing)
         {
-            HomeBudget budget = new HomeBudget(filename,existing);
-            view.DiplayList(budget.categories.List());
+            budget = new HomeBudget(filename,existing);
+            view.DisplayList(budget.categories.List());
             
+        }
+
+        public void CreateCat(string description,int index) 
+        {
+            Category.CategoryType catType = (Category.CategoryType)(index + 1);
+
+            List<Category> currentCategories = budget.categories.List();
+
+            foreach (Category c in currentCategories)
+            {
+                if (c.Description == description)
+                {
+                    MessageBox.Show("Category already exists");
+                    return;
+                }
+            }
+
+            budget.categories.Add(description,catType);
+            
+            view.DisplayList(budget.categories.List());
+        } 
+        
+        public void DisplayDefCatType()
+        {
+            //https://www.techiedelight.com/convert-enum-to-list-csharp/ gotten from 
+            List<Category.CategoryType> categoryTypes = Enum.GetValues(typeof(Category.CategoryType))
+                            .Cast<Category.CategoryType>()
+                            .ToList();
+
+            view.DisplayCatTypes(categoryTypes);
+
+
+
         }
 
     }

@@ -16,6 +16,9 @@ using System.Windows.Shapes;
 using System.IO;
 using Microsoft.Win32;
 using Budget;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using static Budget.Category;
 using ModernWpf.Controls;
 
 namespace Milestone6_Team_YourName
@@ -39,6 +42,10 @@ namespace Milestone6_Team_YourName
         private string openBudget = string.Empty;
         
         
+        private bool createdNewCategory = false;
+
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -51,6 +58,10 @@ namespace Milestone6_Team_YourName
             PropertiesSet();
             PropertiesToTheme();
             LastOpenFile();         
+                
+
+
+            p.DisplayDefCatType();
                 
 
             if (!Directory.Exists(initialDirectory))
@@ -90,6 +101,8 @@ namespace Milestone6_Team_YourName
             categoryList.IsEnabled = state;
             btn_AddExpense.IsEnabled = state;
             btn_ClearExpense.IsEnabled = state;
+            createCategory.IsEnabled = state;
+            btn_CreateNewCategory.IsEnabled = state;
         }
 
         private void btn_closePage(object sender, RoutedEventArgs e)
@@ -180,9 +193,43 @@ namespace Milestone6_Team_YourName
             }
         }
 
-        public void DiplayList(List<Category> categories)
+        public void DisplayList(List<Category> categories)
         {
+           // Category myCategory = new Category(); // i just need an instance of this to be able to add... 
+
             categoryList.ItemsSource = categories;
+
+        
+
+            if (createdNewCategory)
+            {
+                //categories.Add();
+            }
+            createdNewCategory = false;
+        }
+
+
+        private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)
+        {
+            createdNewCategory = true;
+            if (createCategory.Text == "")
+            {
+                MessageBox.Show("Must Input a name for the category you want to add.");
+            }
+            else
+            {
+                p.CreateCat(createCategory.Text, CategoryType.SelectedIndex);
+                createCategory.Text = ""; // clear the textbox
+            }
+           
+
+
+        }
+
+        public void DisplayCatTypes(List<CategoryType> categoryTypes)
+        {
+            CategoryType.ItemsSource = categoryTypes;
+            CategoryType.SelectedIndex = 1;
         }
 
         private void PropertiesSet()
