@@ -8,16 +8,16 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
         ui:ThemeManager.RequestedTheme='Default'
-    Title="MainWindow" Height="655" Width="800"
+    Title="MainWindow" Height="755" Width="800"
         x:Name="Window">
 
     <ui:SimpleStackPanel Margin="12,12,12,16" Spacing="24" x:Name="AllWindow">
         <Grid x:Name="MainGrid">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="246*"></ColumnDefinition>
-                <ColumnDefinition Width="28*"/>
-                <ColumnDefinition Width="411*"></ColumnDefinition>
-                <ColumnDefinition Width="91*"></ColumnDefinition>
+                <ColumnDefinition Width="123*"></ColumnDefinition>
+                <ColumnDefinition Width="45*"/>
+                <ColumnDefinition Width="202*"></ColumnDefinition>
+                <ColumnDefinition Width="18*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" ></RowDefinition>
@@ -67,7 +67,7 @@
             </Menu>
 
 
-            <StackPanel Grid.Row="1" x:Name="stackPanel" Grid.ColumnSpan="3" Margin="0,0,364,0">
+            <StackPanel Grid.Row="1" x:Name="stackPanel" Grid.ColumnSpan="2" Margin="0,0,1,0">
                 <TextBlock FontStyle="Italic" FontWeight="ExtraBold" FontSize="21"> ADD Expenses</TextBlock>
                 <TextBlock x:Name="currentBudgetFile" >Current file:</TextBlock>
 
@@ -76,7 +76,7 @@
                 <RadioButton Content="New file" x:Name="NewFile" Click="NewFile_Click"/>
 
 
-                <StackPanel Orientation="Horizontal" Width="559">
+                <StackPanel Orientation="Horizontal" Width="319">
                     <TextBlock> Input File Name</TextBlock>
                     <TextBox HorizontalAlignment="Left" IsEnabled="False" x:Name="budgetFileName" Margin="5 0 0 5" Width="120"></TextBox>
                     <Button x:Name="SubmitFile" IsEnabled="False" Click="SubmitFile_Click_1" Width="100" Content="Sumbit" Margin="5,0,0,5"/>
@@ -100,21 +100,25 @@
                 <ComboBox  Height="38" Width="247" Margin="5,0,0,10" x:Name="categoryList"/>
 
 
-                <TextBlock Margin="5 0 0 0"><Run Text="Create New Category"/></TextBlock>
 
-                <StackPanel Orientation="Horizontal">
-
-                    <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="createCategory"  IsReadOnlyCaretVisible="True" Height="14"/>
-                    <Button  Margin="5 0 0 10" Height="30" FontSize="8" Width="41" x:Name="btn_CreateNewCategory" Click="btn_CreateNewCategory_Click">➕</Button>
-                </StackPanel>
-                <ComboBox Margin="5" x:Name="CategoryType"  Width="169"></ComboBox>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="left">
                     <Button Width="54" Style="{StaticResource AccentButtonStyle}" Margin="5 0 10 0" x:Name="btn_AddExpense" Click="btn_AddExpense_Clck">Add</Button>
                     <Button Width="54" Click="btn_ClearExpense_Clck" x:Name="btn_ClearExpense">Clear</Button>
                 </StackPanel>
                 <!--need category-->
             </StackPanel>
-          
+
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2" Margin="52,0,0,0">
+                <TextBlock FontStyle="Italic" Margin="5" FontWeight="ExtraBold" FontSize="21"   Height="39"><Run Text="Create New Category"/></TextBlock>
+                <TextBlock Margin="5" FontSize="15">Desctiption</TextBlock>
+                <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="createCategory"  IsReadOnlyCaretVisible="True" Height="14"/>
+                <TextBlock Margin="5" FontSize="15">CategoryType</TextBlock>
+                <ComboBox Margin="5" x:Name="CategoryType"  Width="169"></ComboBox>
+                <Button  Margin="5 0 0 10" Height="30" FontSize="8" Width="41" x:Name="btn_CreateNewCategory" Click="btn_CreateNewCategory_Click" Content="➕"/>
+            </StackPanel>
+
+
 
         </Grid>
     </ui:SimpleStackPanel>
