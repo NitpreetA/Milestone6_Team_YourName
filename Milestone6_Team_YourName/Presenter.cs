@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Milestone6_Team_YourName
 {
@@ -26,6 +27,18 @@ namespace Milestone6_Team_YourName
         public void CreateCat(string description,int index) 
         {
             Category.CategoryType catType = (Category.CategoryType)(index + 1);
+
+            List<Category> currentCategories = budget.categories.List();
+
+            foreach (Category c in currentCategories)
+            {
+                if (c.Description == description)
+                {
+                    MessageBox.Show("Category already exists");
+                    return;
+                }
+            }
+
             budget.categories.Add(description,catType);
             
             view.DisplayList(budget.categories.List());
