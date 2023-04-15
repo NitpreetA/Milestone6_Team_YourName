@@ -37,7 +37,10 @@ namespace Milestone6_Team_YourName
         private string initialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), budgetFolder);
 
         private string openBudget = string.Empty;
-        
+
+        private string lastExpense;
+        private string lastDescription;
+        private string lastAmount;
         
         public MainWindow()
         {
@@ -115,9 +118,15 @@ namespace Milestone6_Team_YourName
         private void btn_AddExpense_Clck(object sender, RoutedEventArgs e)
         {
             bool errorWhileAddingAnExpense = false;
-            // find a way to 
 
-            //if
+            if (expense.Text == lastExpense && description.Text == lastDescription && amount.Text == lastAmount)
+            {
+                var response = MessageBox.Show("Current expense is identical to previous expense. Add anyways?", 
+                    "Identical Expense", MessageBoxButton.YesNo);
+                if (response == MessageBoxResult.No)
+                    return;
+            }
+
 
             if(string.IsNullOrEmpty(expense.Text) || string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) )
             {
@@ -130,6 +139,10 @@ namespace Milestone6_Team_YourName
             else
             {
                 MessageBox.Show("Expense was successfully added");
+                lastExpense = expense.Text;
+                lastDescription = description.Text;
+                lastAmount = amount.Text;
+                
                 expense.Text = string.Empty;
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
@@ -207,6 +220,16 @@ namespace Milestone6_Team_YourName
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            if( ! string.IsNullOrEmpty(expense.Text) || ! string.IsNullOrEmpty(description.Text) || ! string.IsNullOrEmpty(amount.Text))
+            {
+                var response = MessageBox.Show("You have unsaved changes. Are you sure you'd " +
+                    "like to close the application?", "Closed Changes", MessageBoxButton.YesNo);
+                if(response == MessageBoxResult.No) {
+                    e.Cancel = true;
+                    return; 
+                }
+            }
+
             App.Current.Properties["BackgroundColor"] = Window.Background;
             App.Current.Properties["AccentColor"] = _accent;
             App.Current.Properties["LastOpenDB"] = openBudget;
