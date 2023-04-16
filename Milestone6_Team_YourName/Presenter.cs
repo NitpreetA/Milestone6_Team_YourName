@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Milestone6_Team_YourName
 {
-    internal class Presenter
+    public class Presenter
     {
         private ViewInterface view;
         private HomeBudget budget;

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
@@ -23,6 +23,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Milestone6_Team_YourName\Milestone6_Team_YourName.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HomeBudget">
+      <HintPath>..\Milestone6_Team_YourName\HomeBudgetDllandDocs\HomeBudget.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
