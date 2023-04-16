@@ -40,8 +40,7 @@ namespace Milestone6_Team_YourName
                     }
                 }
             }
-            int value = int.Parse((string)Properties["SessionCount"]) + 1;
-            Properties["SessionCount"] = value.ToString();
+  
  
         }
 

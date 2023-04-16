@@ -155,10 +155,16 @@ namespace Milestone6_Team_YourName
                 lastExpense = expense.Text;
                 lastDescription = description.Text;
                 lastAmount = amount.Text;
-                
-                expense.Text = string.Empty;
+                double expenseAmount = Double.Parse(lastAmount);
+                string date = expenseDate.ToString();
+                DateTime dateTime = DateTime.Parse(date);
+                int catId = categoryList.SelectedIndex;
+                p.CreateExpenses(dateTime, lastDescription, expenseAmount, catId);
+
+            
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
+
                 //date.DataContext = DateTime.Now;
                 // find a way to add this to the expense list and have a display expenses button. 
             }

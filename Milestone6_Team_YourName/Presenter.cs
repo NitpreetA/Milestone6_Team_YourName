@@ -43,6 +43,12 @@ namespace Milestone6_Team_YourName
             
             view.DisplayList(budget.categories.List());
         } 
+
+        public void CreateExpenses(DateTime date,string description,double amount, int catId)
+        {
+            budget.expenses.Add(date, catId + 1, amount, description);
+        }
+
         
         public void DisplayDefCatType()
         {
