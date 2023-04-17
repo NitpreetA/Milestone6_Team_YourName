@@ -33,19 +33,17 @@ namespace Milestone6_Team_YourName
             ThemeManager.Current.AccentColor = _accent;
         }
 
-        private void AccentBtnBlue_Click(object sender, RoutedEventArgs e)
-        {
-            _accent = Colors.Blue;
-            ThemeManager.Current.AccentColor = _accent;
-        }
+        private void AccentBtnNavyBlue_Click(object sender, RoutedEventArgs e) => SetAccent("#1C3169");
 
         private void AccentBtnYellow_Click(object sender, RoutedEventArgs e) => SetAccent("#FFB900");
 
         private void AccentBtnOrange_Click(object sender, RoutedEventArgs e) => SetAccent("#F7630C");
 
-        private void AccentBtnPink_Click(object sender, RoutedEventArgs e) => SetAccent("#E3008C");
+        private void AccentBtnPink_Click(object sender, RoutedEventArgs e) => SetAccent("#FAC4CB");
 
         private void AccentBtnLavender_Click(object sender, RoutedEventArgs e) => SetAccent("#615FAE");
+
+        private void AccentBtnPurple_Click(object sender, RoutedEventArgs e) => SetAccent("#3A2755");
 
         private void AccentBtnBlueGreen_Click(object sender, RoutedEventArgs e) => SetAccent("#00B294");
 
@@ -75,7 +73,7 @@ namespace Milestone6_Team_YourName
             Window.Background = brush;
         }
 
-        private void BgBtnBlue_Click(object sender, RoutedEventArgs e) => SetBackground("#1DA9E2");
+        private void BgBtnBlue_Click(object sender, RoutedEventArgs e) => SetBackground("#2e40b2");
 
         private void BgBtnSalmon_Click(object sender, RoutedEventArgs e) => SetBackground("#FA8072");
 
@@ -84,6 +82,7 @@ namespace Milestone6_Team_YourName
         private void BgBtnLavender_Click(object sender, RoutedEventArgs e) => SetBackground("#615FAE");
 
         private void BgBtnCrimson_Click(object sender, RoutedEventArgs e) => SetBackground("#9A0E2A");
+
 
         private void SetBackground(string colorCode) 
         {

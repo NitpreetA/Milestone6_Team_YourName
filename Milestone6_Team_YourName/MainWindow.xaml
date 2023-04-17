@@ -42,11 +42,12 @@
                 </MenuItem>
                 <MenuItem Header="Accents">
                     <MenuItem Header="Red" Click="AccentBtnRed_Click" />
-                    <MenuItem Header="Blue" Click="AccentBtnBlue_Click" />
+                    <MenuItem Header="Navy Blue" Click="AccentBtnNavyBlue_Click" />
                     <MenuItem Header="Yellow" Click="AccentBtnYellow_Click" />
                     <MenuItem Header="Orange" Click="AccentBtnOrange_Click" />
                     <MenuItem Header="Pink" Click="AccentBtnPink_Click" />
                     <MenuItem Header="Lavender" Click="AccentBtnLavender_Click" />
+                    <MenuItem Header="Purple" Click="AccentBtnPurple_Click" />
                     <MenuItem Header="Blue Green" Click="AccentBtnBlueGreen_Click" />
                 </MenuItem>
                 <MenuItem Header="Backgrounds">
