@@ -11,6 +11,7 @@ namespace Milestone6_Team_YourName
     {
         private ViewInterface view;
         private HomeBudget budget;
+        public int count;
         public Presenter(ViewInterface v) 
         {
             view = v;
@@ -29,8 +30,14 @@ namespace Milestone6_Team_YourName
             budget.categories.Add(description,catType);
             
             view.DisplayList(budget.categories.List());
-        } 
-        
+        }
+
+        public void CreateExpenses(DateTime date, string description, double amount, int catId)
+        {
+            count+=1;
+            budget.expenses.Add(date, catId + 1, amount, description);
+        }
+
         public void DisplayDefCatType()
         {
             //https://www.techiedelight.com/convert-enum-to-list-csharp/ gotten from 

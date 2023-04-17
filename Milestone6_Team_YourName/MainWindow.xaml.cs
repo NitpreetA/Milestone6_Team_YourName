@@ -33,7 +33,7 @@ namespace Milestone6_Team_YourName
         private bool existing;
         public ApplicationTheme _theme = ApplicationTheme.Dark;
         internal Color _accent = Colors.Blue;
-        private Presenter p;
+        private Presenter presenter;
 
         private static string budgetFolder = "Budgets";
         private string initialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), budgetFolder);
@@ -44,12 +44,12 @@ namespace Milestone6_Team_YourName
         public MainWindow()
         {
             InitializeComponent();
-            p = new Presenter(this);
+            presenter = new Presenter(this);
             
             expenseDate.SelectedDate = DateTime.Now;
             ExpenseFieldState(false);
 
-            p.DisplayDefCatType();
+            presenter.DisplayDefCatType();
                 
 
             if (!Directory.Exists(initialDirectory))
@@ -87,7 +87,7 @@ namespace Milestone6_Team_YourName
             {
                 existing = false;
                 currentBudgetFile.Text = openFileDialog.FileName;
-                p.Connection(currentBudgetFile.Text,existing);
+                presenter.Connection(currentBudgetFile.Text,existing);
                 ExpenseFieldState(true);
             }
             
@@ -152,7 +152,7 @@ namespace Milestone6_Team_YourName
 
                 
                 existing = true;
-                p.Connection(initialDirectory + "\\" + budgetFileName.Text + ".db", existing);
+                presenter.Connection(initialDirectory + "\\" + budgetFileName.Text + ".db", existing);
                 ExpenseFieldState(true);
                 SubmitFile.IsEnabled = false;
             }
@@ -183,7 +183,7 @@ namespace Milestone6_Team_YourName
             }
             else
             {
-                p.CreateCat(createCategory.Text, CategoryType.SelectedIndex);
+                presenter.CreateCat(createCategory.Text, CategoryType.SelectedIndex);
                 createCategory.Text = ""; // clear the textbox
             }
            
