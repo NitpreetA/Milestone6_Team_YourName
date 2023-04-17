@@ -166,8 +166,7 @@ namespace Milestone6_Team_YourName
                 amount.Text = string.Empty;
                 categoryList.SelectedItem = null;
 
-                //date.DataContext = DateTime.Now;
-                // find a way to add this to the expense list and have a display expenses button. 
+              
             }
         }
 

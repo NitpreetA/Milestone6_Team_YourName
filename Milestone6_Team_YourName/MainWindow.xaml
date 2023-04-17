@@ -112,8 +112,11 @@
                 <TextBlock Margin="5" FontSize="15">Description</TextBlock>
                 <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="createCategory"  IsReadOnlyCaretVisible="True" Height="14"/>
                 <TextBlock Margin="5" FontSize="15">CategoryType</TextBlock>
-                <ComboBox Margin="5" x:Name="CategoryType"  Width="169"></ComboBox>
-                <Button  Margin="5 0 0 10" Height="30" FontSize="8" Width="41" x:Name="btn_CreateNewCategory" Click="btn_CreateNewCategory_Click" Content="➕"/>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Margin="5" x:Name="CategoryType"  Width="169"></ComboBox>
+                    <Button Height="30" FontSize="8" Width="41" x:Name="btn_CreateNewCategory" Click="btn_CreateNewCategory_Click" Content="➕"/>
+                </StackPanel>
+                
             </StackPanel>
 
 
