@@ -161,9 +161,10 @@ namespace Milestone6_Team_YourName
                 int catId = categoryList.SelectedIndex;
                 presenter.CreateExpenses(dateTime, lastDescription, expenseAmount, catId);
 
-            
+                expense.Text = string.Empty;
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
+                categoryList.SelectedItem = null;
 
                 //date.DataContext = DateTime.Now;
                 // find a way to add this to the expense list and have a display expenses button. 
