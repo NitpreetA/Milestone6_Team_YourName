@@ -60,8 +60,8 @@ namespace Milestone6_Team_YourName
             
             PropertiesSet();
             PropertiesToTheme();
-            LastOpenFile();         
-                
+            LastOpenFile();
+
 
 
             presenter.DisplayDefCatType();
@@ -161,8 +161,7 @@ namespace Milestone6_Team_YourName
                 int catId = categoryList.SelectedIndex;
                 presenter.CreateExpenses(dateTime, lastDescription, expenseAmount, catId);
 
-                expense.Text = string.Empty;
-                categoryList.SelectedItem = null;
+            
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
 
