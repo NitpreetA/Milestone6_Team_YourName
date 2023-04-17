@@ -97,7 +97,6 @@ namespace Milestone6_Team_YourName
 
         private void ExpenseFieldState(bool state)
         {
-            expense.IsEnabled = state;
             description.IsEnabled = state;
             amount.IsEnabled = state;
             expenseDate.IsEnabled = state;
@@ -132,7 +131,7 @@ namespace Milestone6_Team_YourName
         {
             bool errorWhileAddingAnExpense = false;
 
-            if (expense.Text == lastExpense && description.Text == lastDescription && amount.Text == lastAmount)
+            if (description.Text == lastDescription && amount.Text == lastAmount)
             {
                 var response = MessageBox.Show("Current expense is identical to previous expense. Add anyways?", 
                     "Identical Expense", MessageBoxButton.YesNo);
@@ -141,7 +140,7 @@ namespace Milestone6_Team_YourName
             }
 
 
-            if(string.IsNullOrEmpty(expense.Text) || string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) || categoryList.SelectedItem == null)
+            if(string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) || categoryList.SelectedItem == null)
             {
                 errorWhileAddingAnExpense = true;
             }
@@ -152,7 +151,6 @@ namespace Milestone6_Team_YourName
             else
             {
                 MessageBox.Show("Expense was successfully added");
-                lastExpense = expense.Text;
                 lastDescription = description.Text;
                 lastAmount = amount.Text;
                 double expenseAmount = Double.Parse(lastAmount);
@@ -161,7 +159,6 @@ namespace Milestone6_Team_YourName
                 int catId = categoryList.SelectedIndex;
                 presenter.CreateExpenses(dateTime, lastDescription, expenseAmount, catId);
 
-                expense.Text = string.Empty;
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
                 categoryList.SelectedItem = null;
@@ -172,7 +169,6 @@ namespace Milestone6_Team_YourName
 
         private void btn_ClearExpense_Clck(object sender, RoutedEventArgs e)
         {
-            expense.Text = string.Empty;
             description.Text = string.Empty;
             amount.Text = string.Empty;
             categoryList.SelectedIndex = -1;
@@ -273,7 +269,7 @@ namespace Milestone6_Team_YourName
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if( ! string.IsNullOrEmpty(expense.Text) || ! string.IsNullOrEmpty(description.Text) || ! string.IsNullOrEmpty(amount.Text))
+            if(! string.IsNullOrEmpty(description.Text) || ! string.IsNullOrEmpty(amount.Text))
             {
                 var response = MessageBox.Show("You have unsaved changes. Are you sure you'd " +
                     "like to close the application?", "Closed Changes", MessageBoxButton.YesNo);
