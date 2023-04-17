@@ -144,7 +144,7 @@ namespace TestProject1
             //  CreateCat_AddCategoryToBudget();
 
             // assert
-            Assert.True(displayList);
+            Assert.True(view.displayList);
         }
 
         [Fact]
@@ -160,7 +160,7 @@ namespace TestProject1
             presenter.DisplayDefCatType();
 
             // assert
-            Assert.True(displayCategoryTypes);
+            Assert.True(view.displayCategoryTypes);
 
         }
 
