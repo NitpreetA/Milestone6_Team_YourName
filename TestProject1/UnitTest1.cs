@@ -160,7 +160,7 @@ namespace TestProject1
             presenter.DisplayDefCatType();
 
             // assert
-            Assert.True(displayCategoryTypes);
+            Assert.True(view.displayCategoryTypes);
 
         }
 
