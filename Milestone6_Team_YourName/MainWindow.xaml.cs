@@ -60,11 +60,11 @@ namespace Milestone6_Team_YourName
             
             PropertiesSet();
             PropertiesToTheme();
-            LastOpenFile();         
-                
+            LastOpenFile();
 
 
-            p.DisplayDefCatType();
+
+            presenter.DisplayDefCatType();
                 
 
             if (!Directory.Exists(initialDirectory))
@@ -85,7 +85,7 @@ namespace Milestone6_Team_YourName
                 {
                     currentBudgetFile.Text = lastOpenDB;
                     openBudget = currentBudgetFile.Text;
-                    p.Connection(currentBudgetFile.Text, existing);
+                    presenter.Connection(currentBudgetFile.Text, existing);
                     ExpenseFieldState(true);
                 }
                 else
@@ -122,7 +122,7 @@ namespace Milestone6_Team_YourName
                 existing = false;
                 currentBudgetFile.Text = openFileDialog.FileName;
                 openBudget = currentBudgetFile.Text;
-                p.Connection(currentBudgetFile.Text,existing);
+                presenter.Connection(currentBudgetFile.Text,existing);
                 ExpenseFieldState(true);
             }
             
@@ -159,7 +159,7 @@ namespace Milestone6_Team_YourName
                 string date = expenseDate.ToString();
                 DateTime dateTime = DateTime.Parse(date);
                 int catId = categoryList.SelectedIndex;
-                p.CreateExpenses(dateTime, lastDescription, expenseAmount, catId);
+                presenter.CreateExpenses(dateTime, lastDescription, expenseAmount, catId);
 
             
                 description.Text = string.Empty;

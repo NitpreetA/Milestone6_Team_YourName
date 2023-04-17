@@ -30,11 +30,7 @@
             <Menu Margin="0,0,0,29" Grid.ColumnSpan="3">
                 <MenuItem Header="File" >
                     <MenuItem HorizontalAlignment="Right" Header="Open" Click="btnOpenBudgetFileLocation">
-                        <MenuItem.Icon>
-                            <Image Source="TO DO">
 
-                            </Image>
-                        </MenuItem.Icon>
                     </MenuItem>
 
                     <MenuItem HorizontalAlignment="Right" Header="Close" Click="btn_closePage"></MenuItem>
