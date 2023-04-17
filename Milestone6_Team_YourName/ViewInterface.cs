@@ -7,7 +7,7 @@ using Budget;
 
 namespace Milestone6_Team_YourName
 {
-    interface ViewInterface
+    public interface ViewInterface
     {
         void DisplayList(List<Category> categories);
 
