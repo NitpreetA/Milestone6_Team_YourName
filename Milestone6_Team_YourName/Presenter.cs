@@ -41,7 +41,6 @@ namespace Milestone6_Team_YourName
             }
 
             budget.categories.Add(description,catType);
-            
             view.DisplayList(budget.categories.List());
         }
 
@@ -59,12 +58,6 @@ namespace Milestone6_Team_YourName
                             .ToList();
 
             view.DisplayCatTypes(categoryTypes);
-
-
-
         }
-
     }
-
-
 }

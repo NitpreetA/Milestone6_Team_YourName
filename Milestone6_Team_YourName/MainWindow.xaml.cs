@@ -47,8 +47,6 @@ namespace Milestone6_Team_YourName
         
         private bool createdNewCategory = false;
 
-
-
         public MainWindow()
         {
             InitializeComponent();
@@ -56,17 +54,13 @@ namespace Milestone6_Team_YourName
             
             expenseDate.SelectedDate = DateTime.Now;
             ExpenseFieldState(false);
-
             
             PropertiesSet();
             PropertiesToTheme();
             LastOpenFile();
 
-
-
             presenter.DisplayDefCatType();
                 
-
             if (!Directory.Exists(initialDirectory))
             {
                 Directory.CreateDirectory(initialDirectory);
@@ -183,15 +177,6 @@ namespace Milestone6_Team_YourName
 
         }
 
-        private void Existing_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void SubmitFile_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void SubmitFile_Click_1(object sender, RoutedEventArgs e)
         {
 
@@ -199,8 +184,6 @@ namespace Milestone6_Team_YourName
 
             if (Directory.Exists(initialDirectory))
             {
-
-                
                 existing = true;
                 presenter.Connection(initialDirectory + "\\" + budgetFileName.Text + ".db", existing);
                 ExpenseFieldState(true);
@@ -210,11 +193,8 @@ namespace Milestone6_Team_YourName
 
         public void DisplayList(List<Category> categories)
         {
-           // Category myCategory = new Category(); // i just need an instance of this to be able to add... 
 
             categoryList.ItemsSource = categories;
-
-        
 
             if (createdNewCategory)
             {
@@ -237,8 +217,6 @@ namespace Milestone6_Team_YourName
                 createCategory.Text = ""; // clear the textbox
             }
            
-
-
         }
 
         public void DisplayCatTypes(List<CategoryType> categoryTypes)

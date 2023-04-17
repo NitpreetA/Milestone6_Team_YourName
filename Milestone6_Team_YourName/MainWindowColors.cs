@@ -20,9 +20,6 @@ namespace Milestone6_Team_YourName
             Window.Background = currentBackground;
         }
 
-
-
-
         //-------------------------------------------------
         //                   Accents Menu
         //-------------------------------------------------

@@ -39,9 +39,7 @@ namespace Milestone6_Team_YourName
                         this.Properties[parts[0]] = parts[1];
                     }
                 }
-            }
-  
- 
+            } 
         }
 
         private void App_Exit(object sender, ExitEventArgs e)
@@ -57,6 +55,5 @@ namespace Milestone6_Team_YourName
                 }
             }
         }
-
     }
 }
