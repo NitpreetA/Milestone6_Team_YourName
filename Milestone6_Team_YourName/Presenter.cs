@@ -34,7 +34,7 @@ namespace Milestone6_Team_YourName
 
         public void CreateExpenses(DateTime date, string description, double amount, int catId)
         {
-            count+=1;
+            count++;
             budget.expenses.Add(date, catId + 1, amount, description);
         }
 

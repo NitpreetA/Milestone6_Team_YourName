@@ -19,15 +19,18 @@ namespace TestProject1
         bool createExpense;
         bool displayDefCategoryType;
 
+        List<Category> categories;
        
 
         public void DisplayCatTypes(List<Category.CategoryType> categoryTypes)
         {
+            
             displayCategoryTypes = true;
         }
 
         public void DisplayList(List<Category> categories)
         {
+            this.categories = categories;
             displayList= true;  
         }
 
@@ -122,6 +125,7 @@ namespace TestProject1
             int addedExpenses =0;
 
             // act 
+            presenter.Connection("test", false);
             presenter.CreateExpenses(dateTime, description, amount, categoryId);
             addedExpenses++;
            // CreateExpenses();
@@ -136,15 +140,23 @@ namespace TestProject1
             //arrange
             UnitTest1 view = new UnitTest1();
             presenter = new Presenter(view);
+            presenter.Connection("test", false);
+
             string description = "test";
             int index = 0;
+
+            //Grab the current list of categories
+            int catCount = view.categories.Count;
+
 
             // act
             presenter.CreateCat(description, index);
             //  CreateCat_AddCategoryToBudget();
 
+            int newCatCount = view.categories.Count;
+
             // assert
-            Assert.True(view.displayList);
+            Assert.True(newCatCount == catCount + 1);
         }
 
         [Fact]
