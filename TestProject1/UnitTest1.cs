@@ -171,7 +171,7 @@ namespace TestProject1
 
             UnitTest1 view = new UnitTest1();
             presenter = new Presenter(view);
-            string filename = "test";
+            string filename = ".\\test";
             var existing = false;
             displayList = false;
 
@@ -181,7 +181,7 @@ namespace TestProject1
             presenter.Connection(filename, existing);
 
             //assert
-            Assert.True(displayList);
+            Assert.True(view.displayList);
 
         }
 
