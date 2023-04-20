@@ -7,17 +7,16 @@
         mc:Ignorable="d"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
-    Title="MainWindow" Height="755" Width="800"
+    Title="MainWindow" Height="800" Width="800"
         Closing="Window_Closing"
         x:Name="Window">
 
     <ui:SimpleStackPanel Margin="12,12,12,16" Spacing="24" x:Name="AllWindow">
         <Grid x:Name="MainGrid">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="123*"></ColumnDefinition>
-                <ColumnDefinition Width="45*"/>
-                <ColumnDefinition Width="202*"></ColumnDefinition>
-                <ColumnDefinition Width="18*"></ColumnDefinition>
+                <ColumnDefinition Width="392*"></ColumnDefinition>
+                <ColumnDefinition Width="343*"></ColumnDefinition>
+                <ColumnDefinition Width="41*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" ></RowDefinition>
@@ -64,55 +63,58 @@
             </Menu>
 
 
-            <StackPanel Grid.Row="1" x:Name="stackPanel" Grid.ColumnSpan="2" Margin="0,0,1,0">
-                <TextBlock FontStyle="Italic" FontWeight="ExtraBold" FontSize="21"> ADD Expenses</TextBlock>
-                <TextBlock x:Name="currentBudgetFile" >Current file:</TextBlock>
+            <StackPanel Grid.Row="1" x:Name="stackPanel" Margin="0,0,2,0">
+                <TextBlock FontStyle="Italic" FontWeight="ExtraBold" FontSize="21" ><Run  Text="Specify File"/></TextBlock>
+
+                <TextBlock x:Name="currentBudgetFile" ><Run Text="Current file:"/></TextBlock>
 
                 <!--<TextBlock Margin="5 0 0 0"><Run Text="Budget File Name"/></TextBlock>
             <TextBox x:Name="customBudget" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Left" Margin="5 0 0 10" Height="22" Width="119" />-->
                 <RadioButton Content="New file" x:Name="NewFile" Click="NewFile_Click"/>
 
 
-                <StackPanel Orientation="Horizontal" Width="319">
-                    <TextBlock> Input File Name</TextBlock>
-                    <TextBox HorizontalAlignment="Left" IsEnabled="False" x:Name="budgetFileName" Margin="5 0 0 5" Width="120"></TextBox>
-                    <Button x:Name="SubmitFile" IsEnabled="False" Click="SubmitFile_Click_1" Width="100" Content="Sumbit" Margin="5,0,0,5"/>
+                <StackPanel Orientation="Horizontal" Margin="5 0 0 0 ">
+                    <TextBlock Height="23"><Run Text="Input File Name"/></TextBlock>
+                    <TextBox HorizontalAlignment="Left" IsEnabled="False" x:Name="budgetFileName" Margin="5 0 0 5" Width="120"/>
+                    <Button x:Name="SubmitFile" Style="{StaticResource AccentButtonStyle}" IsEnabled="False" Click="SubmitFile_Click_1" Width="100" Content="Sumbit" Margin="5,0,0,5"/>
 
                 </StackPanel>
+                <TextBlock FontStyle="Italic" FontWeight="ExtraBold" FontSize="21"><Run Text="ADD Expenses"/></TextBlock>
 
                 <TextBlock Margin="5 0 0 0"><Run Text="Description"/></TextBlock>
                 <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="description"/>
 
-                    <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
+                <TextBlock Margin="5 0 0 0"><Run Text="Amount"/></TextBlock>
                 <ui:NumberBox Width="160" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="amount" PlaceholderText="0.00" 
                               ValidationMode="InvalidInputOverwritten" SpinButtonPlacementMode="Inline" />
 
                 <TextBlock Margin="5 0 0 0"><Run Text="Date"/></TextBlock>
-                    <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"></DatePicker>
-               
-                    <TextBlock Margin="5 0 0 0"><Run Text="Categories"/></TextBlock>
+                <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"/>
+
+                <TextBlock Margin="5 0 0 0"><Run Text="Categories"/></TextBlock>
                 <ComboBox  Height="38" Width="247" Margin="5,0,0,10" x:Name="categoryList" IsEditable="True"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="left">
-                    <Button Width="54" Style="{StaticResource AccentButtonStyle}" Margin="5 0 10 0" x:Name="btn_AddExpense" Click="btn_AddExpense_Clck">Add</Button>
-                    <Button Width="54" Click="btn_ClearExpense_Clck" x:Name="btn_ClearExpense">Clear</Button>
+                    <Button Width="54" Style="{StaticResource AccentButtonStyle}" Margin="5 0 10 0" x:Name="btn_AddExpense" Click="btn_AddExpense_Clck" Content="Add"/>
+                    <Button Width="54"  Click="btn_ClearExpense_Clck" x:Name="btn_ClearExpense" Content="Clear"/>
                 </StackPanel>
                 <!--need category-->
-            </StackPanel>
 
 
-            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2" Margin="52,0,0,0">
-                <TextBlock FontStyle="Italic" Margin="5" FontWeight="ExtraBold" FontSize="21"   Height="39"><Run Text="Create New Category"/></TextBlock>
-                <TextBlock Margin="5" FontSize="15">Description</TextBlock>
-                <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="createCategory"  IsReadOnlyCaretVisible="True" Height="14"/>
-                <TextBlock Margin="5" FontSize="15">CategoryType</TextBlock>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2" >
+                    <TextBlock FontStyle="Italic" Margin="5" FontWeight="ExtraBold" FontSize="21"   Height="39"><Run Text="Create New Category"/></TextBlock>
+                    <TextBlock Margin="5" FontSize="15">Description</TextBlock>
+                    <TextBox Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="createCategory"  IsReadOnlyCaretVisible="True" Height="14"/>
+                    <TextBlock Margin="5" FontSize="15">CategoryType</TextBlock>
                     <ComboBox Margin="5" x:Name="CategoryType"  Width="169"></ComboBox>
-                    <Button Height="30" FontSize="8" Width="41" x:Name="btn_CreateNewCategory" Click="btn_CreateNewCategory_Click" Content="➕"/>
+                    <Button Height="30" Style="{StaticResource AccentButtonStyle}" Margin="5"  FontSize="13" Width="166" x:Name="btn_CreateNewCategory" Click="btn_CreateNewCategory_Click" Content="Add Category"/>
+
                 </StackPanel>
                 <DataGrid x:Name="expenseGrid" Loaded="DataGrid_Loaded">
                 </DataGrid>
             </StackPanel>
+
+
 
 
 
