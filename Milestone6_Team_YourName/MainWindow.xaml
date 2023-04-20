@@ -111,7 +111,7 @@
 
                 </StackPanel>
             </StackPanel>
-                <DataGrid Grid.Column="1" x:Name="expenseGrid" Loaded="DataGrid_Loaded">
+                <DataGrid Grid.Column="1" x:Name="expenseGrid">
                 </DataGrid>
 
             <ListView x:Name="budgetList" Grid.Column="1" Grid.Row="1" Width="284" ></ListView>
