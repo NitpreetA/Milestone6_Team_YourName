@@ -111,7 +111,7 @@
 
                 </StackPanel>
             </StackPanel>
-            <DataGrid Grid.Column="1" x:Name="expenseGrid" />
+            <DataGrid Grid.Row="1" Grid.Column="1" Height="420" x:Name="expenseGrid" IsReadOnly="True" />
 
 
 
