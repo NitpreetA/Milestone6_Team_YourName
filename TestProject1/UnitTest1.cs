@@ -34,6 +34,11 @@ namespace TestProject1
             displayList= true;  
         }
 
+        public void DisplayExpenses(List<Expense> expenses)
+        {
+            throw new System.NotImplementedException();
+        }
+
 
         public void Connection()
         {

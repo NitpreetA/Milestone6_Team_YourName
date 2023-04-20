@@ -110,7 +110,8 @@
                     <ComboBox Margin="5" x:Name="CategoryType"  Width="169"></ComboBox>
                     <Button Height="30" FontSize="8" Width="41" x:Name="btn_CreateNewCategory" Click="btn_CreateNewCategory_Click" Content="➕"/>
                 </StackPanel>
-                
+                <DataGrid x:Name="expenseGrid" Loaded="DataGrid_Loaded">
+                </DataGrid>
             </StackPanel>
 
 
