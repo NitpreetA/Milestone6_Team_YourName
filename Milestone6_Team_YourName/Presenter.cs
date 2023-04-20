@@ -59,5 +59,11 @@ namespace Milestone6_Team_YourName
 
             view.DisplayCatTypes(categoryTypes);
         }
+
+        public void DisplayExpenses()
+        {
+            List<Expense> expenses = budget.expenses.List();
+            view.DisplayExpenses(expenses);
+        }
     }
 }

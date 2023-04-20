@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
-    Title="MainWindow" Height="800" Width="800"
+    Title="MainWindow" Height="800" Width="1600"
         Closing="Window_Closing"
         x:Name="Window">
 
@@ -110,13 +110,19 @@
                     <Button Height="30" Style="{StaticResource AccentButtonStyle}" Margin="5"  FontSize="13" Width="166" x:Name="btn_CreateNewCategory" Click="btn_CreateNewCategory_Click" Content="Add Category"/>
 
                 </StackPanel>
+            </StackPanel>
+                <DataGrid Grid.Column="1" x:Name="expenseGrid" Loaded="DataGrid_Loaded">
+                </DataGrid>
+
+
+
+
+
 
                
             </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
-                <CheckBox Checked="filterByCategory_Checked" Unchecked="filterByCategory_Unchecked" FontWeight="DemiBold" x:Name="filterByCategory" IsChecked="False">Filter by Category</CheckBox>
-                <CheckBox Checked="filterByMonth_Checked" Unchecked="filterByMonth_Unchecked" FontWeight="DemiBold" x:Name="filterByMonth" IsChecked="False">Filter by Month</CheckBox>
-            </StackPanel>
+            
+
 
         </Grid>
     </ui:SimpleStackPanel>

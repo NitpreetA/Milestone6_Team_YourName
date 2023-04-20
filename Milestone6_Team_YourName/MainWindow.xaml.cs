@@ -160,8 +160,8 @@ namespace Milestone6_Team_YourName
 
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
-                categoryList.SelectedItem = null;
-
+                presenter.DisplayExpenses();
+              
                 // we would need to add these items to the datagrid 
             }
         }
@@ -265,6 +265,17 @@ namespace Milestone6_Team_YourName
             App.Current.Properties["AccentColor"] = _accent;
             App.Current.Properties["LastOpenDB"] = openBudget;
         }
+
+
+        public void DisplayExpenses(List<Expense> expenses)
+        {
+            expenseGrid.ItemsSource = expenses;
+        }
+
+
+        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            presenter.DisplayExpenses();
 
         private void filterByCategory_Checked(object sender, RoutedEventArgs e)
         {
