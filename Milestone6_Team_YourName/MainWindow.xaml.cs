@@ -51,7 +51,11 @@ namespace Milestone6_Team_YourName
         {
             InitializeComponent();
             presenter = new Presenter(this);
-            
+
+           
+             
+
+
             expenseDate.SelectedDate = DateTime.Now;
             ExpenseFieldState(false);
             
@@ -202,6 +206,16 @@ namespace Milestone6_Team_YourName
             }
             createdNewCategory = false;
         }
+
+        public void DisplayBudgetItems(List<BudgetItem> budgetItems)
+        {
+
+            budgetList.ItemsSource = budgetItems;
+
+            
+        }
+
+
 
 
         private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)

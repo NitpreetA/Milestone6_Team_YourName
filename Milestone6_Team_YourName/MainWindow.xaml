@@ -113,7 +113,7 @@
 
             </StackPanel>
 
-
+            <ListView x:Name="budgetList" Grid.Column="1" Grid.Row="1" Width="284" ></ListView>
 
 
 
