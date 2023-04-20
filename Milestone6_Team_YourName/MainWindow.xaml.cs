@@ -57,6 +57,8 @@ namespace Milestone6_Team_YourName
 
 
             expenseDate.SelectedDate = DateTime.Now;
+            filterStartDate.SelectedDate= DateTime.Now;
+            //filterEndDate.SelectedDate= DateTime.Now;
             ExpenseFieldState(false);
             
             PropertiesSet();
@@ -206,6 +208,7 @@ namespace Milestone6_Team_YourName
         {
 
             categoryList.ItemsSource = categories;
+            filterBySpecificCategory.ItemsSource = categories; // NITPREET
 
             if (createdNewCategory)
             {

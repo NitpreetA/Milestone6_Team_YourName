@@ -111,9 +111,28 @@
 
                 </StackPanel>
             </StackPanel>
+            
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
-                <CheckBox Checked="filterByCategory_Checked" Unchecked="filterByCategory_Unchecked" FontWeight="DemiBold" x:Name="filterByCategory" IsChecked="False">Filter by Category</CheckBox>
-                <CheckBox Checked="filterByMonth_Checked" Unchecked="filterByMonth_Unchecked" FontWeight="DemiBold" x:Name="filterByMonth" IsChecked="False">Filter by Month</CheckBox>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Width="347">
+                        <CheckBox Checked="filterByCategory_Checked" Unchecked="filterByCategory_Unchecked" FontWeight="DemiBold" x:Name="filterByCategory" IsChecked="False">Filter by Category</CheckBox>
+                        <CheckBox Checked="filterByMonth_Checked" Unchecked="filterByMonth_Unchecked" FontWeight="DemiBold" x:Name="filterByMonth" IsChecked="False">Filter by Month</CheckBox>
+                        <CheckBox FontWeight="DemiBold">Filter By Specific Category</CheckBox>
+                        <ComboBox  Height="38" Width="247" Margin="0,0,0,10" x:Name="filterBySpecificCategory" IsEditable="True"/>
+                    </StackPanel>
+                    <StackPanel Width="207">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock FontWeight="DemiBold">Start Date</TextBlock>
+                            <DatePicker x:Name="filterStartDate" Width="205" Margin="0 10 0 10" ></DatePicker>
+                            <TextBlock FontWeight="DemiBold">End Date</TextBlock>
+                            <DatePicker x:Name="filterEndDate" Width="206" Margin="0 10 0 10"></DatePicker>
+
+                        </StackPanel>
+                    </StackPanel>
+            </StackPanel>
+               
+
+                
 
                 <DataGrid Grid.Column="1" x:Name="expenseGrid" >
                     <DataGrid.ContextMenu>
