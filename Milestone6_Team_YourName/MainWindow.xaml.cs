@@ -318,5 +318,15 @@ namespace Milestone6_Team_YourName
                 MessageBox.Show("Filter by Month");
             }
         }
+
+        private void MenuItem_ModifyClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_DeleteClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

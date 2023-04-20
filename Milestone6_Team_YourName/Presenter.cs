@@ -62,8 +62,8 @@ namespace Milestone6_Team_YourName
 
         public void DisplayExpenses()
         {
-            List<Expense> expenses = budget.expenses.List();
-            view.DisplayExpenses(expenses);
+            //List<Expense> expenses = budget.expenses.List();
+            //view.DisplayExpenses(expenses);
         }
     }
 }

@@ -116,6 +116,12 @@
                 <CheckBox Checked="filterByMonth_Checked" Unchecked="filterByMonth_Unchecked" FontWeight="DemiBold" x:Name="filterByMonth" IsChecked="False">Filter by Month</CheckBox>
 
                 <DataGrid Grid.Column="1" x:Name="expenseGrid" Loaded="DataGrid_Loaded">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Modify" Click="MenuItem_ModifyClick" />
+                            <MenuItem Header="Delete" Click="MenuItem_DeleteClick" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
                 </DataGrid>
             </StackPanel>
                
