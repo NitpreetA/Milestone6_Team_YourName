@@ -155,8 +155,8 @@ namespace Milestone6_Team_YourName
 
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
-                categoryList.SelectedItem = null;
 
+                presenter.DisplayExpenses();
               
             }
         }
