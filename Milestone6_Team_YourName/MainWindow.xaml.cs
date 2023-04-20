@@ -210,9 +210,7 @@ namespace Milestone6_Team_YourName
         public void DisplayBudgetItems(List<BudgetItem> budgetItems)
         {
 
-            budgetList.ItemsSource = budgetItems;
-
-            
+            expenseGrid.ItemsSource = budgetItems;
         }
 
 
@@ -274,17 +272,6 @@ namespace Milestone6_Team_YourName
             App.Current.Properties["BackgroundColor"] = Window.Background;
             App.Current.Properties["AccentColor"] = _accent;
             App.Current.Properties["LastOpenDB"] = openBudget;
-        }
-
-        public void DisplayExpenses(List<Expense> expenses)
-        {
-            expenseGrid.ItemsSource = expenses;
-        }
-
-
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            presenter.DisplayBudgetItems();
         }
     }
 }
