@@ -281,16 +281,7 @@ namespace Milestone6_Team_YourName
         }
 
 
-        public void DisplayExpenses(List<Expense> expenses)
-        {
-            expenseGrid.ItemsSource = expenses;
-        }
 
-
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            presenter.DisplayExpenses();
-        }
 
         private void filterByCategory_Checked(object sender, RoutedEventArgs e)
         {
