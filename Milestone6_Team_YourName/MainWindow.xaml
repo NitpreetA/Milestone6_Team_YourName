@@ -114,8 +114,8 @@
                
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
-                <CheckBox FontWeight="DemiBold" x:Name="filterByCategory" IsChecked="False">Filter by Category</CheckBox>
-                <CheckBox FontWeight="DemiBold" x:Name="filterByMonth" IsChecked="False">Filter by Month</CheckBox>
+                <CheckBox Checked="filterByCategory_Checked" Unchecked="filterByCategory_Unchecked" FontWeight="DemiBold" x:Name="filterByCategory" IsChecked="False">Filter by Category</CheckBox>
+                <CheckBox Checked="filterByMonth_Checked" Unchecked="filterByMonth_Unchecked" FontWeight="DemiBold" x:Name="filterByMonth" IsChecked="False">Filter by Month</CheckBox>
             </StackPanel>
 
         </Grid>

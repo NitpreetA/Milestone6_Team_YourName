@@ -65,6 +65,11 @@ namespace Milestone6_Team_YourName
             {
                 Directory.CreateDirectory(initialDirectory);
             }
+
+
+
+           
+
         }
 
         private void LastOpenFile()
@@ -156,8 +161,6 @@ namespace Milestone6_Team_YourName
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
                 categoryList.SelectedItem = null;
-
-              
             }
         }
 
@@ -260,6 +263,63 @@ namespace Milestone6_Team_YourName
             App.Current.Properties["BackgroundColor"] = Window.Background;
             App.Current.Properties["AccentColor"] = _accent;
             App.Current.Properties["LastOpenDB"] = openBudget;
+        }
+
+        private void filterByCategory_Checked(object sender, RoutedEventArgs e)
+        {
+            filterByCategory.IsChecked = true;
+            if (filterByCategory.IsChecked == true && filterByMonth.IsChecked == true)
+            {
+                MessageBox.Show("Filter by Category & by Month");
+                FilterByCategoryAndByMonth();
+            }
+            else if (filterByMonth.IsChecked == true)
+            {
+                MessageBox.Show("Filter by Month");
+            }
+            else if (filterByCategory.IsChecked == true)
+            {
+                MessageBox.Show("Filter by Category");
+            }
+           
+        }
+
+        private void filterByMonth_Checked(object sender, RoutedEventArgs e)
+        {
+            filterByMonth.IsChecked = true;
+
+
+            if (filterByCategory.IsChecked == true && filterByMonth.IsChecked == true)
+            {
+                MessageBox.Show("Filter by Category & by Month");
+                FilterByCategoryAndByMonth();
+            }
+            else if (filterByCategory.IsChecked == true)
+            {
+                MessageBox.Show("Filter by Category");
+            }
+            else if (filterByMonth.IsChecked == true)
+            {
+                MessageBox.Show("Filter by Month");
+            }
+           
+        }
+
+        private void filterByMonth_Unchecked(object sender, RoutedEventArgs e)
+        {
+            filterByMonth.IsChecked = false;
+            // unfilter by month
+        }
+
+        private void filterByCategory_Unchecked(object sender, RoutedEventArgs e)
+        {
+            filterByCategory.IsChecked = false;
+            // unfilter by category
+
+        }
+
+        private void FilterByCategoryAndByMonth()
+        {
         }
     }
 }
