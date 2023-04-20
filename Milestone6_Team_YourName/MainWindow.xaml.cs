@@ -69,6 +69,11 @@ namespace Milestone6_Team_YourName
             {
                 Directory.CreateDirectory(initialDirectory);
             }
+
+
+
+           
+
         }
 
         private void LastOpenFile()
@@ -161,7 +166,9 @@ namespace Milestone6_Team_YourName
                 amount.Text = string.Empty;
 
                 presenter.DisplayBudgetItems();
+
               
+                // we would need to add these items to the datagrid 
             }
         }
 
@@ -268,10 +275,62 @@ namespace Milestone6_Team_YourName
                     return; 
                 }
             }
-
             App.Current.Properties["BackgroundColor"] = Window.Background;
             App.Current.Properties["AccentColor"] = _accent;
             App.Current.Properties["LastOpenDB"] = openBudget;
+        }
+
+
+        public void DisplayExpenses(List<Expense> expenses)
+        {
+            expenseGrid.ItemsSource = expenses;
+        }
+
+
+        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            presenter.DisplayExpenses();
+        }
+
+        private void filterByCategory_Checked(object sender, RoutedEventArgs e)
+        {
+            filterByCategory.IsChecked = true;
+            FilterByCategoryAndMonth();
+        }
+
+        private void filterByMonth_Checked(object sender, RoutedEventArgs e)
+        {
+            filterByMonth.IsChecked = true;
+            FilterByCategoryAndMonth();
+        }
+
+        private void filterByMonth_Unchecked(object sender, RoutedEventArgs e)
+        {
+            filterByMonth.IsChecked = false;
+            // unfilter by month
+        }
+
+        private void filterByCategory_Unchecked(object sender, RoutedEventArgs e)
+        {
+            filterByCategory.IsChecked = false;
+            // unfilter by category
+
+        }
+
+        private void FilterByCategoryAndMonth()
+        {
+            if (filterByCategory.IsChecked == true && filterByMonth.IsChecked == true)
+            {
+                MessageBox.Show("Filter by Category & by Month");
+            }
+            else if (filterByCategory.IsChecked == true)
+            {
+                MessageBox.Show("Filter by Category");
+            }
+            else if (filterByMonth.IsChecked == true)
+            {
+                MessageBox.Show("Filter by Month");
+            }
         }
     }
 }
