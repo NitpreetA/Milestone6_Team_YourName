@@ -261,7 +261,6 @@ namespace Milestone6_Team_YourName
                     return; 
                 }
             }
-
             App.Current.Properties["BackgroundColor"] = Window.Background;
             App.Current.Properties["AccentColor"] = _accent;
             App.Current.Properties["LastOpenDB"] = openBudget;
@@ -271,17 +270,12 @@ namespace Milestone6_Team_YourName
         {
             filterByCategory.IsChecked = true;
             FilterByCategoryAndMonth();
-
-
         }
 
         private void filterByMonth_Checked(object sender, RoutedEventArgs e)
         {
             filterByMonth.IsChecked = true;
             FilterByCategoryAndMonth();
-
-
-
         }
 
         private void filterByMonth_Unchecked(object sender, RoutedEventArgs e)
