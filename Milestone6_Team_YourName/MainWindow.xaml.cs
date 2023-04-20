@@ -287,11 +287,6 @@ namespace Milestone6_Team_YourName
         }
 
 
-        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            presenter.DisplayExpenses();
-        }
-
         private void filterByCategory_Checked(object sender, RoutedEventArgs e)
         {
             filterByCategory.IsChecked = true;
