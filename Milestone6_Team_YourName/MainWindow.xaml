@@ -111,11 +111,12 @@
 
                 </StackPanel>
 
+               
             </StackPanel>
-
-
-
-
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+                <CheckBox FontWeight="DemiBold" x:Name="filterByCategory" IsChecked="False">Filter by Category</CheckBox>
+                <CheckBox FontWeight="DemiBold" x:Name="filterByMonth" IsChecked="False">Filter by Month</CheckBox>
+            </StackPanel>
 
         </Grid>
     </ui:SimpleStackPanel>
