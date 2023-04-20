@@ -18,10 +18,12 @@ namespace Milestone6_Team_YourName
             view = v;
             
         }
+
         public void Connection(string filename,bool existing)
         {
             budget = new HomeBudget(filename,existing);
             view.DisplayList(budget.categories.List());
+            DisplayBudgetItems();
             
         }
 
@@ -48,6 +50,7 @@ namespace Milestone6_Team_YourName
         {
             count++;
             budget.expenses.Add(date, catId + 1, amount, description);
+            DisplayBudgetItems();
         }
 
         public void DisplayDefCatType()
@@ -60,10 +63,10 @@ namespace Milestone6_Team_YourName
             view.DisplayCatTypes(categoryTypes);
         }
 
-        public void DisplayExpenses()
+        public void DisplayBudgetItems()
         {
-            //List<Expense> expenses = budget.expenses.List();
-            //view.DisplayExpenses(expenses);
+            List<BudgetItem> budgetItems = budget.GetBudgetItems(null, null,false,0);
+            view.DisplayBudgetItems(budgetItems);
         }
     }
 }

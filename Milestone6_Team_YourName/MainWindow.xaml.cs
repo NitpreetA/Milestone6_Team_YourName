@@ -51,7 +51,11 @@ namespace Milestone6_Team_YourName
         {
             InitializeComponent();
             presenter = new Presenter(this);
-            
+
+           
+             
+
+
             expenseDate.SelectedDate = DateTime.Now;
             ExpenseFieldState(false);
             
@@ -160,7 +164,9 @@ namespace Milestone6_Team_YourName
 
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
-                presenter.DisplayExpenses();
+
+                presenter.DisplayBudgetItems();
+
               
                 // we would need to add these items to the datagrid 
             }
@@ -207,6 +213,14 @@ namespace Milestone6_Team_YourName
             }
             createdNewCategory = false;
         }
+
+        public void DisplayBudgetItems(List<BudgetItem> budgetItems)
+        {
+
+            expenseGrid.ItemsSource = budgetItems;
+        }
+
+
 
 
         private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)

@@ -13,6 +13,6 @@ namespace Milestone6_Team_YourName
 
         void DisplayCatTypes(List<Category.CategoryType> categoryTypes);
 
-        void DisplayExpenses(List<Expense> expenses);
+        public void DisplayBudgetItems(List<BudgetItem> budgetItems);
     }
 }
