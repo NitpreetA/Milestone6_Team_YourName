@@ -409,7 +409,16 @@ namespace Milestone6_Team_YourName
 
         private void MenuItem_DeleteClick(object sender, RoutedEventArgs e)
         {
+                //MessageBox.Show("inside delete");
+                if (expenseGrid.SelectedItem != null)
+                {
+                    Expense expense = expenseGrid.SelectedItem as Expense;
 
+                    presenter.DeleteExpense(expense.Id);
+
+                    expenseGrid.Items.Refresh(); // after delete is implemented 
+    
+                }
         }
 
 
@@ -422,7 +431,6 @@ namespace Milestone6_Team_YourName
 
         private void filterByMonth_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("HELLO");
             Filter();
         }
 

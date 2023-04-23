@@ -53,6 +53,11 @@ namespace Milestone6_Team_YourName
             view.Filter();
         }
 
+        public void DeleteExpense(int id)
+        {
+            budget.expenses.Delete(id);
+        }
+
         public void DisplayDefCatType()
         {
             //https://www.techiedelight.com/convert-enum-to-list-csharp/ gotten from 
