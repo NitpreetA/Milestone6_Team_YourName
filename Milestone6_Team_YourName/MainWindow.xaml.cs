@@ -437,10 +437,12 @@ namespace Milestone6_Team_YourName
             if (expenseGrid.SelectedItem != null)
             {
                 Budget.BudgetItem budgetItemToDelete = (Budget.BudgetItem)(expenseGrid.SelectedItem);
-                presenter.DeleteExpense(budgetItemToDelete.ExpenseID);
-
-                Filter();
-
+                MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to delete?", "Delete Confirmation", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    presenter.DeleteExpense(budgetItemToDelete.ExpenseID);
+                    Filter();
+                }
             }
         }
 
