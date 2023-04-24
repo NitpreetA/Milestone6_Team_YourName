@@ -137,7 +137,7 @@
                 <DataGrid Grid.Column="1" x:Name="expenseGrid" >
                     <DataGrid.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Modify" Click="MenuItem_ModifyClick" />
+                            <MenuItem Header="Modify" Click="MenuItem_ModifyClick" x:Name="ModifyButton" />
                             <MenuItem Header="Delete" Click="MenuItem_DeleteClick" x:Name="DeleteButton"/>
                         </ContextMenu>
                     </DataGrid.ContextMenu>

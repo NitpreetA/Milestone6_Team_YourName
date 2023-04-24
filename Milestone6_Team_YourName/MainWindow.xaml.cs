@@ -62,6 +62,7 @@ namespace Milestone6_Team_YourName
             PropertiesToTheme();
             LastOpenFile();
             DeleteButton.IsEnabled = true;
+            ModifyButton.IsEnabled = true;
 
             presenter.DisplayDefCatType();
                 
@@ -281,6 +282,7 @@ namespace Milestone6_Team_YourName
             if (filterByCategory.IsChecked == true && filterByMonth.IsChecked == true)
             {
                 DeleteButton.IsEnabled = false;
+                ModifyButton.IsEnabled = false;
                 string start = filterStartDate.ToString();
                 string end = filterEndDate.ToString();
                 DateTime? startDate;
@@ -312,6 +314,8 @@ namespace Milestone6_Team_YourName
             else if (filterByCategory.IsChecked == true)
             {
                 DeleteButton.IsEnabled = false;
+                ModifyButton.IsEnabled = false;
+
                 string start = filterStartDate.ToString();
                 string end = filterEndDate.ToString();
                 DateTime? startDate;
@@ -334,6 +338,8 @@ namespace Milestone6_Team_YourName
                 if (filterFlag.IsChecked == true)
                 {
                     DeleteButton.IsEnabled = false;
+                    ModifyButton.IsEnabled = false;
+
                     filterCat = true;
                     id = filterBySpecificCategory.SelectedIndex;
 
@@ -345,6 +351,8 @@ namespace Milestone6_Team_YourName
             else if (filterByMonth.IsChecked == true)
             {
                 DeleteButton.IsEnabled = false;
+                ModifyButton.IsEnabled = false;
+
                 string start = filterStartDate.ToString();
                 string end = filterEndDate.ToString();
                 DateTime? startDate;
@@ -376,6 +384,8 @@ namespace Milestone6_Team_YourName
             else
             {
                 DeleteButton.IsEnabled = true;
+                ModifyButton.IsEnabled = true;
+
                 string start = filterStartDate.ToString();
                 string end = filterEndDate.ToString();
                 DateTime? startDate;
@@ -398,6 +408,8 @@ namespace Milestone6_Team_YourName
                 if (filterFlag.IsChecked == true)
                 {
                     DeleteButton.IsEnabled = false;
+                    ModifyButton.IsEnabled = false;
+
                     filterCat = true;
                     id = filterBySpecificCategory.SelectedIndex;
 
