@@ -61,6 +61,7 @@ namespace Milestone6_Team_YourName
             PropertiesSet();
             PropertiesToTheme();
             LastOpenFile();
+            DeleteButton.IsEnabled = true;
 
             presenter.DisplayDefCatType();
                 
@@ -212,11 +213,6 @@ namespace Milestone6_Team_YourName
             createdNewCategory = false;
         }
 
-
-
-
-
-
         private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)
         {
             createdNewCategory = true;
@@ -280,8 +276,11 @@ namespace Milestone6_Team_YourName
 
         public void Filter()
         {
+            
+
             if (filterByCategory.IsChecked == true && filterByMonth.IsChecked == true)
             {
+                DeleteButton.IsEnabled = false;
                 string start = filterStartDate.ToString();
                 string end = filterEndDate.ToString();
                 DateTime? startDate;
@@ -312,6 +311,7 @@ namespace Milestone6_Team_YourName
             }
             else if (filterByCategory.IsChecked == true)
             {
+                DeleteButton.IsEnabled = false;
                 string start = filterStartDate.ToString();
                 string end = filterEndDate.ToString();
                 DateTime? startDate;
@@ -333,15 +333,18 @@ namespace Milestone6_Team_YourName
                 int id = 0;
                 if (filterFlag.IsChecked == true)
                 {
+                    DeleteButton.IsEnabled = false;
                     filterCat = true;
                     id = filterBySpecificCategory.SelectedIndex;
 
                 }
                 presenter.DisplayBudgetItemsByCat(startDate, endDate, filterCat, id);
+                
 
             }
             else if (filterByMonth.IsChecked == true)
             {
+                DeleteButton.IsEnabled = false;
                 string start = filterStartDate.ToString();
                 string end = filterEndDate.ToString();
                 DateTime? startDate;
@@ -372,6 +375,7 @@ namespace Milestone6_Team_YourName
             }
             else
             {
+                DeleteButton.IsEnabled = true;
                 string start = filterStartDate.ToString();
                 string end = filterEndDate.ToString();
                 DateTime? startDate;
@@ -393,6 +397,7 @@ namespace Milestone6_Team_YourName
                 int id = 0;
                 if (filterFlag.IsChecked == true)
                 {
+                    DeleteButton.IsEnabled = false;
                     filterCat = true;
                     id = filterBySpecificCategory.SelectedIndex;
 
@@ -409,6 +414,8 @@ namespace Milestone6_Team_YourName
 
         private void MenuItem_DeleteClick(object sender, RoutedEventArgs e)
         {
+           
+            
                 //MessageBox.Show("inside delete");
                 if (expenseGrid.SelectedItem != null)
                 {
@@ -417,8 +424,11 @@ namespace Milestone6_Team_YourName
                     presenter.DeleteExpense(expense.Id);
 
                     expenseGrid.Items.Refresh(); // after delete is implemented 
-    
+
                 }
+            
+            
+
         }
 
 
