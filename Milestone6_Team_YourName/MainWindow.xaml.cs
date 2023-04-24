@@ -277,8 +277,6 @@ namespace Milestone6_Team_YourName
 
         public void Filter()
         {
-            
-
             if (filterByCategory.IsChecked == true && filterByMonth.IsChecked == true)
             {
                 DeleteButton.IsEnabled = false;
@@ -426,21 +424,15 @@ namespace Milestone6_Team_YourName
 
         private void MenuItem_DeleteClick(object sender, RoutedEventArgs e)
         {
-           
-            
-                //MessageBox.Show("inside delete");
-                if (expenseGrid.SelectedItem != null)
-                {
-                    Expense expense = expenseGrid.SelectedItem as Expense;
+            //MessageBox.Show("inside delete");
+            if (expenseGrid.SelectedItem != null)
+            {
+                Budget.BudgetItem budgetItemToDelete = (Budget.BudgetItem)(expenseGrid.SelectedItem);
+                presenter.DeleteExpense(budgetItemToDelete.ExpenseID);
 
-                    presenter.DeleteExpense(expense.Id);
+                Filter();
 
-                    expenseGrid.Items.Refresh(); // after delete is implemented 
-
-                }
-            
-            
-
+            }
         }
 
 
