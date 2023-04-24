@@ -32,6 +32,7 @@ namespace Milestone6_Team_YourName
 
     public partial class MainWindow : Window, ViewInterface
     {
+
         private bool existing;
         public ApplicationTheme _theme = ApplicationTheme.Dark;
         internal Color _accent = Colors.Blue;
@@ -431,12 +432,32 @@ namespace Milestone6_Team_YourName
         public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth)
         {
             expenseGrid.ItemsSource = budgetByMonth;
+            expenseGrid.Columns.Clear();
+            var col = new DataGridTextColumn();
+            col.Header = "Month";
+            col.Binding = new Binding("Month");
+            expenseGrid.Columns.Add(col);
+            col = new DataGridTextColumn();
+            col.Header = "Total";
+            col.Binding = new Binding("Total");
+            expenseGrid.Columns.Add(col);
+
         }
 
         public void DisplayBudgetCat(List<BudgetItemsByCategory> budgetItemsByCategories)
         {
             
             expenseGrid.ItemsSource = budgetItemsByCategories;
+            expenseGrid.Columns.Clear();
+            var col = new DataGridTextColumn();
+            col.Header = "Category";
+            col.Binding = new Binding("Category");
+            expenseGrid.Columns.Add(col);
+            col = new DataGridTextColumn();
+            col.Header = "Total";
+            col.Binding = new Binding("Total");
+            expenseGrid.Columns.Add(col);
+            //expenseGrid.Columns De
         }
         public void DisplayBudgetItems(List<BudgetItem> budgetItems)
         {
@@ -470,9 +491,11 @@ namespace Milestone6_Team_YourName
             Filter();
         }
 
-        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth)
+        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth,List<string> categories)
         {
-            expenseGrid.ItemsSource = budgetItemsByCategoriesAndMonth;
+            expenseGrid.ItemsSource = categories;
+
+            
         }
     }
 }
