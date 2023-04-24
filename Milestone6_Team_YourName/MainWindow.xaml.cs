@@ -419,7 +419,16 @@ namespace Milestone6_Team_YourName
 
         private void MenuItem_ModifyClick(object sender, RoutedEventArgs e)
         {
+            if (expenseGrid.SelectedItem != null)
+            {
+                Budget.BudgetItem budgetItemToModify = (Budget.BudgetItem)(expenseGrid.SelectedItem);
+                // int expenseId, DateTime date, int categoryId, double amount, string description
+                //presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, budgetItemToModify.CategoryID, budgetItemToModify.Amount, budgetItemToModify.ShortDescription);
+                presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, 4, 2400, "nitpreet's phone");
 
+                Filter();
+
+            }
         }
 
         private void MenuItem_DeleteClick(object sender, RoutedEventArgs e)
@@ -434,9 +443,6 @@ namespace Milestone6_Team_YourName
 
             }
         }
-
-
-
 
         private void filterByCategory_Click(object sender, RoutedEventArgs e)
         {
