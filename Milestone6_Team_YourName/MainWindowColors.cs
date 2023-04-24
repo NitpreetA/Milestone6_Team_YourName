@@ -80,6 +80,8 @@ namespace Milestone6_Team_YourName
 
         private void BgBtnCrimson_Click(object sender, RoutedEventArgs e) => SetBackground("#9A0E2A");
 
+        private void BgBtnPlum_Click(object sender, RoutedEventArgs e) => SetBackground("#4B3351");
+
 
         private void SetBackground(string colorCode) 
         {
