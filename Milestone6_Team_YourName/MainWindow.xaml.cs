@@ -396,9 +396,25 @@ namespace Milestone6_Team_YourName
         public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth,List<string> categories)
         {
             expenseGrid.Columns.Clear();
-            expenseGrid.ItemsSource = categories;
+            expenseGrid.ItemsSource = budgetItemsByCategoriesAndMonth;
+            expenseGrid.Columns.Clear();
+            var col = new DataGridTextColumn();
+            col.Header = "Month";
+            col.Binding = new Binding("[Month]");
+            expenseGrid.Columns.Add(col);
+            foreach (var category in categories) 
+            {
+                col = new DataGridTextColumn();
+                col.Header = category;
+                col.Binding = new Binding($"[{category}]");
+                expenseGrid.Columns.Add(col);
+            }
 
-            
+            col = new DataGridTextColumn(); 
+            col.Header = "Total";
+            col.Binding = new Binding("[Total]");
+            expenseGrid.Columns.Add(col);
+
         }
     }
 }
