@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True"
+        ui:ThemeManager.RequestedTheme="Dark"
     Title="MainWindow" Height="800" Width="1600"
         Closing="Window_Closing"
         x:Name="Window">
@@ -52,14 +53,11 @@
                     <MenuItem Header="Blue" Click="BgBtnBlue_Click" />
                     <MenuItem Header="Salmon" Click="BgBtnSalmon_Click" />
                     <MenuItem Header="Emerald" Click="BgBtnEmerald_Click" />
+                    <MenuItem Header="Plum" Click="BgBtnPlum_Click" />
                     <MenuItem Header="Lavender" Click="BgBtnLavender_Click" />
                     <MenuItem Header="Crimson" Click="BgBtnCrimson_Click" />
                 </MenuItem>
-                <Button Height="40" Width="40" Click="BtnDarkLightSwitch_Click">
-                    <Button.Background>
-                        <ImageBrush ImageSource="Images\brightness-and-contrast.png"/>
-                    </Button.Background>
-                </Button>
+                <Button Click="Button_Click" Content="New Expense" />
             </Menu>
 
 
@@ -100,7 +98,6 @@
                 </StackPanel>
                 <!--need category-->
 
-
                 <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="2" >
                     <TextBlock FontStyle="Italic" Margin="5" FontWeight="ExtraBold" FontSize="21"   Height="39"><Run Text="Create New Category"/></TextBlock>
                     <TextBlock Margin="5" FontSize="15">Description</TextBlock>
@@ -111,6 +108,13 @@
 
                 </StackPanel>
             </StackPanel>
+
+            <DataGrid Grid.Row="1" Grid.Column="1" Height="420" x:Name="expenseGrid" IsReadOnly="True" />
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+                <CheckBox Checked="filterByCategory_Checked" Unchecked="filterByCategory_Unchecked" FontWeight="DemiBold" x:Name="filterByCategory" IsChecked="False">Filter by Category</CheckBox>
+                <CheckBox Checked="filterByMonth_Checked" Unchecked="filterByMonth_Unchecked" FontWeight="DemiBold" x:Name="filterByMonth" IsChecked="False">Filter by Month</CheckBox>
+
             
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
@@ -142,16 +146,8 @@
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                 </DataGrid>
+
             </StackPanel>
-               
-
-
-
-
-
-
-               
-            
 
 
         </Grid>
