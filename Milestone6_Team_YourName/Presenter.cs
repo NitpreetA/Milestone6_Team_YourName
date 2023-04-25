@@ -23,7 +23,7 @@ namespace Milestone6_Team_YourName
         {
             budget = new HomeBudget(filename,existing);
             view.DisplayList(budget.categories.List());
-            DisplayBudgetItems();
+            view.Filter();
             
         }
 
@@ -50,7 +50,7 @@ namespace Milestone6_Team_YourName
         {
             count++;
             budget.expenses.Add(date, catId + 1, amount, description);
-            DisplayBudgetItems();
+            view.Filter();
         }
 
         public void DisplayDefCatType()
@@ -63,10 +63,65 @@ namespace Milestone6_Team_YourName
             view.DisplayCatTypes(categoryTypes);
         }
 
-        public void DisplayBudgetItems()
+       public void DisplayBudgetItems(DateTime ? start, DateTime ? end, bool filterFlage,int catId)
         {
-            List<BudgetItem> budgetItems = budget.GetBudgetItems(null, null,false,0);
+            List<BudgetItem> budgetItems = budget.GetBudgetItems(start, end,filterFlage,catId);
             view.DisplayBudgetItems(budgetItems);
         }
+
+        public void DisplayBudgetItemsByMonth(DateTime? start, DateTime? end, bool filterFlage, int catId)
+        {
+            List<BudgetItemsByMonth> budgetItems = budget.GetBudgetItemsByMonth(start, end, filterFlage, catId);
+            view.DisplayBudgetItemsByMonth(budgetItems);
+        }
+
+        public void DisplayBudgetItemsByCat(DateTime? start, DateTime? end, bool filterFlage, int catId)
+        {
+            List<BudgetItemsByCategory> budgetItems = budget.GetBudgetItemsByCategory(start, end, filterFlage, catId);
+            view.DisplayBudgetCat(budgetItems);
+        }
+
+        public void DisplayBudgetItemsByCatAndMonth(DateTime? start, DateTime? end, bool filterFlage, int catId)
+        {
+            List<Dictionary<string,object>> budgetItems = budget.GetBudgetDictionaryByCategoryAndMonth(start, end, filterFlage,catId);
+            List<string> categories = new List<string>();
+            foreach(Category item in budget.categories.List()) 
+            {
+            
+            categories.Add(item.Description);
+            }
+            view.DisplayBudgetCatAndMonth(budgetItems,categories);
+        }
+
+        public void Farfalou(bool budgetByMonth,bool budgetByCat,DateTime? startDate,DateTime? endDate,bool categoryChecked,int catId) 
+        {
+            catId++;
+            if (budgetByMonth && budgetByCat)
+            {
+
+                DisplayBudgetItemsByCatAndMonth(startDate, endDate, categoryChecked, catId);
+
+            }
+            else if (budgetByCat)
+            {
+
+                DisplayBudgetItemsByCat(startDate, endDate, categoryChecked, catId);
+
+            }
+            else if (budgetByMonth)
+            {
+             
+                DisplayBudgetItemsByMonth(startDate, endDate, categoryChecked, catId);
+
+            }
+            else
+            {
+
+                DisplayBudgetItems(startDate, endDate, categoryChecked, catId);
+
+            }
+
+        }
+
     }
 }

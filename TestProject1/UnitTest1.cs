@@ -34,10 +34,6 @@ namespace TestProject1
             displayList= true;  
         }
 
-        public void DisplayExpenses(List<Expense> expenses)
-        {
-            throw new System.NotImplementedException();
-        }
 
 
         public void Connection()
@@ -203,6 +199,26 @@ namespace TestProject1
         }
 
         public void DisplayBudgetItems(List<BudgetItem> budgetItems)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Filter()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DisplayBudgetCat(List<BudgetItemsByCategory> budgetItemsByCategories)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth)
         {
             throw new NotImplementedException();
         }
