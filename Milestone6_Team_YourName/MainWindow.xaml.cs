@@ -21,6 +21,7 @@ using System.ComponentModel.DataAnnotations;
 using static Budget.Category;
 using ModernWpf.Controls;
 using System.Diagnostics.Eventing.Reader;
+using System.Collections;
 
 namespace Milestone6_Team_YourName
 {
@@ -275,7 +276,30 @@ namespace Milestone6_Team_YourName
         }
 
 
-       
+
+        private void filterByCategory_Click(object sender, RoutedEventArgs e)
+        {
+            string start = filterStartDate.ToString();
+            string end = filterEndDate.ToString();
+            DateTime? startDate;
+            DateTime? endDate;
+
+            if (start != string.Empty)
+                startDate = DateTime.Parse(start);
+            else
+            {
+                startDate = null;
+            }
+
+            if (end != string.Empty)
+                endDate = DateTime.Parse(end);
+            else
+            {
+                endDate = null;
+            }
+
+            presenter.Farfalou((bool)filterByMonth.IsChecked, (bool)filterByCategory.IsChecked, startDate, endDate, (bool)filterFlag.IsChecked, filterBySpecificCategory.SelectedIndex);
+        }
 
 
         public void Filter()
@@ -415,14 +439,9 @@ namespace Milestone6_Team_YourName
 
 
 
-        private void filterByCategory_Click(object sender, RoutedEventArgs e)
-        {
-            Filter();
-        }
 
         private void filterByMonth_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("HELLO");
             Filter();
         }
 

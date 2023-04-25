@@ -87,5 +87,34 @@ namespace Milestone6_Team_YourName
             view.DisplayBudgetCatAndMonth(budgetItems);
         }
 
+        public void Farfalou(bool budgetByMonth,bool budgetByCat,DateTime? startDate,DateTime? endDate,bool categoryChecked,int catId) 
+        {
+            if (budgetByMonth && budgetByCat)
+            {
+
+                DisplayBudgetItemsByCatAndMonth(startDate, endDate, categoryChecked, catId);
+
+            }
+            else if (budgetByCat)
+            {
+
+                DisplayBudgetItemsByCat(startDate, endDate, categoryChecked, catId);
+
+            }
+            else if (budgetByMonth)
+            {
+             
+                DisplayBudgetItemsByMonth(startDate, endDate, categoryChecked, catId);
+
+            }
+            else
+            {
+
+                DisplayBudgetItems(startDate, endDate, categoryChecked, catId);
+
+            }
+
+        }
+
     }
 }
