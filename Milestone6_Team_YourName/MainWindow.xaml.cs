@@ -168,7 +168,7 @@ namespace Milestone6_Team_YourName
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
 
-                presenter.DisplayBudgetItems();
+               // presenter.DisplayBudgetItems();
                 Filter();
 
               
@@ -211,7 +211,7 @@ namespace Milestone6_Team_YourName
         {
 
             categoryList.ItemsSource = categories;
-            filterBySpecificCategory.ItemsSource = categories; // NITPREET
+            filterBySpecificCategory.ItemsSource = categories;
 
             if (createdNewCategory)
             {
@@ -282,6 +282,9 @@ namespace Milestone6_Team_YourName
 
 
         private void filterByCategory_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
 
        
 
@@ -421,7 +424,6 @@ namespace Milestone6_Team_YourName
 
                     filterCat = true;
                     id = filterBySpecificCategory.SelectedIndex;
-
                 }
                 presenter.DisplayBudgetItems(startDate, endDate, filterCat, id);
 
@@ -435,7 +437,13 @@ namespace Milestone6_Team_YourName
                 Budget.BudgetItem budgetItemToModify = (Budget.BudgetItem)(expenseGrid.SelectedItem);
                 // int expenseId, DateTime date, int categoryId, double amount, string description
                 //presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, budgetItemToModify.CategoryID, budgetItemToModify.Amount, budgetItemToModify.ShortDescription);
-                presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, 4, 2400, "nitpreet's phone");
+                //presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, 4, 2400, "nitpreet's phone");
+
+                ExpenseWindow expenseWindow = new ExpenseWindow(presenter);
+                expenseWindow.Background = Window.Background;
+                expenseWindow.expenseId = budgetItemToModify.ExpenseID;
+                expenseWindow.Show();
+
 
                 Filter();
 

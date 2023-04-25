@@ -61,6 +61,7 @@ namespace Milestone6_Team_YourName
         public void ModifyExpense(int id, DateTime date, int categoryId, double amount, string description)
         {
             budget.expenses.UpdateProperties(id,date, categoryId, amount,description );
+
         }
 
         public void DisplayDefCatType()
@@ -95,6 +96,14 @@ namespace Milestone6_Team_YourName
         {
             List<Dictionary<string,object>> budgetItems = budget.GetBudgetDictionaryByCategoryAndMonth(null, null, false, 0);
             view.DisplayBudgetCatAndMonth(budgetItems);
+        }
+        public void GetAllCategories()
+        {
+            
+            ExpenseWindow expenseWindow = new ExpenseWindow(this);
+            List<Category> categories= budget.categories.List();
+            expenseWindow.DisplayList(categories);
+
         }
 
     }
