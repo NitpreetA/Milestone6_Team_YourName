@@ -105,6 +105,10 @@ namespace Milestone6_Team_YourName
             btn_ClearExpense.IsEnabled = state;
             createCategory.IsEnabled = state;
             btn_CreateNewCategory.IsEnabled = state;
+            filterByCategory.IsEnabled = state;
+            filterByMonth.IsEnabled = state;
+            expenseGrid.IsEnabled = state;
+            CategoryType.IsEnabled = state;
         }
 
         private void btn_closePage(object sender, RoutedEventArgs e)
@@ -164,10 +168,7 @@ namespace Milestone6_Team_YourName
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
 
-                Filter();
 
-              
-                // we would need to add these items to the datagrid 
             }
         }
 
@@ -278,6 +279,7 @@ namespace Milestone6_Team_YourName
 
 
 
+
         private void filterByCategory_Click(object sender, RoutedEventArgs e)
         {
             Filter();
@@ -347,6 +349,11 @@ namespace Milestone6_Team_YourName
         }
 
         public void DisplayBudgetCat(List<BudgetItemsByCategory> budgetItemsByCategories)
+
+
+
+        private void filterByCategory_Checked(object sender, RoutedEventArgs e)
+
         {
             
             expenseGrid.ItemsSource = budgetItemsByCategories;
@@ -415,6 +422,13 @@ namespace Milestone6_Team_YourName
             col.Binding = new Binding("[Total]");
             expenseGrid.Columns.Add(col);
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ExpenseWindow expenseWindow = new ExpenseWindow(presenter);
+            expenseWindow.Background = Window.Background;
+            expenseWindow.Show();
         }
     }
 }
