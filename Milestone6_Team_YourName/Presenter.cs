@@ -84,7 +84,13 @@ namespace Milestone6_Team_YourName
         public void DisplayBudgetItemsByCatAndMonth(DateTime? start, DateTime? end, bool filterFlage, int catId)
         {
             List<Dictionary<string,object>> budgetItems = budget.GetBudgetDictionaryByCategoryAndMonth(null, null, false, 0);
-            view.DisplayBudgetCatAndMonth(budgetItems);
+            List<string> categories = new List<string>();
+            foreach(Category item in budget.categories.List()) 
+            {
+            
+            categories.Add(item.Description);
+            }
+            view.DisplayBudgetCatAndMonth(budgetItems,categories);
         }
 
         public void Farfalou(bool budgetByMonth,bool budgetByCat,DateTime? startDate,DateTime? endDate,bool categoryChecked,int catId) 
