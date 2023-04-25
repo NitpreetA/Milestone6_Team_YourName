@@ -280,6 +280,11 @@ namespace Milestone6_Team_YourName
 
         private void filterByCategory_Click(object sender, RoutedEventArgs e)
         {
+            Filter();
+        }
+
+        public void Filter()
+        {
             string start = filterStartDate.ToString();
             string end = filterEndDate.ToString();
             DateTime? startDate;
@@ -301,131 +306,7 @@ namespace Milestone6_Team_YourName
 
             presenter.Farfalou((bool)filterByMonth.IsChecked, (bool)filterByCategory.IsChecked, startDate, endDate, (bool)filterFlag.IsChecked, filterBySpecificCategory.SelectedIndex);
         }
-
-
-        public void Filter()
-        {
-            if (filterByCategory.IsChecked == true && filterByMonth.IsChecked == true)
-            {
-                string start = filterStartDate.ToString();
-                string end = filterEndDate.ToString();
-                DateTime? startDate;
-                if (start != string.Empty)
-                    startDate = DateTime.Parse(start);
-                else
-                {
-                    startDate = null;
-                }
-                DateTime? endDate;
-                if (end != string.Empty)
-                    endDate = DateTime.Parse(end);
-                else
-                {
-                    endDate = null;
-                }
-
-                bool filterCat = false;
-                int id = 0;
-                if (filterFlag.IsChecked == true)
-                {
-                    filterCat = true;
-                    id = filterBySpecificCategory.SelectedIndex;
-
-                }
-                presenter.DisplayBudgetItemsByCatAndMonth(startDate, endDate, filterCat, id);
-
-            }
-            else if (filterByCategory.IsChecked == true)
-            {
-                string start = filterStartDate.ToString();
-                string end = filterEndDate.ToString();
-                DateTime? startDate;
-                if (start != string.Empty)
-                    startDate = DateTime.Parse(start);
-                else
-                {
-                    startDate = null;
-                }
-                DateTime? endDate;
-                if (end != string.Empty)
-                    endDate = DateTime.Parse(end);
-                else
-                {
-                    endDate = null;
-                }
-
-                bool filterCat = false;
-                int id = 0;
-                if (filterFlag.IsChecked == true)
-                {
-                    filterCat = true;
-                    id = filterBySpecificCategory.SelectedIndex;
-
-                }
-                presenter.DisplayBudgetItemsByCat(startDate, endDate, filterCat, id);
-
-            }
-            else if (filterByMonth.IsChecked == true)
-            {
-                string start = filterStartDate.ToString();
-                string end = filterEndDate.ToString();
-                DateTime? startDate;
-                if (start != string.Empty)
-                    startDate = DateTime.Parse(start);
-                else
-                {
-                    startDate = null;
-                }
-                DateTime? endDate;
-                if (end != string.Empty)
-                    endDate = DateTime.Parse(end);
-                else
-                {
-                    endDate = null;
-                }
-
-                bool filterCat = false;
-                int id = 0;
-                if (filterFlag.IsChecked == true)
-                {
-                    filterCat = true;
-                    id = filterBySpecificCategory.SelectedIndex;
-
-                }
-                presenter.DisplayBudgetItemsByMonth(startDate, endDate, filterCat, id);
-
-            }
-            else
-            {
-                string start = filterStartDate.ToString();
-                string end = filterEndDate.ToString();
-                DateTime? startDate;
-                if (start != string.Empty)
-                    startDate = DateTime.Parse(start);
-                else
-                {
-                    startDate = null;
-                }
-                DateTime? endDate;
-                if (end != string.Empty)
-                    endDate = DateTime.Parse(end);
-                else 
-                {
-                    endDate = null;
-                }
-
-                bool filterCat = false;
-                int id = 0;
-                if (filterFlag.IsChecked == true)
-                {
-                    filterCat = true;
-                    id = filterBySpecificCategory.SelectedIndex;
-
-                }
-                presenter.DisplayBudgetItems(startDate, endDate, filterCat, id);
-
-            }
-        }
+      
 
         private void MenuItem_ModifyClick(object sender, RoutedEventArgs e)
         {
@@ -435,6 +316,7 @@ namespace Milestone6_Team_YourName
         private void MenuItem_DeleteClick(object sender, RoutedEventArgs e)
         {
 
+            
         }
 
 
@@ -450,6 +332,7 @@ namespace Milestone6_Team_YourName
 
         public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth)
         {
+            expenseGrid.Columns.Clear();
             expenseGrid.ItemsSource = budgetByMonth;
             expenseGrid.Columns.Clear();
             var col = new DataGridTextColumn();
@@ -480,12 +363,12 @@ namespace Milestone6_Team_YourName
         }
         public void DisplayBudgetItems(List<BudgetItem> budgetItems)
         {
+            expenseGrid.Columns.Clear();
             expenseGrid.ItemsSource = budgetItems;
         }
 
         private void filterBySpecificCategory_Selected(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("test");
             Filter();
         }
 
@@ -512,6 +395,7 @@ namespace Milestone6_Team_YourName
 
         public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth,List<string> categories)
         {
+            expenseGrid.Columns.Clear();
             expenseGrid.ItemsSource = categories;
 
             
