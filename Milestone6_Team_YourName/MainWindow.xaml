@@ -108,11 +108,45 @@
 
                 </StackPanel>
             </StackPanel>
+
             <DataGrid Grid.Row="1" Grid.Column="1" Height="420" x:Name="expenseGrid" IsReadOnly="True" />
 
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
                 <CheckBox Checked="filterByCategory_Checked" Unchecked="filterByCategory_Unchecked" FontWeight="DemiBold" x:Name="filterByCategory" IsChecked="False">Filter by Category</CheckBox>
                 <CheckBox Checked="filterByMonth_Checked" Unchecked="filterByMonth_Unchecked" FontWeight="DemiBold" x:Name="filterByMonth" IsChecked="False">Filter by Month</CheckBox>
+
+            
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Width="347">
+                        <CheckBox   FontWeight="DemiBold" x:Name="filterByCategory" Click="filterByCategory_Click" IsChecked="False">Filter by Category</CheckBox>
+                        <CheckBox   FontWeight="DemiBold" x:Name="filterByMonth" Click="filterByMonth_Click" IsChecked="False">Filter by Month</CheckBox>
+                        <CheckBox FontWeight="DemiBold" x:Name="filterFlag" Click="filterFlag_Click" >Filter By Specific Category</CheckBox>
+                        <ComboBox  SelectionChanged="filterBySpecificCategory_Selected"  Height="38" Width="247" Margin="0,0,0,10" x:Name="filterBySpecificCategory" IsEditable="True"/>
+                    </StackPanel>
+                    <StackPanel Width="207">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock FontWeight="DemiBold">Start Date</TextBlock>
+                            <DatePicker  SelectedDateChanged="filterStartDate_SelectedDateChanged" x:Name="filterStartDate" Width="205" Margin="0 10 0 10" ></DatePicker>
+                            <TextBlock FontWeight="DemiBold">End Date</TextBlock>
+                            <DatePicker SelectedDateChanged="filterEndDate_SelectedDateChanged"  x:Name="filterEndDate" Width="206" Margin="0 10 0 10"></DatePicker>
+
+                        </StackPanel>
+                    </StackPanel>
+            </StackPanel>
+               
+
+                
+
+                <DataGrid Grid.Column="1" x:Name="expenseGrid" >
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Modify" Click="MenuItem_ModifyClick" x:Name="ModifyButton" />
+                            <MenuItem Header="Delete" Click="MenuItem_DeleteClick" x:Name="DeleteButton"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+
             </StackPanel>
 
 

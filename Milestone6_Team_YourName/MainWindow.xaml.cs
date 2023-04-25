@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using static Budget.Category;
 using ModernWpf.Controls;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Milestone6_Team_YourName
 {
@@ -52,16 +53,16 @@ namespace Milestone6_Team_YourName
             InitializeComponent();
             presenter = new Presenter(this);
 
-           
-             
-
 
             expenseDate.SelectedDate = DateTime.Now;
+
             ExpenseFieldState(false);
             
             PropertiesSet();
             PropertiesToTheme();
             LastOpenFile();
+            DeleteButton.IsEnabled = true;
+            ModifyButton.IsEnabled = true;
 
             presenter.DisplayDefCatType();
                 
@@ -69,10 +70,6 @@ namespace Milestone6_Team_YourName
             {
                 Directory.CreateDirectory(initialDirectory);
             }
-
-
-
-           
 
         }
 
@@ -129,6 +126,8 @@ namespace Milestone6_Team_YourName
                 currentBudgetFile.Text = openFileDialog.FileName;
                 openBudget = currentBudgetFile.Text;
                 presenter.Connection(currentBudgetFile.Text,existing);
+                filterStartDate.SelectedDate = DateTime.Now;
+                filterEndDate.SelectedDate = DateTime.Now;
                 ExpenseFieldState(true);
             }
             
@@ -170,6 +169,11 @@ namespace Milestone6_Team_YourName
                 amount.Text = string.Empty;
 
                 presenter.DisplayBudgetItems();
+                Filter();
+
+              
+                // we would need to add these items to the datagrid 
+
             }
         }
 
@@ -207,6 +211,7 @@ namespace Milestone6_Team_YourName
         {
 
             categoryList.ItemsSource = categories;
+            filterBySpecificCategory.ItemsSource = categories; // NITPREET
 
             if (createdNewCategory)
             {
@@ -214,15 +219,6 @@ namespace Milestone6_Team_YourName
             }
             createdNewCategory = false;
         }
-
-        public void DisplayBudgetItems(List<BudgetItem> budgetItems)
-        {
-
-            expenseGrid.ItemsSource = budgetItems;
-        }
-
-
-
 
         private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)
         {
@@ -284,45 +280,240 @@ namespace Milestone6_Team_YourName
 
 
 
+
         private void filterByCategory_Checked(object sender, RoutedEventArgs e)
-        {
-            filterByCategory.IsChecked = true;
-            FilterByCategoryAndMonth();
-        }
 
-        private void filterByMonth_Checked(object sender, RoutedEventArgs e)
-        {
-            filterByMonth.IsChecked = true;
-            FilterByCategoryAndMonth();
-        }
+       
 
-        private void filterByMonth_Unchecked(object sender, RoutedEventArgs e)
-        {
-            filterByMonth.IsChecked = false;
-            // unfilter by month
-        }
 
-        private void filterByCategory_Unchecked(object sender, RoutedEventArgs e)
-        {
-            filterByCategory.IsChecked = false;
-            // unfilter by category
-
-        }
-
-        private void FilterByCategoryAndMonth()
+        public void Filter()
         {
             if (filterByCategory.IsChecked == true && filterByMonth.IsChecked == true)
             {
-                MessageBox.Show("Filter by Category & by Month");
+                DeleteButton.IsEnabled = false;
+                ModifyButton.IsEnabled = false;
+                string start = filterStartDate.ToString();
+                string end = filterEndDate.ToString();
+                DateTime? startDate;
+                if (start != string.Empty)
+                    startDate = DateTime.Parse(start);
+                else
+                {
+                    startDate = null;
+                }
+                DateTime? endDate;
+                if (end != string.Empty)
+                    endDate = DateTime.Parse(end);
+                else
+                {
+                    endDate = null;
+                }
+
+                bool filterCat = false;
+                int id = 0;
+                if (filterFlag.IsChecked == true)
+                {
+                    filterCat = true;
+                    id = filterBySpecificCategory.SelectedIndex;
+
+                }
+                presenter.DisplayBudgetItemsByCatAndMonth(startDate, endDate, filterCat, id);
+
             }
             else if (filterByCategory.IsChecked == true)
             {
-                MessageBox.Show("Filter by Category");
+                DeleteButton.IsEnabled = false;
+                ModifyButton.IsEnabled = false;
+
+                string start = filterStartDate.ToString();
+                string end = filterEndDate.ToString();
+                DateTime? startDate;
+                if (start != string.Empty)
+                    startDate = DateTime.Parse(start);
+                else
+                {
+                    startDate = null;
+                }
+                DateTime? endDate;
+                if (end != string.Empty)
+                    endDate = DateTime.Parse(end);
+                else
+                {
+                    endDate = null;
+                }
+
+                bool filterCat = false;
+                int id = 0;
+                if (filterFlag.IsChecked == true)
+                {
+                    DeleteButton.IsEnabled = false;
+                    ModifyButton.IsEnabled = false;
+
+                    filterCat = true;
+                    id = filterBySpecificCategory.SelectedIndex;
+
+                }
+                presenter.DisplayBudgetItemsByCat(startDate, endDate, filterCat, id);
+                
+
             }
             else if (filterByMonth.IsChecked == true)
             {
-                MessageBox.Show("Filter by Month");
+                DeleteButton.IsEnabled = false;
+                ModifyButton.IsEnabled = false;
+
+                string start = filterStartDate.ToString();
+                string end = filterEndDate.ToString();
+                DateTime? startDate;
+                if (start != string.Empty)
+                    startDate = DateTime.Parse(start);
+                else
+                {
+                    startDate = null;
+                }
+                DateTime? endDate;
+                if (end != string.Empty)
+                    endDate = DateTime.Parse(end);
+                else
+                {
+                    endDate = null;
+                }
+
+                bool filterCat = false;
+                int id = 0;
+                if (filterFlag.IsChecked == true)
+                {
+                    filterCat = true;
+                    id = filterBySpecificCategory.SelectedIndex;
+
+                }
+                presenter.DisplayBudgetItemsByMonth(startDate, endDate, filterCat, id);
+
             }
+            else
+            {
+                DeleteButton.IsEnabled = true;
+                ModifyButton.IsEnabled = true;
+
+                string start = filterStartDate.ToString();
+                string end = filterEndDate.ToString();
+                DateTime? startDate;
+                if (start != string.Empty)
+                    startDate = DateTime.Parse(start);
+                else
+                {
+                    startDate = null;
+                }
+                DateTime? endDate;
+                if (end != string.Empty)
+                    endDate = DateTime.Parse(end);
+                else 
+                {
+                    endDate = null;
+                }
+
+                bool filterCat = false;
+                int id = 0;
+                if (filterFlag.IsChecked == true)
+                {
+                    DeleteButton.IsEnabled = false;
+                    ModifyButton.IsEnabled = false;
+
+                    filterCat = true;
+                    id = filterBySpecificCategory.SelectedIndex;
+
+                }
+                presenter.DisplayBudgetItems(startDate, endDate, filterCat, id);
+
+            }
+        }
+
+        private void MenuItem_ModifyClick(object sender, RoutedEventArgs e)
+        {
+            if (expenseGrid.SelectedItem != null)
+            {
+                Budget.BudgetItem budgetItemToModify = (Budget.BudgetItem)(expenseGrid.SelectedItem);
+                // int expenseId, DateTime date, int categoryId, double amount, string description
+                //presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, budgetItemToModify.CategoryID, budgetItemToModify.Amount, budgetItemToModify.ShortDescription);
+                presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, 4, 2400, "nitpreet's phone");
+
+                Filter();
+
+            }
+        }
+
+        private void MenuItem_DeleteClick(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("inside delete");
+            if (expenseGrid.SelectedItem != null)
+            {
+                Budget.BudgetItem budgetItemToDelete = (Budget.BudgetItem)(expenseGrid.SelectedItem);
+                MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to delete?", "Delete Confirmation", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    presenter.DeleteExpense(budgetItemToDelete.ExpenseID);
+                    Filter();
+                }
+            }
+        }
+
+        private void filterByCategory_Click(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void filterByMonth_Click(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+
+
+        public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth)
+        {
+            expenseGrid.ItemsSource = budgetByMonth;
+        }
+
+        public void DisplayBudgetCat(List<BudgetItemsByCategory> budgetItemsByCategories)
+        {
+            
+            expenseGrid.ItemsSource = budgetItemsByCategories;
+        }
+        public void DisplayBudgetItems(List<BudgetItem> budgetItems)
+        {
+            expenseGrid.ItemsSource = budgetItems;
+        }
+
+        private void filterBySpecificCategory_Selected(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("test");
+            Filter();
+        }
+
+        private void filterFlag_Click(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        /// <summary>
+        /// DATE CHANGED
+        /// SECTION
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void filterStartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void filterEndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth)
+        {
+            expenseGrid.ItemsSource = budgetItemsByCategoriesAndMonth;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
