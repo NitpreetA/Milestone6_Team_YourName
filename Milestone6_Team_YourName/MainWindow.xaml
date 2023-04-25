@@ -53,14 +53,11 @@
                     <MenuItem Header="Blue" Click="BgBtnBlue_Click" />
                     <MenuItem Header="Salmon" Click="BgBtnSalmon_Click" />
                     <MenuItem Header="Emerald" Click="BgBtnEmerald_Click" />
+                    <MenuItem Header="Plum" Click="BgBtnPlum_Click" />
                     <MenuItem Header="Lavender" Click="BgBtnLavender_Click" />
                     <MenuItem Header="Crimson" Click="BgBtnCrimson_Click" />
                 </MenuItem>
-                <Button Height="40" Width="40" Click="BtnDarkLightSwitch_Click">
-                    <Button.Background>
-                        <ImageBrush ImageSource="Images\brightness-and-contrast.png"/>
-                    </Button.Background>
-                </Button>
+                <Button Click="Button_Click" Content="New Expense" />
             </Menu>
 
 
