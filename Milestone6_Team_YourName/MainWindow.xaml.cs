@@ -126,8 +126,6 @@ namespace Milestone6_Team_YourName
                 currentBudgetFile.Text = openFileDialog.FileName;
                 openBudget = currentBudgetFile.Text;
                 presenter.Connection(currentBudgetFile.Text,existing);
-                filterStartDate.SelectedDate = DateTime.Now;
-                filterEndDate.SelectedDate = DateTime.Now;
                 ExpenseFieldState(true);
             }
             
@@ -349,13 +347,7 @@ namespace Milestone6_Team_YourName
         }
 
         public void DisplayBudgetCat(List<BudgetItemsByCategory> budgetItemsByCategories)
-
-
-
-        private void filterByCategory_Checked(object sender, RoutedEventArgs e)
-
         {
-            
             expenseGrid.ItemsSource = budgetItemsByCategories;
             expenseGrid.Columns.Clear();
             var col = new DataGridTextColumn();
@@ -366,7 +358,15 @@ namespace Milestone6_Team_YourName
             col.Header = "Total";
             col.Binding = new Binding("Total");
             expenseGrid.Columns.Add(col);
-            //expenseGrid.Columns De
+        }
+
+
+
+        private void filterByCategory_Checked(object sender, RoutedEventArgs e)
+        {
+            Filter();
+          
+
         }
         public void DisplayBudgetItems(List<BudgetItem> budgetItems)
         {

@@ -78,7 +78,7 @@ namespace Milestone6_Team_YourName
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
 
-                currentPresenter.DisplayBudgetItems();
+                Filter();
             }
         }
 
@@ -119,6 +119,26 @@ namespace Milestone6_Team_YourName
         {
             CategoryType.ItemsSource = categoryTypes;
             CategoryType.SelectedIndex = 1;
+        }
+
+        public void Filter()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DisplayBudgetCat(List<BudgetItemsByCategory> budgetItemsByCategories)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth, List<string> categories)
+        {
+            throw new NotImplementedException();
         }
     }
 }

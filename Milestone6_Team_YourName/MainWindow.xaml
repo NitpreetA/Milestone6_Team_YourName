@@ -108,7 +108,7 @@
                     <Button Height="30" Style="{StaticResource AccentButtonStyle}" Margin="5"  FontSize="13" Width="166" x:Name="btn_CreateNewCategory" Click="btn_CreateNewCategory_Click" Content="Add Category"/>
                 </StackPanel>
             </StackPanel>
-            
+
 
             <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
@@ -127,10 +127,10 @@
 
                         </StackPanel>
                     </StackPanel>
-            </StackPanel>
-               
+                </StackPanel>
 
-               
+
+
 
                 <DataGrid Grid.Column="1" x:Name="expenseGrid" >
                     <DataGrid.ContextMenu>
@@ -141,10 +141,10 @@
                     </DataGrid.ContextMenu>
                 </DataGrid>
 
-            <DataGrid Grid.Row="1" Grid.Column="1" Height="420" x:Name="expenseGrid" IsReadOnly="True" />
 
 
 
+            </StackPanel>
         </Grid>
     </ui:SimpleStackPanel>
 </Window>
