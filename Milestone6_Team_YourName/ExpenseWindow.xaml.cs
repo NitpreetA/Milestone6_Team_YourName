@@ -1,4 +1,4 @@
-﻿using Budget;
+using Budget;
 using System;
 using System.Collections.Generic;
 using System.Linq;

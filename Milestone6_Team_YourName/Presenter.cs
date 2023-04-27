@@ -67,6 +67,16 @@ namespace Milestone6_Team_YourName
             view.Filter();
         }
 
+        public void DeleteExpense(int id)
+        {
+            budget.expenses.Delete(id);
+        }
+
+        public void ModifyExpense(int id, DateTime date, int categoryId, double amount, string description)
+        {
+            budget.expenses.UpdateProperties(id,date, categoryId, amount,description );
+        }
+
         public void DisplayDefCatType()
         {
             //https://www.techiedelight.com/convert-enum-to-list-csharp/ gotten from 
