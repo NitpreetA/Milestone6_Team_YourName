@@ -112,7 +112,7 @@ namespace Milestone6_Team_YourName
             catId++;
             if (budgetByMonth && budgetByCat)
             {
-
+                
                 DisplayBudgetItemsByCatAndMonth(startDate, endDate, categoryChecked, catId);
 
             }
