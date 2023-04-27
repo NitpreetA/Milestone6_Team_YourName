@@ -9,7 +9,7 @@ namespace Milestone6_Team_YourName
 {
     public interface ViewInterface
     {
-        void DisplayList(List<Category> categories);
+        void DisplayCategoryList(List<Category> categories);
 
         void DisplayCatTypes(List<Category.CategoryType> categoryTypes);
 
@@ -23,6 +23,9 @@ namespace Milestone6_Team_YourName
 
         public void DisplayBudgetCatAndMonth(List<Dictionary<string,object>> budgetItemsByCategoriesAndMonth,List<string> categories);
 
+        public void DisplayMessage(string message);
+
+        public void ResetFields();
 
     }
 }

@@ -36,7 +36,7 @@ namespace Milestone6_Team_YourName
         public void Connection(string filename,bool existing)
         {
             budget = new HomeBudget(filename,existing);
-            view.DisplayList(budget.categories.List());
+            view.DisplayCategoryList(budget.categories.List());
             view.Filter();
             
         }
@@ -57,7 +57,7 @@ namespace Milestone6_Team_YourName
             }
 
             budget.categories.Add(description,catType);
-            view.DisplayList(budget.categories.List());
+            view.DisplayCategoryList(budget.categories.List());
         }
 
         public void CreateExpenses(DateTime date, string description, double amount, int catId)
@@ -147,6 +147,28 @@ namespace Milestone6_Team_YourName
             view.Filter();
 
         }
+
+        public void AddExpense(string description,string expenseAmount, string date,int catId)
+        {
+            if (string.IsNullOrEmpty(description) || string.IsNullOrEmpty(expenseAmount) || catId == -1)
+            {
+                view.DisplayMessage("Please fill out all of the input fields");
+            }
+            else
+            {
+                double amount = Double.Parse(expenseAmount);
+                DateTime dateTime = DateTime.Parse(date);
+
+                CreateExpenses(dateTime, description, amount, catId);
+                view.DisplayMessage("Succesfuly added expense");
+                view.Filter();
+                view.ResetFields();
+                
+            }
+
+        }
+
+
 
     }
 }

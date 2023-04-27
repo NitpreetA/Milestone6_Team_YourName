@@ -28,7 +28,7 @@ namespace TestProject1
             displayCategoryTypes = true;
         }
 
-        public void DisplayList(List<Category> categories)
+        public void DisplayCategoryList(List<Category> categories)
         {
             this.categories = categories;
             displayList= true;  
@@ -101,7 +101,7 @@ namespace TestProject1
             };
 
             // act
-            DisplayList(categories);
+            DisplayCategoryList(categories);
             // makes displayList true 
 
             // assert
