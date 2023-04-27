@@ -114,13 +114,25 @@ namespace Milestone6_Team_YourName
             filterByMonth.IsEnabled = state;
             expenseGrid.IsEnabled = state;
             CategoryType.IsEnabled = state;
+            filterBySpecificCategory.IsEnabled = state;
+            filterStartDate.IsEnabled = state;
+            filterEndDate.IsEnabled = state;
+            filterFlag.IsEnabled = state;
         }
-
+        /// <summary>
+        /// Closes the page once button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_closePage(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
+        /// <summary>
+        /// Opens a budget file directory to allow user to select a budget file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOpenBudgetFileLocation(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -136,22 +148,35 @@ namespace Milestone6_Team_YourName
             
         }
 
+        /// <summary>
+        /// Adds Expense once all the proper fields are inputted correctly 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_AddExpense_Clck(object sender, RoutedEventArgs e)
         {     
-
-                presenter.AddExpense(description.Text, amount.Text, expenseDate.ToString(), categoryList.SelectedIndex);
-                
+            presenter.AddExpense(description.Text, amount.Text, expenseDate.ToString(), categoryList.SelectedIndex);   
         }
 
+        /// <summary>
+        /// Clears all inputted fields and resets them to default/starting position
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_ClearExpense_Clck(object sender, RoutedEventArgs e)
         {
             description.Text = string.Empty;
             amount.Text = string.Empty;
             categoryList.SelectedIndex = -1;
+            expenseDate.SelectedDate = DateTime.Now;
         }
 
         
-
+        /// <summary>
+        /// Enables the optioons to input a new file once the radio button was clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewFile_Click(object sender, RoutedEventArgs e)
         {
             SubmitFile.IsEnabled = true;
