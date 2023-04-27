@@ -35,6 +35,15 @@ namespace Milestone6_Team_YourName
             expenseDate.SelectedDate = DateTime.Now;
         }
 
+        public void PopulateFields(string oldDescription, string oldAmount, DateTime oldDate, int oldCategoryID)
+        {
+            description.Text = oldDescription;
+            amount.Text = oldAmount;
+            expenseDate.SelectedDate = oldDate;
+            expenseWindowCatList.SelectedIndex = oldCategoryID - 1;
+            
+        }
+
         public void DisplayCatInPopUp(List<Category> categories)
         {
             expenseWindowCatList.ItemsSource= categories;
@@ -73,10 +82,7 @@ namespace Milestone6_Team_YourName
 
 
                 currentPresenter.ModifyExpense(expenseId, dateTime, catId,expenseAmount, lastDescription);
-                
-                description.Text = string.Empty;
-                amount.Text = string.Empty;
-                //currentPresenter.DisplayBudgetItems();
+                Close();
             }
         }
 
