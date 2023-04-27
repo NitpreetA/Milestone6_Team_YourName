@@ -143,7 +143,8 @@ namespace Milestone6_Team_YourName
 
         public void ModifyExpense(int id, DateTime date, int categoryId, double amount, string description)
         {
-            budget.expenses.UpdateProperties(id, date, categoryId, amount, description);
+            budget.expenses.UpdateProperties(id, date, categoryId+1, amount, description);
+            view.Filter();
 
         }
 

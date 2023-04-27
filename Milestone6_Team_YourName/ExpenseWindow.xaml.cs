@@ -73,7 +73,7 @@ namespace Milestone6_Team_YourName
 
 
                 currentPresenter.ModifyExpense(expenseId, dateTime, catId,expenseAmount, lastDescription);
-
+                
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
                 //currentPresenter.DisplayBudgetItems();
