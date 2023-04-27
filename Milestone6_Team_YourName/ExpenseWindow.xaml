@@ -29,7 +29,7 @@
                 <DatePicker Width="120" HorizontalAlignment="Left" Margin="5 0 0 10" x:Name="expenseDate"/>
 
                 <TextBlock Margin="5 0 0 0"><Run Text="Categories"/></TextBlock>
-                <ComboBox  Height="38" Width="247" Margin="5,0,0,10" x:Name="expenseWindowCatList"    IsEditable="True"/>
+                <ComboBox  Height="38" Width="247" Margin="5,0,0,10" x:Name="categoryList" IsEditable="True"/>
 
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="left">

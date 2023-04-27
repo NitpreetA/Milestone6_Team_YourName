@@ -426,9 +426,7 @@ namespace Milestone6_Team_YourName
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             ExpenseWindow expenseWindow = new ExpenseWindow(presenter);
-            presenter.IntializeViewExpenseInterface(expenseWindow);
             expenseWindow.Background = Window.Background;
             expenseWindow.Show();
         }

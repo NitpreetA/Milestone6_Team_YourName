@@ -222,10 +222,5 @@ namespace TestProject1
         {
             throw new NotImplementedException();
         }
-
-        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth, List<string> categories)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
