@@ -164,12 +164,22 @@ namespace Milestone6_Team_YourName
                 view.DisplayMessage("Succesfuly added expense");
                 view.Filter();
                 view.ResetFields();
-                
             }
-
         }
 
-
-
+        /// <summary>
+        /// Populates a newly opened Expense Window with the details of the unedited expense.
+        /// </summary>
+        /// <param name="expense">The expense a user is editing</param>
+        public void SetUpExpenseWindow(Budget.BudgetItem expense)
+        {
+            string oldDescription = expense.ShortDescription;
+            string oldAmount = expense.Amount.ToString();
+            DateTime oldDate = expense.Date;
+            //The -1 is because the ComboBox is 0-indexed but the database is 1-indexed.
+            int oldCategory = expense.CategoryID - 1;
+            expenseView.PopulateFields(oldDescription, oldAmount, oldDate, oldCategory);
+        }
     }
+
 }

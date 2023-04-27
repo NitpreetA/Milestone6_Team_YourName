@@ -25,12 +25,7 @@ using System.Collections;
 
 namespace Milestone6_Team_YourName
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    /// 
-
-
+   
     public partial class MainWindow : Window, ViewInterface
     {
 
@@ -44,39 +39,38 @@ namespace Milestone6_Team_YourName
 
         private string openBudget = string.Empty;
 
-        private string lastExpense;
-        private string lastDescription;
-        private string lastAmount;
         public int expenseId;
 
 
         private bool createdNewCategory = false;
 
+        #region Constructor
         public MainWindow()
         {
+            //Setup Window and Presenter
             InitializeComponent();
             presenter = new Presenter(this);
+            presenter.DisplayDefCatType();
 
-
+            //Set default values and disable the current window
             expenseDate.SelectedDate = DateTime.Now;
-
             ExpenseFieldState(false);
             
+            //Run through persistent settings
             PropertiesSet();
             PropertiesToTheme();
             LastOpenFile();
             
-            presenter.DisplayDefCatType();
-                
             if (!Directory.Exists(initialDirectory))
-            {
                 Directory.CreateDirectory(initialDirectory);
-            }
-
         }
+        #endregion
+
         #region File Code
+
+        #region LastOpenFile
         /// <summary>
-        /// Opens the last file used from the previous session.
+        /// Asks the user if they wish to open their last opened database, should that database still exist
         /// </summary>
         private void LastOpenFile()
         {
@@ -99,6 +93,7 @@ namespace Milestone6_Team_YourName
                 }
             }
         }
+        #endregion
 
         /// <summary>
         /// Opens a budget file directory to allow user to select a budget file.
@@ -117,19 +112,17 @@ namespace Milestone6_Team_YourName
                 presenter.Connection(currentBudgetFile.Text, existing);
                 ExpenseFieldState(true);
             }
-
         }
         /// <summary>
         /// enables the options to create a new file once the radio button has been selected.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void NewFile_Click(object sender, RoutedEventArgs e)
         {
             SubmitFile.IsEnabled = true;
             budgetFileName.IsEnabled = true;
 
         }
+
         /// <summary>
         /// Creates the file once filed inputed and button was pressed.
         /// </summary>
@@ -137,9 +130,6 @@ namespace Milestone6_Team_YourName
         /// <param name="e"></param>
         private void SubmitFile_Click_1(object sender, RoutedEventArgs e)
         {
-
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
             if (Directory.Exists(initialDirectory))
             {
                 existing = true;
@@ -153,7 +143,7 @@ namespace Milestone6_Team_YourName
 
 
 
-
+        #region ExpenseFieldState
         /// <summary>
         /// Enables and disables the fields accordingly based on if a file was selected or not.
         /// </summary>
@@ -177,33 +167,27 @@ namespace Milestone6_Team_YourName
             filterEndDate.IsEnabled = state;
             filterFlag.IsEnabled = state;
         }
+        #endregion
 
         /// <summary>
         /// Closes the page once button is clicked
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_closePage(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
+        private void btn_closePage(object sender, RoutedEventArgs e) => Close();
 
         #region Expenses
+
+        #region Add Expense
         /// <summary>
         /// Adds Expense once all the proper fields are inputted correctly 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btn_AddExpense_Clck(object sender, RoutedEventArgs e)
-        {     
-            presenter.AddExpense(description.Text, amount.Text, expenseDate.ToString(), categoryList.SelectedIndex);   
-        }
+        => presenter.AddExpense(description.Text, amount.Text, expenseDate.ToString(), categoryList.SelectedIndex);
+        #endregion
 
+        #region ClearExpense_Click
         /// <summary>
         /// Clears all inputted fields and resets them to default/starting position
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btn_ClearExpense_Clck(object sender, RoutedEventArgs e)
         {
             description.Text = string.Empty;
@@ -211,23 +195,28 @@ namespace Milestone6_Team_YourName
             categoryList.SelectedIndex = -1;
             expenseDate.SelectedDate = DateTime.Now;
         }
+        #endregion
 
         #endregion
 
         #region ComboBoxFill
+
+        #region DisplayCategoryList
         /// <summary>
-        /// Displays a list of categories.
+        /// Fills the comboboxes for Categories, one for the Add Expense menu, and one for the filter menu.
         /// </summary>
         /// <param name="categories">List of categories to fill the combo box with.</param>
         public void DisplayCategoryList(List<Category> categories)
         {
 
             categoryList.ItemsSource = categories;
-            filterBySpecificCategory.ItemsSource = categories; // NITPREET
+            filterBySpecificCategory.ItemsSource = categories;
 
             createdNewCategory = false;
         }
+        #endregion
 
+        #region DisplayCatTypes
         /// <summary>
         /// Fills the combobox with the default Cat Types
         /// </summary>
@@ -239,11 +228,13 @@ namespace Milestone6_Team_YourName
         }
         #endregion
 
+        #endregion
+
+
+        // ---------------------------- REFACTOR NEEDED ----------------------------
         /// <summary>
         /// Creates a category if all fields are properly inputted 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)
         {
             createdNewCategory = true;
@@ -256,11 +247,15 @@ namespace Milestone6_Team_YourName
                 presenter.CreateCat(createCategory.Text, CategoryType.SelectedIndex);
                 createCategory.Text = ""; 
             }
-           
         }
+        // ---------------------------- REFACTOR NEEDED ----------------------------
 
+        #region Persistent Settings
 
-        #region Color
+        #region PropertiesSet
+        /// <summary>
+        /// Gets all the persistent settings saved on application closing and sets them to the current session.
+        /// </summary>
         private void PropertiesSet()
         {
             if (!App.Current.Properties.Contains("BackgroundColor"))
@@ -272,7 +267,12 @@ namespace Milestone6_Team_YourName
             if (!App.Current.Properties.Contains("LastOpenDB"))
                 App.Current.Properties.Add("LastOpenDB", "");
         }
+        #endregion
 
+        #region PropertiesToTheme
+        /// <summary>
+        /// Translates the saved accent and background settings to the current session's accent and background style.
+        /// </summary>
         private void PropertiesToTheme()
         {
             string accent = App.Current.Properties["AccentColor"].ToString();
@@ -280,9 +280,18 @@ namespace Milestone6_Team_YourName
             SetAccent(accent);
             SetBackground(background);
         }
-        
+        #endregion
+
+        #region Window Closing
+        /// <summary>
+        /// Saves the current properties (colors and open DB) to persistent storage on window close.
+        /// If there are unsaved changes in the add expense area, a warning box will be shown before-hand.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            //Unnsaved Changes warning box check
             if(! string.IsNullOrEmpty(description.Text) || ! string.IsNullOrEmpty(amount.Text))
             {
                 var response = MessageBox.Show("You have unsaved changes. Are you sure you'd " +
@@ -292,17 +301,17 @@ namespace Milestone6_Team_YourName
                     return; 
                 }
             }
+
             App.Current.Properties["BackgroundColor"] = Window.Background;
             App.Current.Properties["AccentColor"] = _accent;
             App.Current.Properties["LastOpenDB"] = openBudget;
         }
         #endregion
 
+        #endregion
+
         #region Filter
-        private void filterByCategory_Click(object sender, RoutedEventArgs e)
-        {
-            Filter();
-        }
+
         public void Filter()
         {
             string start = filterStartDate.ToString();
@@ -310,96 +319,76 @@ namespace Milestone6_Team_YourName
             DateTime? startDate;
             DateTime? endDate;
 
+            // Determine if the expenses are filtered between certain days
             if (start != string.Empty)
                 startDate = DateTime.Parse(start);
             else
-            {
                 startDate = null;
-            }
 
             if (end != string.Empty)
                 endDate = DateTime.Parse(end);
             else
-            {
                 endDate = null;
-            }
 
             presenter.DisplayBudgetItemsFilter((bool)filterByMonth.IsChecked, (bool)filterByCategory.IsChecked, startDate, endDate, (bool)filterFlag.IsChecked, filterBySpecificCategory.SelectedIndex);
         }
-        private void filterByMonth_Click(object sender, RoutedEventArgs e)
-        {
-            Filter();
-        }
 
-        private void filterByCategory_Checked(object sender, RoutedEventArgs e)
-        {
-            Filter();
+        private void filterByCategory_Click(object sender, RoutedEventArgs e) => Filter();
 
+        private void filterByMonth_Click(object sender, RoutedEventArgs e) => Filter();
 
-        }
+        private void filterBySpecificCategory_Selected(object sender, RoutedEventArgs e) => Filter();
 
-        private void filterBySpecificCategory_Selected(object sender, RoutedEventArgs e)
-        {
-            Filter();
-        }
+        private void filterFlag_Click(object sender, RoutedEventArgs e) => Filter();
 
-        private void filterFlag_Click(object sender, RoutedEventArgs e)
-        {
-            Filter();
-        }
+        private void filterStartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e) => Filter();
 
-        private void filterStartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Filter();
-        }
-
-        private void filterEndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Filter();
-        }
+        private void filterEndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e) => Filter();
 
         #endregion
 
         #region Modify Menu
+
+        #region Modify Click
+        /// <summary>
+        /// Opens an Expense Window to edit the currently selected expense
+        /// </summary>
         private void MenuItem_ModifyClick(object sender, RoutedEventArgs e)
         {
-            ExpenseWindow expenseWindow = new ExpenseWindow(presenter);
-            presenter.IntializeViewExpenseInterface(expenseWindow);
-            expenseWindow.Background = Window.Background;
-            expenseWindow.Show();
-
             if (expenseGrid.SelectedItem != null)
             {
+                //Grab the Expense
                 Budget.BudgetItem budgetItemToModify = (Budget.BudgetItem)(expenseGrid.SelectedItem);
+
+                //Setup the Expense Window
+                ExpenseWindow expenseWindow = new ExpenseWindow(presenter, budgetItemToModify);
                 expenseWindow.Background = Window.Background;
-                expenseWindow.expenseId = budgetItemToModify.ExpenseID;
 
-                //Unsure if edit window should populate with information from the get-go or not -M
-                //expenseWindow.PopulateFields(budgetItemToModify.ShortDescription, budgetItemToModify.Amount.ToString(), budgetItemToModify.Date, budgetItemToModify.CategoryID);
+                //Open Window
                 expenseWindow.Show();
-
-                presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, budgetItemToModify.CategoryID - 1, budgetItemToModify.Amount, budgetItemToModify.ShortDescription);
-
-
             }
             Filter();
-
         }
+        #endregion
 
+        #region Delete Click
+        /// <summary>
+        /// Asks for confirmation before deleting a selected expense
+        /// </summary>
         private void MenuItem_DeleteClick(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("inside delete");
             if (expenseGrid.SelectedItem != null)
             {
                 Budget.BudgetItem budgetItemToDelete = (Budget.BudgetItem)(expenseGrid.SelectedItem);
                 MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to delete?", "Delete Confirmation", MessageBoxButton.YesNo);
+                
                 if (messageBoxResult == MessageBoxResult.Yes)
-                {
                     presenter.DeleteExpense(budgetItemToDelete.ExpenseID);
-                    Filter();
-                }
             }
+            Filter();
         }
+        #endregion
+
         #endregion
 
         #region Displays
@@ -474,29 +463,14 @@ namespace Milestone6_Team_YourName
 
         }
 
-        
+        public void DisplayMessage(string message) => MessageBox.Show(message);
 
-        public void DisplayMessage(string message)
-        {
-            MessageBox.Show(message);
-        }
         #endregion
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            ExpenseWindow expenseWindow = new ExpenseWindow(presenter);
-            presenter.IntializeViewExpenseInterface(expenseWindow);
-            expenseWindow.Background = Window.Background;
-            expenseWindow.Show();
-        }
 
         public void ResetFields()
         {
             description.Text = string.Empty;
             amount.Text = string.Empty;
-            expenseDate.SelectedDate = DateTime.Now;
-            categoryList.SelectedIndex = -1;
         }
     }
 }
