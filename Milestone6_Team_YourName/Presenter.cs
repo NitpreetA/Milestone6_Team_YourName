@@ -12,11 +12,25 @@ namespace Milestone6_Team_YourName
     {
         private ViewInterface view;
         private HomeBudget budget;
+        private ViewExpenseInterface expenseView;
         public int count;
         public Presenter(ViewInterface v) 
         {
             view = v;
             
+        }
+
+        public void IntializeViewExpenseInterface(ViewExpenseInterface expenseView)
+        {
+            this.expenseView = expenseView;
+            GetCategories();
+        }
+
+
+        public void GetCategories()
+        {
+
+            expenseView.DisplayCatInPopUp(budget.categories.List()); 
         }
 
         public void Connection(string filename,bool existing)
@@ -51,17 +65,6 @@ namespace Milestone6_Team_YourName
             count++;
             budget.expenses.Add(date, catId + 1, amount, description);
             view.Filter();
-        }
-
-        public void DeleteExpense(int id)
-        {
-            budget.expenses.Delete(id);
-        }
-
-        public void ModifyExpense(int id, DateTime date, int categoryId, double amount, string description)
-        {
-            budget.expenses.UpdateProperties(id,date, categoryId, amount,description );
-
         }
 
         public void DisplayDefCatType()
@@ -104,7 +107,7 @@ namespace Milestone6_Team_YourName
             view.DisplayBudgetCatAndMonth(budgetItems,categories);
         }
 
-        public void Farfalou(bool budgetByMonth,bool budgetByCat,DateTime? startDate,DateTime? endDate,bool categoryChecked,int catId) 
+        public void DisplayBudgetItemsFilter(bool budgetByMonth,bool budgetByCat,DateTime? startDate,DateTime? endDate,bool categoryChecked,int catId) 
         {
             catId++;
             if (budgetByMonth && budgetByCat)
@@ -133,12 +136,14 @@ namespace Milestone6_Team_YourName
             }
 
         }
-        public void GetAllCategories()
+        public void DeleteExpense(int id)
         {
-            
-            ExpenseWindow expenseWindow = new ExpenseWindow(this);
-            List<Category> categories= budget.categories.List();
-            expenseWindow.DisplayList(categories);
+            budget.expenses.Delete(id);
+        }
+
+        public void ModifyExpense(int id, DateTime date, int categoryId, double amount, string description)
+        {
+            budget.expenses.UpdateProperties(id, date, categoryId, amount, description);
 
         }
 

@@ -1,4 +1,4 @@
-using ModernWpf;
+﻿using ModernWpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +47,9 @@ namespace Milestone6_Team_YourName
         private string lastExpense;
         private string lastDescription;
         private string lastAmount;
-        
+        public int expenseId;
+
+
         private bool createdNewCategory = false;
 
         public MainWindow()
@@ -304,19 +306,45 @@ namespace Milestone6_Team_YourName
                 endDate = null;
             }
 
-            presenter.Farfalou((bool)filterByMonth.IsChecked, (bool)filterByCategory.IsChecked, startDate, endDate, (bool)filterFlag.IsChecked, filterBySpecificCategory.SelectedIndex);
+            presenter.DisplayBudgetItemsFilter((bool)filterByMonth.IsChecked, (bool)filterByCategory.IsChecked, startDate, endDate, (bool)filterFlag.IsChecked, filterBySpecificCategory.SelectedIndex);
         }
-      
+
 
         private void MenuItem_ModifyClick(object sender, RoutedEventArgs e)
         {
+            ExpenseWindow expenseWindow = new ExpenseWindow(presenter);
+            presenter.IntializeViewExpenseInterface(expenseWindow);
+            expenseWindow.Background = Window.Background;
+            expenseWindow.Show();
+
+            if (expenseGrid.SelectedItem != null)
+            {
+                Budget.BudgetItem budgetItemToModify = (Budget.BudgetItem)(expenseGrid.SelectedItem);
+                expenseWindow.Background = Window.Background;
+                expenseWindow.expenseId = budgetItemToModify.ExpenseID;
+                expenseWindow.Show();
+
+                presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, budgetItemToModify.CategoryID, budgetItemToModify.Amount, budgetItemToModify.ShortDescription);
+
+
+            }
+            Filter();
 
         }
 
         private void MenuItem_DeleteClick(object sender, RoutedEventArgs e)
         {
-
-            
+            //MessageBox.Show("inside delete");
+            if (expenseGrid.SelectedItem != null)
+            {
+                Budget.BudgetItem budgetItemToDelete = (Budget.BudgetItem)(expenseGrid.SelectedItem);
+                MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to delete?", "Delete Confirmation", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    presenter.DeleteExpense(budgetItemToDelete.ExpenseID);
+                    Filter();
+                }
+            }
         }
 
 
@@ -426,7 +454,9 @@ namespace Milestone6_Team_YourName
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             ExpenseWindow expenseWindow = new ExpenseWindow(presenter);
+            presenter.IntializeViewExpenseInterface(expenseWindow);
             expenseWindow.Background = Window.Background;
             expenseWindow.Show();
         }
