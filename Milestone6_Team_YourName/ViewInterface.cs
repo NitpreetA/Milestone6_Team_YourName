@@ -14,5 +14,13 @@ namespace Milestone6_Team_YourName
         void DisplayCatTypes(List<Category.CategoryType> categoryTypes);
 
         public void DisplayBudgetItems(List<BudgetItem> budgetItems);
+
+        public void Filter();
+
+        public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth);
+
+        public void DisplayBudgetCat(List<BudgetItemsByCategory> budgetItemsByCategories);
+
+        public void DisplayBudgetCatAndMonth(List<Dictionary<string,object>> budgetItemsByCategoriesAndMonth,List<string> categories);
     }
 }
