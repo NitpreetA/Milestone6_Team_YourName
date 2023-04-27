@@ -324,7 +324,7 @@ namespace Milestone6_Team_YourName
                 expenseWindow.expenseId = budgetItemToModify.ExpenseID;
                 expenseWindow.Show();
 
-                presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, budgetItemToModify.CategoryID, budgetItemToModify.Amount, budgetItemToModify.ShortDescription);
+                presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, budgetItemToModify.CategoryID - 1, budgetItemToModify.Amount, budgetItemToModify.ShortDescription);
 
 
             }
