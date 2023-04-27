@@ -213,8 +213,12 @@ namespace Milestone6_Team_YourName
         }
 
         #endregion
-    
 
+        #region ComboBoxFill
+        /// <summary>
+        /// Displays a list of categories.
+        /// </summary>
+        /// <param name="categories">List of categories to fill the combo box with.</param>
         public void DisplayCategoryList(List<Category> categories)
         {
 
@@ -223,6 +227,23 @@ namespace Milestone6_Team_YourName
 
             createdNewCategory = false;
         }
+
+        /// <summary>
+        /// Fills the combobox with the default Cat Types
+        /// </summary>
+        /// <param name="categoryTypes">A list of the default cat types.</param>
+        public void DisplayCatTypes(List<CategoryType> categoryTypes)
+        {
+            CategoryType.ItemsSource = categoryTypes;
+            CategoryType.SelectedIndex = 1;
+        }
+        #endregion
+
+        /// <summary>
+        /// Creates a category if all fields are properly inputted 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)
         {
             createdNewCategory = true;
@@ -233,17 +254,13 @@ namespace Milestone6_Team_YourName
             else
             {
                 presenter.CreateCat(createCategory.Text, CategoryType.SelectedIndex);
-                createCategory.Text = ""; // clear the textbox
+                createCategory.Text = ""; 
             }
            
         }
 
-        public void DisplayCatTypes(List<CategoryType> categoryTypes)
-        {
-            CategoryType.ItemsSource = categoryTypes;
-            CategoryType.SelectedIndex = 1;
-        }
 
+        #region Color
         private void PropertiesSet()
         {
             if (!App.Current.Properties.Contains("BackgroundColor"))
@@ -263,7 +280,7 @@ namespace Milestone6_Team_YourName
             SetAccent(accent);
             SetBackground(background);
         }
-
+        
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if(! string.IsNullOrEmpty(description.Text) || ! string.IsNullOrEmpty(amount.Text))
@@ -279,6 +296,7 @@ namespace Milestone6_Team_YourName
             App.Current.Properties["AccentColor"] = _accent;
             App.Current.Properties["LastOpenDB"] = openBudget;
         }
+        #endregion
         private void filterByCategory_Click(object sender, RoutedEventArgs e)
         {
             Filter();
