@@ -297,6 +297,8 @@ namespace Milestone6_Team_YourName
             App.Current.Properties["LastOpenDB"] = openBudget;
         }
         #endregion
+
+        #region Filter
         private void filterByCategory_Click(object sender, RoutedEventArgs e)
         {
             Filter();
@@ -324,6 +326,41 @@ namespace Milestone6_Team_YourName
 
             presenter.DisplayBudgetItemsFilter((bool)filterByMonth.IsChecked, (bool)filterByCategory.IsChecked, startDate, endDate, (bool)filterFlag.IsChecked, filterBySpecificCategory.SelectedIndex);
         }
+        private void filterByMonth_Click(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void filterByCategory_Checked(object sender, RoutedEventArgs e)
+        {
+            Filter();
+
+
+        }
+
+        private void filterBySpecificCategory_Selected(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void filterFlag_Click(object sender, RoutedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void filterStartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void filterEndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        #endregion
+
+        #region Modify Menu
         private void MenuItem_ModifyClick(object sender, RoutedEventArgs e)
         {
             ExpenseWindow expenseWindow = new ExpenseWindow(presenter);
@@ -363,12 +400,9 @@ namespace Milestone6_Team_YourName
                 }
             }
         }
+        #endregion
 
-        private void filterByMonth_Click(object sender, RoutedEventArgs e)
-        {
-            Filter();
-        }
-
+        #region Displays
         public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth)
         {
             DeleteButton.IsEnabled = false;
@@ -404,12 +438,7 @@ namespace Milestone6_Team_YourName
             expenseGrid.Columns.Add(col);
 
         }
-        private void filterByCategory_Checked(object sender, RoutedEventArgs e)
-        {
-            Filter();
-          
-
-        }
+      
         public void DisplayBudgetItems(List<BudgetItem> budgetItems)
         {
             DeleteButton.IsEnabled = true;
@@ -418,31 +447,6 @@ namespace Milestone6_Team_YourName
             expenseGrid.ItemsSource = budgetItems;
         }
 
-        private void filterBySpecificCategory_Selected(object sender, RoutedEventArgs e)
-        {
-            Filter();
-        }
-
-        private void filterFlag_Click(object sender, RoutedEventArgs e)
-        {
-            Filter();
-        }
-
-        /// <summary>
-        /// DATE CHANGED
-        /// SECTION
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void filterStartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Filter();
-        }
-
-        private void filterEndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Filter();
-        }
 
         public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth,List<string> categories)
         {
@@ -470,6 +474,14 @@ namespace Milestone6_Team_YourName
 
         }
 
+        
+
+        public void DisplayMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
+        #endregion
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -477,11 +489,6 @@ namespace Milestone6_Team_YourName
             presenter.IntializeViewExpenseInterface(expenseWindow);
             expenseWindow.Background = Window.Background;
             expenseWindow.Show();
-        }
-
-        public void DisplayMessage(string message)
-        {
-            MessageBox.Show(message);
         }
 
         public void ResetFields()
