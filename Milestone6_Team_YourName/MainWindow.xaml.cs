@@ -74,7 +74,10 @@ namespace Milestone6_Team_YourName
             }
 
         }
-
+        #region File Code
+        /// <summary>
+        /// Opens the last file used from the previous session.
+        /// </summary>
         private void LastOpenFile()
         {
             string lastOpenDB = App.Current.Properties["LastOpenDB"].ToString();
@@ -96,6 +99,61 @@ namespace Milestone6_Team_YourName
                 }
             }
         }
+
+        /// <summary>
+        /// Opens a budget file directory to allow user to select a budget file.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOpenBudgetFileLocation(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = initialDirectory;
+            if (openFileDialog.ShowDialog() == true)
+            {
+                existing = false;
+                currentBudgetFile.Text = openFileDialog.FileName;
+                openBudget = currentBudgetFile.Text;
+                presenter.Connection(currentBudgetFile.Text, existing);
+                ExpenseFieldState(true);
+            }
+
+        }
+        /// <summary>
+        /// enables the options to create a new file once the radio button has been selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NewFile_Click(object sender, RoutedEventArgs e)
+        {
+            SubmitFile.IsEnabled = true;
+            budgetFileName.IsEnabled = true;
+
+        }
+        /// <summary>
+        /// Creates the file once filed inputed and button was pressed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SubmitFile_Click_1(object sender, RoutedEventArgs e)
+        {
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (Directory.Exists(initialDirectory))
+            {
+                existing = true;
+                presenter.Connection(initialDirectory + "\\" + budgetFileName.Text + ".db", existing);
+                ExpenseFieldState(true);
+                SubmitFile.IsEnabled = false;
+            }
+        }
+
+        #endregion
+
+
+
+
         /// <summary>
         /// Enables and disables the fields accordingly based on if a file was selected or not.
         /// </summary>
@@ -119,6 +177,7 @@ namespace Milestone6_Team_YourName
             filterEndDate.IsEnabled = state;
             filterFlag.IsEnabled = state;
         }
+
         /// <summary>
         /// Closes the page once button is clicked
         /// </summary>
@@ -128,26 +187,8 @@ namespace Milestone6_Team_YourName
         {
             Close();
         }
-        /// <summary>
-        /// Opens a budget file directory to allow user to select a budget file.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnOpenBudgetFileLocation(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = initialDirectory;
-            if (openFileDialog.ShowDialog() == true)
-            {
-                existing = false;
-                currentBudgetFile.Text = openFileDialog.FileName;
-                openBudget = currentBudgetFile.Text;
-                presenter.Connection(currentBudgetFile.Text,existing);
-                ExpenseFieldState(true);
-            }
-            
-        }
 
+        #region Expenses
         /// <summary>
         /// Adds Expense once all the proper fields are inputted correctly 
         /// </summary>
@@ -171,34 +212,10 @@ namespace Milestone6_Team_YourName
             expenseDate.SelectedDate = DateTime.Now;
         }
 
-        
-        /// <summary>
-        /// Enables the optioons to input a new file once the radio button was clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void NewFile_Click(object sender, RoutedEventArgs e)
-        {
-            SubmitFile.IsEnabled = true;
-            budgetFileName.IsEnabled = true;
+        #endregion
+    
 
-        }
-
-        private void SubmitFile_Click_1(object sender, RoutedEventArgs e)
-        {
-
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            if (Directory.Exists(initialDirectory))
-            {
-                existing = true;
-                presenter.Connection(initialDirectory + "\\" + budgetFileName.Text + ".db", existing);
-                ExpenseFieldState(true);
-                SubmitFile.IsEnabled = false;
-            }
-        }
-
-        public void DisplayList(List<Category> categories)
+        public void DisplayCategoryList(List<Category> categories)
         {
 
             categoryList.ItemsSource = categories;

@@ -36,7 +36,7 @@ namespace Milestone6_Team_YourName
         public void Connection(string filename,bool existing)
         {
             budget = new HomeBudget(filename,existing);
-            view.DisplayList(budget.categories.List());
+            view.DisplayCategoryList(budget.categories.List());
             view.Filter();
             
         }
@@ -57,7 +57,7 @@ namespace Milestone6_Team_YourName
             }
 
             budget.categories.Add(description,catType);
-            view.DisplayList(budget.categories.List());
+            view.DisplayCategoryList(budget.categories.List());
         }
 
         public void CreateExpenses(DateTime date, string description, double amount, int catId)
