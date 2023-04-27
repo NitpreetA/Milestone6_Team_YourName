@@ -65,7 +65,7 @@ namespace Milestone6_Team_YourName
             PropertiesSet();
             PropertiesToTheme();
             LastOpenFile();
-
+            
             presenter.DisplayDefCatType();
                 
             if (!Directory.Exists(initialDirectory))
@@ -354,6 +354,8 @@ namespace Milestone6_Team_YourName
 
         public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth)
         {
+            DeleteButton.IsEnabled = false;
+            ModifyButton.IsEnabled = false;
             expenseGrid.Columns.Clear();
             expenseGrid.ItemsSource = budgetByMonth;
             expenseGrid.Columns.Clear();
@@ -366,10 +368,13 @@ namespace Milestone6_Team_YourName
             col.Binding = new Binding("Total");
             expenseGrid.Columns.Add(col);
 
+
         }
 
         public void DisplayBudgetCat(List<BudgetItemsByCategory> budgetItemsByCategories)
         {
+            DeleteButton.IsEnabled = false;
+            ModifyButton.IsEnabled = false;
             expenseGrid.ItemsSource = budgetItemsByCategories;
             expenseGrid.Columns.Clear();
             var col = new DataGridTextColumn();
@@ -380,6 +385,7 @@ namespace Milestone6_Team_YourName
             col.Header = "Total";
             col.Binding = new Binding("Total");
             expenseGrid.Columns.Add(col);
+
         }
 
 
@@ -424,6 +430,8 @@ namespace Milestone6_Team_YourName
 
         public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth,List<string> categories)
         {
+            DeleteButton.IsEnabled = false;
+            ModifyButton.IsEnabled = false;
             expenseGrid.Columns.Clear();
             expenseGrid.ItemsSource = budgetItemsByCategoriesAndMonth;
             expenseGrid.Columns.Clear();
