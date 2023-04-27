@@ -148,5 +148,27 @@ namespace Milestone6_Team_YourName
 
         }
 
+        public void AddExpense(string description,string expenseAmount, string date,int catId)
+        {
+            if (string.IsNullOrEmpty(description) || string.IsNullOrEmpty(expenseAmount) || catId == -1)
+            {
+                view.DisplayMessage("Please fill out all of the input fields");
+            }
+            else
+            {
+                double amount = Double.Parse(expenseAmount);
+                DateTime dateTime = DateTime.Parse(date);
+
+                CreateExpenses(dateTime, description, amount, catId);
+                view.DisplayMessage("Succesfuly added expense");
+                view.Filter();
+                view.ResetFields();
+                
+            }
+
+        }
+
+
+
     }
 }

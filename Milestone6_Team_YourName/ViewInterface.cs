@@ -23,6 +23,9 @@ namespace Milestone6_Team_YourName
 
         public void DisplayBudgetCatAndMonth(List<Dictionary<string,object>> budgetItemsByCategoriesAndMonth,List<string> categories);
 
+        public void DisplayMessage(string message);
+
+        public void ResetFields();
 
     }
 }

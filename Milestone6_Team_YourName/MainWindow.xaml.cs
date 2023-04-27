@@ -96,7 +96,10 @@ namespace Milestone6_Team_YourName
                 }
             }
         }
-
+        /// <summary>
+        /// Enables and disables the fields accordingly based on if a file was selected or not.
+        /// </summary>
+        /// <param name="state">holds if the field should be active or not</param>
         private void ExpenseFieldState(bool state)
         {
             description.IsEnabled = state;
@@ -134,42 +137,10 @@ namespace Milestone6_Team_YourName
         }
 
         private void btn_AddExpense_Clck(object sender, RoutedEventArgs e)
-        {
-            bool errorWhileAddingAnExpense = false;
+        {     
 
-            if (description.Text == lastDescription && amount.Text == lastAmount)
-            {
-                var response = MessageBox.Show("Current expense is identical to previous expense. Add anyways?", 
-                    "Identical Expense", MessageBoxButton.YesNo);
-                if (response == MessageBoxResult.No)
-                    return;
-            }
-
-
-            if(string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) || categoryList.SelectedItem == null)
-            {
-                errorWhileAddingAnExpense = true;
-            }
-            if (errorWhileAddingAnExpense)
-            {
-                MessageBox.Show("Please fill out all of the input fields");
-            }
-            else
-            {
-                MessageBox.Show("Expense was successfully added");
-                lastDescription = description.Text;
-                lastAmount = amount.Text;
-                double expenseAmount = Double.Parse(lastAmount);
-                string date = expenseDate.ToString();
-                DateTime dateTime = DateTime.Parse(date);
-                int catId = categoryList.SelectedIndex;
-                presenter.CreateExpenses(dateTime, lastDescription, expenseAmount, catId);
-
-                description.Text = string.Empty;
-                amount.Text = string.Empty;
-
-
-            }
+                presenter.AddExpense(description.Text, amount.Text, expenseDate.ToString(), categoryList.SelectedIndex);
+                
         }
 
         private void btn_ClearExpense_Clck(object sender, RoutedEventArgs e)
@@ -208,18 +179,8 @@ namespace Milestone6_Team_YourName
             categoryList.ItemsSource = categories;
             filterBySpecificCategory.ItemsSource = categories; // NITPREET
 
-            if (createdNewCategory)
-            {
-                //categories.Add();
-            }
             createdNewCategory = false;
         }
-
-
-
-
-
-
         private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)
         {
             createdNewCategory = true;
@@ -276,15 +237,10 @@ namespace Milestone6_Team_YourName
             App.Current.Properties["AccentColor"] = _accent;
             App.Current.Properties["LastOpenDB"] = openBudget;
         }
-
-
-
-
         private void filterByCategory_Click(object sender, RoutedEventArgs e)
         {
             Filter();
         }
-
         public void Filter()
         {
             string start = filterStartDate.ToString();
@@ -308,8 +264,6 @@ namespace Milestone6_Team_YourName
 
             presenter.DisplayBudgetItemsFilter((bool)filterByMonth.IsChecked, (bool)filterByCategory.IsChecked, startDate, endDate, (bool)filterFlag.IsChecked, filterBySpecificCategory.SelectedIndex);
         }
-
-
         private void MenuItem_ModifyClick(object sender, RoutedEventArgs e)
         {
             ExpenseWindow expenseWindow = new ExpenseWindow(presenter);
@@ -390,9 +344,6 @@ namespace Milestone6_Team_YourName
             expenseGrid.Columns.Add(col);
 
         }
-
-
-
         private void filterByCategory_Checked(object sender, RoutedEventArgs e)
         {
             Filter();
@@ -466,6 +417,19 @@ namespace Milestone6_Team_YourName
             presenter.IntializeViewExpenseInterface(expenseWindow);
             expenseWindow.Background = Window.Background;
             expenseWindow.Show();
+        }
+
+        public void DisplayMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
+
+        public void ResetFields()
+        {
+            description.Text = string.Empty;
+            amount.Text = string.Empty;
+            expenseDate.SelectedDate = DateTime.Now;
+            categoryList.SelectedIndex = -1;
         }
     }
 }

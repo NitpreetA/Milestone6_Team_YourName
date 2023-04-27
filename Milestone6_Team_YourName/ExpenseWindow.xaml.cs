@@ -86,10 +86,7 @@ namespace Milestone6_Team_YourName
             }
         }
 
-        private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
         private void btn_ClearExpense_Click(object sender, RoutedEventArgs e)
         {
