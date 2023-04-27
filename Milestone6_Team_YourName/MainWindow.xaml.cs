@@ -398,6 +398,8 @@ namespace Milestone6_Team_YourName
         }
         public void DisplayBudgetItems(List<BudgetItem> budgetItems)
         {
+            DeleteButton.IsEnabled = true;
+            ModifyButton.IsEnabled = true;
             expenseGrid.Columns.Clear();
             expenseGrid.ItemsSource = budgetItems;
         }
