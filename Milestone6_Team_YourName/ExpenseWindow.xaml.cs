@@ -19,7 +19,7 @@ namespace Milestone6_Team_YourName
     /// <summary>
     /// Interaction logic for ExpenseWindow.xaml
     /// </summary>
-    public partial class ExpenseWindow : ViewInterface
+    public partial class ExpenseWindow : ViewExpenseInterface
     {
         Presenter currentPresenter;
 
@@ -37,11 +37,9 @@ namespace Milestone6_Team_YourName
             expenseDate.SelectedDate = DateTime.Now;
         }
 
-        private void btn_ClearExpense_Click(object sender, RoutedEventArgs e)
+        public void DisplayCatInPopUp(List<Category> categories)
         {
-            description.Text = string.Empty;
-            amount.Text = string.Empty;
-            categoryList.SelectedIndex = -1;
+            expenseWindowCatList.ItemsSource= categories;
         }
 
         private void btn_AddExpense_Click(object sender, RoutedEventArgs e)
@@ -56,7 +54,7 @@ namespace Milestone6_Team_YourName
                     return;
             }
 
-            if (string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) || categoryList.SelectedItem == null)
+            if (string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) || expenseWindowCatList.SelectedItem == null)
             {
                 errorWhileAddingAnExpense = true;
             }
@@ -72,73 +70,29 @@ namespace Milestone6_Team_YourName
                 double expenseAmount = Double.Parse(lastAmount);
                 string date = expenseDate.ToString();
                 DateTime dateTime = DateTime.Parse(date);
-                int catId = categoryList.SelectedIndex;
+                int catId = expenseWindowCatList.SelectedIndex;
                 currentPresenter.CreateExpenses(dateTime, lastDescription, expenseAmount, catId);
 
                 description.Text = string.Empty;
                 amount.Text = string.Empty;
 
-                Filter();
+              
             }
-        }
-
-        public void DisplayList(List<Category> categories)
-        {
-
-            categoryList.ItemsSource = categories;
-
-            if (createdNewCategory)
-            {
-                //categories.Add();
-            }
-            createdNewCategory = false;
-        }
-
-        public void DisplayBudgetItems(List<BudgetItem> budgetItems)
-        {
-
-            //expenseGrid.ItemsSource = budgetItems;
         }
 
         private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)
         {
-            createdNewCategory = true;
-            if (createCategory.Text == "")
-            {
-                MessageBox.Show("Must Input a name for the category you want to add.");
-            }
-            else
-            {
-                currentPresenter.CreateCat(createCategory.Text, CategoryType.SelectedIndex);
-                createCategory.Text = ""; // clear the textbox
-            }
 
         }
 
-        public void DisplayCatTypes(List<CategoryType> categoryTypes)
+        private void btn_ClearExpense_Click(object sender, RoutedEventArgs e)
         {
-            CategoryType.ItemsSource = categoryTypes;
-            CategoryType.SelectedIndex = 1;
+
         }
 
-        public void Filter()
+        private void btn_AddExpense_Click_1(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
-        }
 
-        public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DisplayBudgetCat(List<BudgetItemsByCategory> budgetItemsByCategories)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth, List<string> categories)
-        {
-            throw new NotImplementedException();
         }
     }
 }

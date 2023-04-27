@@ -12,11 +12,25 @@ namespace Milestone6_Team_YourName
     {
         private ViewInterface view;
         private HomeBudget budget;
+        private ViewExpenseInterface expenseView;
         public int count;
         public Presenter(ViewInterface v) 
         {
             view = v;
             
+        }
+
+        public void IntializeViewExpenseInterface(ViewExpenseInterface expenseView)
+        {
+            this.expenseView = expenseView;
+            GetCategories();
+        }
+
+
+        public void GetCategories()
+        {
+
+            expenseView.DisplayCatInPopUp(budget.categories.List()); 
         }
 
         public void Connection(string filename,bool existing)
