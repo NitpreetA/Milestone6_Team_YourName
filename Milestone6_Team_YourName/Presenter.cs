@@ -75,6 +75,7 @@ namespace Milestone6_Team_YourName
         public void ModifyExpense(int id, DateTime date, int categoryId, double amount, string description)
         {
             budget.expenses.UpdateProperties(id,date, categoryId, amount,description );
+
         }
 
         public void DisplayDefCatType()
@@ -144,6 +145,14 @@ namespace Milestone6_Team_YourName
                 DisplayBudgetItems(startDate, endDate, categoryChecked, catId);
 
             }
+
+        }
+        public void GetAllCategories()
+        {
+            
+            ExpenseWindow expenseWindow = new ExpenseWindow(this);
+            List<Category> categories= budget.categories.List();
+            expenseWindow.DisplayList(categories);
 
         }
 
