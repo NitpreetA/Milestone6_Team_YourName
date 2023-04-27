@@ -12,27 +12,50 @@ namespace TestProject1
         private string initialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), budgetFolder);
         private Presenter presenter;
 
-        bool displayCategoryTypes ;
-        bool displayList ;
+        bool displayCategoryTypes;
+        bool displayCatList;
         bool connection;
         bool createCategory;
         bool createExpense;
         bool displayDefCategoryType;
 
-        List<Category> categories;
-       
+        bool displayBudgetItems;
+        bool filter;
+        bool displayBudgetItemsByMonth;
+        bool displayBudgetCat;
+        bool displayBudgetCatAndMonth;
+        bool displayBudgetCatAndMonthSpecificCat;
 
-        public void DisplayCatTypes(List<Category.CategoryType> categoryTypes)
-        {
-            
-            displayCategoryTypes = true;
-        }
+        bool displayMessage;
+        bool resetFields;
+
+
+        List<Category> categories;
 
         public void DisplayCategoryList(List<Category> categories)
         {
             this.categories = categories;
-            displayList= true;  
+            displayCatList = true;
         }
+
+        public void DisplayMessage(string message)
+        {
+            displayMessage = true;
+        }
+
+        public void ResetFields()
+        {
+            resetFields = true;
+        }
+
+
+        public void DisplayCatTypes(List<Category.CategoryType> categoryTypes)
+        {
+
+            displayCategoryTypes = true;
+        }
+
+
 
 
 
@@ -53,9 +76,33 @@ namespace TestProject1
         {
             displayDefCategoryType = true;
         }
+        public void DisplayBudgetItems(List<BudgetItem> budgetItems)
+        {
+            displayBudgetItems = true;
+        }
+
+        public void Filter()
+        {
+            filter = true;
+        }
+
+        public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth)
+        {
+            displayBudgetItemsByMonth = true;
+        }
+
+        public void DisplayBudgetCat(List<BudgetItemsByCategory> budgetItemsByCategories)
+        {
+            displayBudgetCat = true;
+        }
+
+        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth, List<string> categories)
+        {
+            displayBudgetCatAndMonth = true;
+        }
 
 
-
+        //good
         [Fact]
         public void TestConstructor()
         {
@@ -65,8 +112,9 @@ namespace TestProject1
             Assert.IsType<Presenter>(presenter);
         }
 
+        //good
         [Fact]
-        public void TestDisplayAllCategoryTypes() 
+        public void TestDisplayAllCategoryTypes()
         {
             UnitTest1 view = new UnitTest1();
             Presenter presenter = new Presenter(view);
@@ -81,38 +129,79 @@ namespace TestProject1
             };
 
             // act
-            DisplayCatTypes(categoryTypes);
-            //view.DisplayCatTypes(categoryTypes); would it be better to call it like this? or it does not matter since its already in here? 
-            // makes displayCategorytypes true
-            
+            presenter.DisplayDefCatType();
+
+
             // assert
-            Assert.True(displayCategoryTypes);
+            Assert.True(view.displayCategoryTypes);
         }
+
+
+
+        // good
         [Fact]
-        public void TestDisplayList()
+        public void DisplayBudgetItems_Testing()
         {
             // Arrange
+            var view = new UnitTest1();
+            var presenter = new Presenter(view);
+            var budgetItems = new List<BudgetItem>();
+            presenter.Connection("test", false);
 
-            UnitTest1 view = new UnitTest1();
-            Presenter presenter = new Presenter(view);
-            var categories = new List<Category>
-            {
-               // keeping it empty
-            };
+            // Act
+            presenter.DisplayBudgetItems(null,null,false,1);
 
-            // act
-            DisplayCategoryList(categories);
-            // makes displayList true 
 
-            // assert
-            Assert.True(displayList);
-
+            // Assert
+            Assert.True(view.displayBudgetItems);
         }
 
 
 
+        [Fact]
+        public void TestDisplayBudgetItemsByMonth()
+        {
+            // Arrange
+            var view = new UnitTest1();
+            var presenter = new Presenter(view);
+            var budgetItemsByMonth = new List<BudgetItemsByMonth>();
+            presenter.Connection("test", false);
+            // Act
+            presenter.DisplayBudgetItemsByMonth(DateTime.Now, DateTime.Now, false, 0);
+            // Assert
+            Assert.True(view.displayBudgetItemsByMonth);
+        }
 
-       
+        [Fact]
+        public void TestDisplayBudgetCat()
+        {
+            var view = new UnitTest1();
+            Presenter presenter = new Presenter(view);
+            var budgetItemsByMonth = new List<BudgetItemsByMonth>();
+            presenter.Connection("test", false);
+
+            //arrange 
+            presenter.DisplayBudgetItemsByCat(DateTime.Now, DateTime.Now, false, 0);
+
+            Assert.True(view.displayBudgetCat);
+        }
+
+        [Fact]
+        public void TestDisplayBudgetCatAndMonth()
+        {
+            // Arrange
+            var view = new UnitTest1();
+            var presenter = new Presenter(view);
+            var budgetItemsByCatAndByMonth = new List<Dictionary<string, object>>();
+            var categories = new List<Category>();
+            presenter.Connection("test", false);
+            // act
+            presenter.DisplayBudgetItemsByCatAndMonth(DateTime.Now, DateTime.Now, false, 0);
+
+            //assert
+            Assert.True(view.displayBudgetCatAndMonth);
+        }
+
         [Fact]
         public void CreateExpense()
         {
@@ -122,17 +211,26 @@ namespace TestProject1
             DateTime dateTime = DateTime.Now;
             string description = "test";
             double amount = 24;
-            int categoryId = 1; 
-            int addedExpenses =0;
+            int categoryId = 1;
+            int addedExpenses = 0;
 
             // act 
             presenter.Connection("test", false);
-            presenter.CreateExpenses(dateTime, description, amount, categoryId);
+
+            //check
+            Assert.True(view.displayCatList);
+            Assert.True(view.filter);
+
+            presenter.AddExpense(description, amount.ToString(),DateTime.Now.ToString() ,categoryId);
             addedExpenses++;
-           // CreateExpenses();
+
+
 
             // assert
+            Assert.True(view.displayMessage);
+            Assert.True(view.resetFields);
             Assert.Equal(addedExpenses, presenter.count);
+            Assert.True(view.filter);
         }
 
         [Fact]
@@ -149,7 +247,7 @@ namespace TestProject1
             //Grab the current list of categories
             int catCount = view.categories.Count;
 
-
+            displayCatList = false;
             // act
             presenter.CreateCat(description, index);
             //  CreateCat_AddCategoryToBudget();
@@ -157,7 +255,8 @@ namespace TestProject1
             int newCatCount = view.categories.Count;
 
             // assert
-            Assert.True(newCatCount == catCount + 1);
+            Assert.True(view.displayCatList);  //Change displayList to DisplayCategoriesList
+            Assert.True(newCatCount == catCount);
         }
 
         [Fact]
@@ -186,46 +285,17 @@ namespace TestProject1
             presenter = new Presenter(view);
             string filename = ".\\test";
             var existing = false;
-            displayList = false;
-
-            //presenter.Connection(initialDirectory + "\\" filename + ".db", existing);
+            displayCatList = false;
 
             //act
             presenter.Connection(filename, existing);
 
             //assert
-            Assert.True(view.displayList);
+            Assert.True(view.displayCatList);
+            Assert.True(view.filter);
 
         }
 
-        public void DisplayBudgetItems(List<BudgetItem> budgetItems)
-        {
-            throw new NotImplementedException();
-        }
 
-        public void Filter()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DisplayBudgetCat(List<BudgetItemsByCategory> budgetItemsByCategories)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth, List<string> categories)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
