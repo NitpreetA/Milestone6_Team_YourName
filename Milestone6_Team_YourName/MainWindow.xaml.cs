@@ -324,7 +324,7 @@ namespace Milestone6_Team_YourName
                 expenseWindow.expenseId = budgetItemToModify.ExpenseID;
 
                 //Unsure if edit window should populate with information from the get-go or not -M
-                expenseWindow.PopulateFields(budgetItemToModify.ShortDescription, budgetItemToModify.Amount.ToString(), budgetItemToModify.Date, budgetItemToModify.CategoryID);
+                //expenseWindow.PopulateFields(budgetItemToModify.ShortDescription, budgetItemToModify.Amount.ToString(), budgetItemToModify.Date, budgetItemToModify.CategoryID);
                 expenseWindow.Show();
 
                 presenter.ModifyExpense(budgetItemToModify.ExpenseID, budgetItemToModify.Date, budgetItemToModify.CategoryID - 1, budgetItemToModify.Amount, budgetItemToModify.ShortDescription);
