@@ -347,16 +347,10 @@ namespace Milestone6_Team_YourName
             }
         }
 
-
-
-
-
         private void filterByMonth_Click(object sender, RoutedEventArgs e)
         {
             Filter();
         }
-
-
 
         public void DisplayBudgetItemsByMonth(List<BudgetItemsByMonth> budgetByMonth)
         {
