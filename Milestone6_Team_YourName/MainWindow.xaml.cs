@@ -498,5 +498,10 @@ namespace Milestone6_Team_YourName
             expenseDate.SelectedDate = DateTime.Now;
             categoryList.SelectedIndex = -1;
         }
+
+        private void btn_SearchBarClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
