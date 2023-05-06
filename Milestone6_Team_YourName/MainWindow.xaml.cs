@@ -176,6 +176,8 @@ namespace Milestone6_Team_YourName
             filterStartDate.IsEnabled = state;
             filterEndDate.IsEnabled = state;
             filterFlag.IsEnabled = state;
+            searchButton.IsEnabled = state;
+            searchBarText.IsEnabled = state;
         }
 
         /// <summary>
@@ -206,8 +208,8 @@ namespace Milestone6_Team_YourName
         /// <param name="e"></param>
         private void btn_ClearExpense_Clck(object sender, RoutedEventArgs e)
         {
-            description.Text = string.Empty;
-            amount.Text = string.Empty;
+            //description.Text = string.Empty;
+            //amount.Text = string.Empty;
             categoryList.SelectedIndex = -1;
             expenseDate.SelectedDate = DateTime.Now;
         }
@@ -407,6 +409,8 @@ namespace Milestone6_Team_YourName
         {
             DeleteButton.IsEnabled = false;
             ModifyButton.IsEnabled = false;
+            searchBarText.IsEnabled = false;
+            searchButton.IsEnabled = false;
             expenseGrid.Columns.Clear();
             expenseGrid.ItemsSource = budgetByMonth;
             expenseGrid.Columns.Clear();
@@ -426,6 +430,8 @@ namespace Milestone6_Team_YourName
         {
             DeleteButton.IsEnabled = false;
             ModifyButton.IsEnabled = false;
+            searchBarText.IsEnabled = false;
+            searchButton.IsEnabled = false;
             expenseGrid.ItemsSource = budgetItemsByCategories;
             expenseGrid.Columns.Clear();
             var col = new DataGridTextColumn();
@@ -441,6 +447,8 @@ namespace Milestone6_Team_YourName
       
         public void DisplayBudgetItems(List<BudgetItem> budgetItems)
         {
+            searchBarText.IsEnabled = true;
+            searchButton.IsEnabled = true;
             DeleteButton.IsEnabled = true;
             ModifyButton.IsEnabled = true;
             expenseGrid.Columns.Clear();
@@ -501,7 +509,28 @@ namespace Milestone6_Team_YourName
 
         private void btn_SearchBarClick(object sender, RoutedEventArgs e)
         {
+            var searchedExpense = searchBarText.Text.ToLower();
+            var budgetItemsInGrid = expenseGrid.ItemsSource as List<BudgetItem>;
+            var foundBudgetItem = budgetItemsInGrid.FindAll(budgetItems => budgetItems.ShortDescription.ToLower().Contains(searchedExpense));
 
+
+            if (searchedExpense == string.Empty)
+                MessageBox.Show("Search bar is empty");
+            else if (foundBudgetItem.Count == 0)
+                MessageBox.Show("Expense not found");
+            else
+            {
+                MessageBox.Show("Found expense");
+
+                // gets the index of the item in the expenseGrid 
+                var foundItemIndex = budgetItemsInGrid.IndexOf(foundBudgetItem[0]); 
+               // expenseGrid.ScrollIntoView(foundBudgetItem[foundItemIndex]); // this doesnt work :'/
+
+                // colour the row 
+                var rowContainer = expenseGrid.ItemContainerGenerator.ContainerFromIndex(foundItemIndex) as DataGridRow;
+                rowContainer.Background = Brushes.LightGray;
+
+            }
         }
     }
 }

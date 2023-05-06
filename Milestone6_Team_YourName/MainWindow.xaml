@@ -125,8 +125,8 @@
                             <TextBlock FontWeight="DemiBold">End Date</TextBlock>
                             <DatePicker SelectedDateChanged="filterEndDate_SelectedDateChanged"  x:Name="filterEndDate" Width="206" Margin="0 10 0 10"></DatePicker>
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 8">
-                                <TextBox Width="162"></TextBox>
-                                <Button Margin="5 0 0 0" Click="btn_SearchBarClick">🔍</Button>
+                                <TextBox Name="searchBarText" Width="162"></TextBox>
+                                <Button x:Name="searchButton" Margin="5 0 0 0" Style="{StaticResource AccentButtonStyle}" Click="btn_SearchBarClick">🔍</Button>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
