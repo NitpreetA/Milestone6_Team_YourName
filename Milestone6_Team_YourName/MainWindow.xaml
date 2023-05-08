@@ -15,9 +15,8 @@
     <ui:SimpleStackPanel Margin="12,12,12,16" Spacing="24" x:Name="AllWindow">
         <Grid x:Name="MainGrid">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="392*"></ColumnDefinition>
+                <ColumnDefinition Width="431"></ColumnDefinition>
                 <ColumnDefinition Width="343*"></ColumnDefinition>
-                <ColumnDefinition Width="41*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" ></RowDefinition>
@@ -132,7 +131,7 @@
 
 
 
-                <DataGrid Grid.Column="1" x:Name="expenseGrid" >
+                <DataGrid Grid.Column="1" x:Name="expenseGrid" Margin="15">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem x:Name="DeleteButton" Header="Modify" Click="MenuItem_ModifyClick" />

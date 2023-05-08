@@ -66,36 +66,24 @@ namespace Milestone6_Team_YourName
         }
         #endregion
 
-        // ----------- REFACTORING REQUIRED -----------
+        #region Edit Expense Click
         private void btn_EditExpense_Click(object sender, RoutedEventArgs e)
         {
-            if (description.Text == lastDescription && amount.Text == lastAmount)
-            {
-                var response = MessageBox.Show("Current expense is identical to previous expense. Add anyways?",
-                    "Identical Expense", MessageBoxButton.YesNo);
-                if (response == MessageBoxResult.No)
-                    return;
-            }
+            lastDescription = description.Text;
+            lastAmount = amount.Text;
+            string date = expenseDate.ToString();
+            DateTime dateTime = DateTime.Parse(date);
+            int catId = expenseWindowCatList.SelectedIndex;
 
-            if (string.IsNullOrEmpty(description.Text) || string.IsNullOrEmpty(amount.Text) || expenseWindowCatList.SelectedItem == null)
-            {
-                MessageBox.Show("Please fill out all of the input fields");
-            }
-            else
+            bool success = currentPresenter.ModifyExpense(expenseId, dateTime, catId, lastAmount, lastDescription);
+
+            if (success)
             {
                 MessageBox.Show("Expense was successfully added");
-                lastDescription = description.Text;
-                lastAmount = amount.Text;
-                double expenseAmount = Double.Parse(lastAmount);
-                string date = expenseDate.ToString();
-                DateTime dateTime = DateTime.Parse(date);
-                int catId = expenseWindowCatList.SelectedIndex;
-
-                currentPresenter.ModifyExpense(expenseId, dateTime, catId,expenseAmount, lastDescription);
                 Close();
             }
         }
-        // ----------- REFACTORING REQUIRED -----------
+        #endregion
 
         #region Clear Expense Click
         /// <summary>

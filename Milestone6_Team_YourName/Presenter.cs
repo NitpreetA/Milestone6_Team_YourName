@@ -141,12 +141,17 @@ namespace Milestone6_Team_YourName
             budget.expenses.Delete(id);
         }
 
-        public void ModifyExpense(int id, DateTime date, int categoryId, double amount, string description)
+        public bool ModifyExpense(int id, DateTime date, int categoryId, string amount, string description)
         {
+            if (string.IsNullOrEmpty(description) || categoryId == -1 || string.IsNullOrEmpty(amount)) {
+                MessageBox.Show("Please fill out all of the input fields");
+                return false;
+            }
 
-            budget.expenses.UpdateProperties(id, date, categoryId + 1, amount, description);
+            double currentAmount = Double.Parse(amount);
+            budget.expenses.UpdateProperties(id, date, categoryId + 1, currentAmount, description);
             view.Filter();
-
+            return true;
         }
 
         public void AddExpense(string description,string expenseAmount, string date,int catId)
