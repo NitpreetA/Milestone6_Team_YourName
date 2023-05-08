@@ -511,6 +511,7 @@ namespace Milestone6_Team_YourName
         {
             var searchedExpense = searchBarText.Text.ToLower();
             var budgetItemsInGrid = expenseGrid.ItemsSource as List<BudgetItem>;
+
             var foundBudgetItem = budgetItemsInGrid.FindAll(budgetItems => budgetItems.ShortDescription.ToLower().Contains(searchedExpense));
 
 
@@ -523,14 +524,30 @@ namespace Milestone6_Team_YourName
                 MessageBox.Show("Found expense");
 
                 // gets the index of the item in the expenseGrid 
-                var foundItemIndex = budgetItemsInGrid.IndexOf(foundBudgetItem[0]); 
-               // expenseGrid.ScrollIntoView(foundBudgetItem[foundItemIndex]); // this doesnt work :'/
+
+                for (int i = 0; i < foundBudgetItem.Count; i++)
+                {
+                    var foundItemIndex = budgetItemsInGrid.IndexOf(foundBudgetItem[i]);
+                    var rowContainer = expenseGrid.ItemContainerGenerator.ContainerFromIndex(foundItemIndex) as DataGridRow;
+                    rowContainer.Background = Brushes.LightGray;
+                    expenseGrid.ScrollIntoView(rowContainer); // this doesnt work :'/
+
+                    
+
+                   
+                }
+
+
+
 
                 // colour the row 
-                var rowContainer = expenseGrid.ItemContainerGenerator.ContainerFromIndex(foundItemIndex) as DataGridRow;
-                rowContainer.Background = Brushes.LightGray;
+
 
             }
         }
+
+       
+
+       
     }
 }
