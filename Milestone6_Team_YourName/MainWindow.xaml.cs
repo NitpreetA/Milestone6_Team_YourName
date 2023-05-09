@@ -47,6 +47,7 @@ namespace Milestone6_Team_YourName
         private string lastExpense;
         private string lastDescription;
         private string lastAmount;
+        private int counter = 0;
         public int expenseId;
 
 
@@ -61,13 +62,13 @@ namespace Milestone6_Team_YourName
             expenseDate.SelectedDate = DateTime.Now;
 
             ExpenseFieldState(false);
-            
+
             PropertiesSet();
             PropertiesToTheme();
             LastOpenFile();
-            
+
             presenter.DisplayDefCatType();
-                
+
             if (!Directory.Exists(initialDirectory))
             {
                 Directory.CreateDirectory(initialDirectory);
@@ -189,7 +190,6 @@ namespace Milestone6_Team_YourName
         {
             Close();
         }
-
         #region Expenses
         /// <summary>
         /// Adds Expense once all the proper fields are inputted correctly 
@@ -197,8 +197,8 @@ namespace Milestone6_Team_YourName
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_AddExpense_Clck(object sender, RoutedEventArgs e)
-        {     
-            presenter.AddExpense(description.Text, amount.Text, expenseDate.ToString(), categoryList.SelectedIndex);   
+        {
+            presenter.AddExpense(description.Text, amount.Text, expenseDate.ToString(), categoryList.SelectedIndex);
         }
 
         /// <summary>
@@ -256,11 +256,10 @@ namespace Milestone6_Team_YourName
             else
             {
                 presenter.CreateCat(createCategory.Text, CategoryType.SelectedIndex);
-                createCategory.Text = ""; 
+                createCategory.Text = "";
             }
-           
-        }
 
+        }
 
         #region Color
         private void PropertiesSet()
@@ -282,16 +281,17 @@ namespace Milestone6_Team_YourName
             SetAccent(accent);
             SetBackground(background);
         }
-        
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(! string.IsNullOrEmpty(description.Text) || ! string.IsNullOrEmpty(amount.Text))
+            if (!string.IsNullOrEmpty(description.Text) || !string.IsNullOrEmpty(amount.Text))
             {
                 var response = MessageBox.Show("You have unsaved changes. Are you sure you'd " +
                     "like to close the application?", "Closed Changes", MessageBoxButton.YesNo);
-                if(response == MessageBoxResult.No) {
+                if (response == MessageBoxResult.No)
+                {
                     e.Cancel = true;
-                    return; 
+                    return;
                 }
             }
             App.Current.Properties["BackgroundColor"] = Window.Background;
@@ -444,7 +444,7 @@ namespace Milestone6_Team_YourName
             expenseGrid.Columns.Add(col);
 
         }
-      
+
         public void DisplayBudgetItems(List<BudgetItem> budgetItems)
         {
             searchBarText.IsEnabled = true;
@@ -456,7 +456,7 @@ namespace Milestone6_Team_YourName
         }
 
 
-        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth,List<string> categories)
+        public void DisplayBudgetCatAndMonth(List<Dictionary<string, object>> budgetItemsByCategoriesAndMonth, List<string> categories)
         {
             DeleteButton.IsEnabled = false;
             ModifyButton.IsEnabled = false;
@@ -467,7 +467,7 @@ namespace Milestone6_Team_YourName
             col.Header = "Month";
             col.Binding = new Binding("[Month]");
             expenseGrid.Columns.Add(col);
-            foreach (var category in categories) 
+            foreach (var category in categories)
             {
                 col = new DataGridTextColumn();
                 col.Header = category;
@@ -475,14 +475,14 @@ namespace Milestone6_Team_YourName
                 expenseGrid.Columns.Add(col);
             }
 
-            col = new DataGridTextColumn(); 
+            col = new DataGridTextColumn();
             col.Header = "Total";
             col.Binding = new Binding("[Total]");
             expenseGrid.Columns.Add(col);
 
         }
 
-        
+
 
         public void DisplayMessage(string message)
         {
@@ -512,50 +512,28 @@ namespace Milestone6_Team_YourName
             var searchedExpense = searchBarText.Text.ToLower();
             var budgetItemsInGrid = expenseGrid.ItemsSource as List<BudgetItem>;
 
-            var foundBudgetItem = budgetItemsInGrid.FindAll(budgetItems => budgetItems.ShortDescription.ToLower().Contains(searchedExpense));
-
-
+            var foundBudgetItemByShortDescription = budgetItemsInGrid.FindAll(budgetItems => budgetItems.ShortDescription.ToLower().Contains(searchedExpense));
+            //var foundBudgetItemByAmount = budgetItemsInGrid.FindAll(budgetItems => budgetItems.ShortDescription.ToLower().Contains(searchedExpense));
+            int foundItemsNumber = foundBudgetItemByShortDescription.Count();
             if (searchedExpense == string.Empty)
                 MessageBox.Show("Search bar is empty");
-            else if (foundBudgetItem.Count == 0)
+            else if (foundBudgetItemByShortDescription.Count == 0)
                 MessageBox.Show("Expense not found");
             else
             {
-                MessageBox.Show("Found expense");
-
-                // gets the index of the item in the expenseGrid 
-
-                for (int i = 0; i < foundBudgetItem.Count; i++)
-                {
-                    //var foundItemIndex = budgetItemsInGrid.IndexOf(foundBudgetItem[i]);
-              
-
-
-
-                    var foundItemIndex = budgetItemsInGrid.IndexOf(foundBudgetItem[i]);
+                    // MessageBox.Show($"Found expense: " + foundBudgetItemByShortDescription.Count);
+                    var foundItemIndex = budgetItemsInGrid.IndexOf(foundBudgetItemByShortDescription[counter % foundItemsNumber]);
                     var item = expenseGrid.Items.GetItemAt(foundItemIndex);
                     expenseGrid.ScrollIntoView(item);
 
+                    // highliht 
                     var rowContainer = expenseGrid.ItemContainerGenerator.ContainerFromIndex(foundItemIndex) as DataGridRow;
-                    //rowContainer.Background = Brushes.LightGray;
-                    //expenseGrid.ScrollIntoView(rowContainer); // this doesnt work :'/
-
-
-
-
-                }
-
-
-
-
-                // colour the row 
-
-
+                    rowContainer.Background = Brushes.LightGray; // basically we want the highlight the selected index instead of everything that matches
+                    counter++;
+               
             }
+
         }
 
-       
-
-       
     }
 }
