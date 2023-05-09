@@ -527,14 +527,22 @@ namespace Milestone6_Team_YourName
 
                 for (int i = 0; i < foundBudgetItem.Count; i++)
                 {
+                    //var foundItemIndex = budgetItemsInGrid.IndexOf(foundBudgetItem[i]);
+              
+
+
+
                     var foundItemIndex = budgetItemsInGrid.IndexOf(foundBudgetItem[i]);
+                    var item = expenseGrid.Items.GetItemAt(foundItemIndex);
+                    expenseGrid.ScrollIntoView(item);
+
                     var rowContainer = expenseGrid.ItemContainerGenerator.ContainerFromIndex(foundItemIndex) as DataGridRow;
-                    rowContainer.Background = Brushes.LightGray;
-                    expenseGrid.ScrollIntoView(rowContainer); // this doesnt work :'/
+                    //rowContainer.Background = Brushes.LightGray;
+                    //expenseGrid.ScrollIntoView(rowContainer); // this doesnt work :'/
 
-                    
 
-                   
+
+
                 }
 
 

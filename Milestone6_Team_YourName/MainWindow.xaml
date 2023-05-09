@@ -135,7 +135,7 @@
 
 
 
-                <DataGrid Grid.Column="1" x:Name="expenseGrid">
+                <DataGrid Grid.Column="1" x:Name="expenseGrid" MinHeight="200" MaxHeight="700" MinWidth="800" MaxWidth="800">
                     <DataGrid.ContextMenu>
                         <ContextMenu>
                             <MenuItem x:Name="DeleteButton" Header="Modify" Click="MenuItem_ModifyClick" />
