@@ -7,13 +7,13 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="ba35a93f-0acf-444b-a2b9-8269e18ab7e0"
-    Publisher="CN=YourName"
-    Version="1.0.7.0" />
+    Name="687cb0f4-ce4c-40b9-b4f5-f57bf6995017"
+    Publisher="CN=2128811"
+    Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>BudgetWapProj</DisplayName>
-    <PublisherDisplayName>YourName</PublisherDisplayName>
+    <DisplayName>WapProjTemplate2</DisplayName>
+    <PublisherDisplayName>2128811</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
@@ -31,12 +31,12 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="YourName"
-        Description="BudgetWapProj"
+        DisplayName="WapProjTemplate2"
+        Description="WapProjTemplate2"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
         Square44x44Logo="Images\Square44x44Logo.png">
-        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png"  Square71x71Logo="Images\SmallTile.png" Square310x310Logo="Images\LargeTile.png"/>
+        <uap:DefaultTile Wide310x150Logo="Images\Wide310x150Logo.png" />
         <uap:SplashScreen Image="Images\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
