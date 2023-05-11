@@ -45,6 +45,8 @@ namespace Milestone6_Team_YourName
         private int counter = 0;
         public int expenseId;
 
+        int currentRowCount = 0;
+
 
         private bool createdNewCategory = false;
 
@@ -361,19 +363,29 @@ namespace Milestone6_Team_YourName
         /// </summary>
         private void MenuItem_ModifyClick(object sender, RoutedEventArgs e)
         {
+            int index = 0;
+
             if (expenseGrid.SelectedItem != null)
             {
                 //Grab the Expense
                 Budget.BudgetItem budgetItemToModify = (Budget.BudgetItem)(expenseGrid.SelectedItem);
+                index = expenseGrid.SelectedIndex;
 
                 //Setup the Expense Window
                 ExpenseWindow expenseWindow = new ExpenseWindow(presenter, budgetItemToModify);
                 expenseWindow.Background = Window.Background;
 
                 //Open Window
-                expenseWindow.Show();
+                expenseWindow.ShowDialog();
             }
             Filter();
+            if (expenseGrid.Items.Count == 0)
+                expenseGrid.SelectedIndex = -1;
+            else if (index == expenseGrid.Items.Count)
+                expenseGrid.SelectedIndex = index - 1;
+            else
+                expenseGrid.SelectedIndex = index;
+
         }
         #endregion
 
@@ -383,15 +395,28 @@ namespace Milestone6_Team_YourName
         /// </summary>
         private void MenuItem_DeleteClick(object sender, RoutedEventArgs e)
         {
+            int index = 0;
             if (expenseGrid.SelectedItem != null)
             {
+
+                //Grab the Expense
                 Budget.BudgetItem budgetItemToDelete = (Budget.BudgetItem)(expenseGrid.SelectedItem);
                 MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to delete?", "Delete Confirmation", MessageBoxButton.YesNo);
                 
                 if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    index = expenseGrid.SelectedIndex;
                     presenter.DeleteExpense(budgetItemToDelete.ExpenseID);
+                }
             }
             Filter();
+
+            if (expenseGrid.Items.Count == 0)
+                expenseGrid.SelectedIndex = -1;
+            else if (index == expenseGrid.Items.Count)
+                expenseGrid.SelectedIndex = index - 1;
+            else
+                expenseGrid.SelectedIndex = index;
         }
         #endregion
 

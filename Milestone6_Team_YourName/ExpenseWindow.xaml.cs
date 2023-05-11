@@ -79,7 +79,7 @@ namespace Milestone6_Team_YourName
 
             if (success)
             {
-                MessageBox.Show("Expense was successfully added");
+                //MessageBox.Show("Expense was successfully added");
                 Close();
             }
         }
