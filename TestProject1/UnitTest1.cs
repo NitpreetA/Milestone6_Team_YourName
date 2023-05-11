@@ -239,7 +239,7 @@ namespace TestProject1
             //arrange
             UnitTest1 view = new UnitTest1();
             presenter = new Presenter(view);
-            presenter.Connection("test", false);
+            presenter.Connection("test", true);
 
             string description = "test";
             int index = 0;
@@ -256,7 +256,7 @@ namespace TestProject1
 
             // assert
             Assert.True(view.displayCatList);  //Change displayList to DisplayCategoriesList
-            Assert.True(newCatCount == catCount);
+            Assert.True(newCatCount != catCount);
         }
 
         [Fact]
