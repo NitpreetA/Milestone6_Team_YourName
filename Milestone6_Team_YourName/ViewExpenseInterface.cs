@@ -10,5 +10,7 @@ namespace Milestone6_Team_YourName
     public interface ViewExpenseInterface 
     {
         public void DisplayCatInPopUp(List<Category> categories);
+
+        public void PopulateFields(string oldDescription, string oldAmount, DateTime oldDate, int oldCategoryID);
     }
 }
