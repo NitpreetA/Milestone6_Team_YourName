@@ -230,25 +230,22 @@ namespace Milestone6_Team_YourName
 
         #endregion
 
-
-        // ---------------------------- REFACTOR NEEDED ----------------------------
+        #region Create New Category Click
         /// <summary>
         /// Creates a category if all fields are properly inputted 
         /// </summary>
         private void btn_CreateNewCategory_Click(object sender, RoutedEventArgs e)
         {
-            createdNewCategory = true;
             if (createCategory.Text == "")
-            {
                 MessageBox.Show("Must Input a name for the category you want to add.");
-            }
             else
             {
+                createdNewCategory = true;
                 presenter.CreateCat(createCategory.Text, CategoryType.SelectedIndex);
                 createCategory.Text = ""; 
             }
         }
-        // ---------------------------- REFACTOR NEEDED ----------------------------
+        #endregion
 
         #region Persistent Settings
 
