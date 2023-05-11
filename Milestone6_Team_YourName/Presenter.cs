@@ -25,7 +25,15 @@ namespace Milestone6_Team_YourName
         {
             this.expenseView = expenseView;
             GetCategories();
+
+            
         }
+
+        public void CloseDB() 
+        {
+        budget.CloseDB();
+        }
+
 
 
         public void GetCategories() => expenseView.DisplayCatInPopUp(budget.categories.List()); 
