@@ -1,6 +1,7 @@
 ﻿using Budget;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -166,6 +167,11 @@ namespace Milestone6_Team_YourName
                 view.ResetFields();
                 
             }
+
+        }
+
+        public void SearchThroughDataGrid(object foundBudgetItemByShortDescription, int foundItemsNumber, int counter, object budgetItemsInGrid)
+        {
 
         }
 

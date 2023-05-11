@@ -513,27 +513,44 @@ namespace Milestone6_Team_YourName
             var budgetItemsInGrid = expenseGrid.ItemsSource as List<BudgetItem>;
 
             var foundBudgetItemByShortDescription = budgetItemsInGrid.FindAll(budgetItems => budgetItems.ShortDescription.ToLower().Contains(searchedExpense));
-            //var foundBudgetItemByAmount = budgetItemsInGrid.FindAll(budgetItems => budgetItems.ShortDescription.ToLower().Contains(searchedExpense));
-            int foundItemsNumber = foundBudgetItemByShortDescription.Count();
+            var foundBudgetItemByAmount = budgetItemsInGrid.FindAll(budgetItems => budgetItems.Amount.ToString().Contains(searchedExpense));
+
             if (searchedExpense == string.Empty)
                 MessageBox.Show("Search bar is empty");
-            else if (foundBudgetItemByShortDescription.Count == 0)
+            else if (foundBudgetItemByShortDescription.Count == 0 && foundBudgetItemByAmount.Count ==0)
                 MessageBox.Show("Expense not found");
             else
             {
-                    // MessageBox.Show($"Found expense: " + foundBudgetItemByShortDescription.Count);
+                if(foundBudgetItemByAmount.Count != 0)
+                {
+                    int foundItemsNumber = foundBudgetItemByAmount.Count();
+                    var foundItemIndex = budgetItemsInGrid.IndexOf(foundBudgetItemByAmount[counter % foundItemsNumber]);
+                    var item = expenseGrid.Items.GetItemAt(foundItemIndex);
+                    expenseGrid.ScrollIntoView(item);
+
+                    // highlight 
+                    var rowContainer = expenseGrid.ItemContainerGenerator.ContainerFromIndex(foundItemIndex) as DataGridRow;
+                    rowContainer.Background = Brushes.LightGray; // basically we want the highlight the selected index instead of everything that matches
+                    counter++;
+                }
+                else
+                {
+                    int foundItemsNumber = foundBudgetItemByShortDescription.Count();
                     var foundItemIndex = budgetItemsInGrid.IndexOf(foundBudgetItemByShortDescription[counter % foundItemsNumber]);
                     var item = expenseGrid.Items.GetItemAt(foundItemIndex);
                     expenseGrid.ScrollIntoView(item);
 
-                    // highliht 
+                    // highlight 
                     var rowContainer = expenseGrid.ItemContainerGenerator.ContainerFromIndex(foundItemIndex) as DataGridRow;
                     rowContainer.Background = Brushes.LightGray; // basically we want the highlight the selected index instead of everything that matches
                     counter++;
-               
+
+                }
+                //MessageBox.Show($"Found items: "+ foundBudgetItemByAmount.Count);
+                // presenter.SearchThroughDataGrid(foundBudgetItemByShortDescription, foundItemsNumber, counter, budgetItemsInGrid);
+
+                
             }
-
         }
-
     }
 }
