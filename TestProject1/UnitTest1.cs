@@ -258,7 +258,6 @@ namespace TestProject1
             Assert.True(view.displayCatList);  //Change displayList to DisplayCategoriesList
             Assert.True(newCatCount != catCount);
         }
-
         [Fact]
         public void DisplayCategoryType()
         {
