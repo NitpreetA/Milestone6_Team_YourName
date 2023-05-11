@@ -239,9 +239,9 @@ namespace TestProject1
             //arrange
             UnitTest1 view = new UnitTest1();
             presenter = new Presenter(view);
-            presenter.Connection("test", false);
+            presenter.Connection("test", true);
 
-            string description = "test";
+            string description = "abc";
             int index = 0;
 
             //Grab the current list of categories
@@ -256,7 +256,7 @@ namespace TestProject1
 
             // assert
             Assert.True(view.displayCatList);  //Change displayList to DisplayCategoriesList
-            Assert.True(newCatCount == catCount);
+            Assert.True(newCatCount != catCount);
         }
 
         [Fact]
