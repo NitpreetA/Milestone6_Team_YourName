@@ -226,14 +226,7 @@ namespace Milestone6_Team_YourName
             expenseView.PopulateFields(oldDescription, oldAmount, oldDate, oldCategory);
         }
         #endregion
-    }
-
-        public void SearchThroughDataGrid(object foundBudgetItemByShortDescription, int foundItemsNumber, int counter, object budgetItemsInGrid)
-        {
-
-        }
-
-
 
     }
 }
+
