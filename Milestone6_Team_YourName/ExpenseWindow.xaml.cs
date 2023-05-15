@@ -27,7 +27,6 @@ namespace Milestone6_Team_YourName
         private string lastAmount;
         private int expenseId;
 
-
         public ExpenseWindow(Presenter presenter, Budget.BudgetItem expense)
         {
             currentPresenter = presenter;
