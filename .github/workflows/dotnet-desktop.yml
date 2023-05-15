@@ -57,7 +57,7 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Test_DLL: MyTestProjectName\bin\${{ matrix.targetPlatform }}\${{ matrix.configuration }}\net6.0-windows\MyTestProjectName.dll
+      Test_DLL: TestProject1\bin\${{ matrix.targetPlatform }}\${{ matrix.configuration }}\net6.0-windows\TestProject1.dll
       Solution_Name: ./Milestone6_Team_YourName.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
       Test_Project_Path: ./TestProject1/TestProject1.csproj                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
       Wap_Project_Directory: ./BudgetWapProj     # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
