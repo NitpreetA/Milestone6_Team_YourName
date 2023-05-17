@@ -117,7 +117,7 @@
                         <CheckBox FontWeight="DemiBold" x:Name="filterFlag" Click="filterFlag_Click" >Filter By Specific Category</CheckBox>
                         <ComboBox  SelectionChanged="filterBySpecificCategory_Selected"  Height="38" Width="247" Margin="0,0,0,10" x:Name="filterBySpecificCategory" IsEditable="True"/>
                     </StackPanel>
-                    <StackPanel Width="207">
+                    <StackPanel>
                         <StackPanel Orientation="Vertical">
                             <TextBlock FontWeight="DemiBold">Start Date</TextBlock>
                             <DatePicker  SelectedDateChanged="filterStartDate_SelectedDateChanged" x:Name="filterStartDate" Width="205" Margin="0 10 0 10" ></DatePicker>
@@ -126,6 +126,7 @@
                             <StackPanel Orientation="Horizontal" Margin="0 0 0 8">
                                 <TextBox Name="searchBarText" Width="162"></TextBox>
                                 <Button x:Name="searchButton" Margin="5 0 0 0" Style="{StaticResource AccentButtonStyle}" Click="btn_SearchBarClick">🔍</Button>
+                                <Button x:Name="resetSearchButton" Margin="50 0 0 0" Style="{StaticResource AccentButtonStyle}" Click="resetSearchButton_Click">Reset Search</Button>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

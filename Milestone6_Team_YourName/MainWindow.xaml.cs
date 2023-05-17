@@ -177,6 +177,7 @@ namespace Milestone6_Team_YourName
             filterFlag.IsEnabled = state;
             searchButton.IsEnabled = state;
             searchBarText.IsEnabled = state;
+            resetSearchButton.IsEnabled = state;
         }
         #endregion
 
@@ -582,6 +583,10 @@ namespace Milestone6_Team_YourName
             }
         }
 
-        
+        private void resetSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            searchBarText.Text = string.Empty;
+            resetAllBackgrounds(null);
+        }
     }
 }
