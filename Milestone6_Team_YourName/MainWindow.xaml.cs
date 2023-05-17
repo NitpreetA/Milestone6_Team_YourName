@@ -22,6 +22,7 @@ using static Budget.Category;
 using ModernWpf.Controls;
 using System.Diagnostics.Eventing.Reader;
 using System.Collections;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 
 namespace Milestone6_Team_YourName
 {
@@ -555,5 +556,18 @@ namespace Milestone6_Team_YourName
                 
             }
         }
+
+
+        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGridRow row = sender as DataGridRow;
+
+            if (expenseGrid.SelectedItem !=null )
+            {
+                MenuItem_ModifyClick(sender, e);
+            }
+        }
+
+        
     }
 }
