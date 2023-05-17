@@ -520,9 +520,16 @@ namespace Milestone6_Team_YourName
             var foundBudgetItemByAmount = budgetItemsInGrid.FindAll(budgetItems => budgetItems.Amount.ToString().Contains(searchedExpense));
 
             if (searchedExpense == string.Empty)
+            {
                 MessageBox.Show("Search bar is empty");
+                resetAllBackgrounds(null);
+
+            }
             else if (foundBudgetItemByShortDescription.Count == 0 && foundBudgetItemByAmount.Count ==0)
+            {
                 MessageBox.Show("Expense not found");
+                resetAllBackgrounds(null);
+            }
             else
             {
                 if(foundBudgetItemByAmount.Count != 0)
@@ -534,6 +541,7 @@ namespace Milestone6_Team_YourName
 
                     // highlight 
                     var rowContainer = expenseGrid.ItemContainerGenerator.ContainerFromIndex(foundItemIndex) as DataGridRow;
+                    resetAllBackgrounds(null);
                     rowContainer.Background = Brushes.LightGray; // basically we want the highlight the selected index instead of everything that matches
                     counter++;
                 }
@@ -546,17 +554,23 @@ namespace Milestone6_Team_YourName
 
                     // highlight 
                     var rowContainer = expenseGrid.ItemContainerGenerator.ContainerFromIndex(foundItemIndex) as DataGridRow;
+                    resetAllBackgrounds(null);
                     rowContainer.Background = Brushes.LightGray; // basically we want the highlight the selected index instead of everything that matches
                     counter++;
 
                 }
-                //MessageBox.Show($"Found items: "+ foundBudgetItemByAmount.Count);
-                // presenter.SearchThroughDataGrid(foundBudgetItemByShortDescription, foundItemsNumber, counter, budgetItemsInGrid);
 
-                
             }
         }
 
+        private void resetAllBackgrounds(Brush background)
+        {
+            for (int i = 0; i < expenseGrid.Items.Count; i++)
+            {
+                var rowContainer = expenseGrid.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow;
+                rowContainer.Background = background;
+            }
+        }
 
         private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
