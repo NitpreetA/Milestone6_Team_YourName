@@ -6,8 +6,11 @@ using Budget;
 
 namespace TestProject1
 {
+    [Collection("Sequential")]
     public class UnitTest1 : ViewInterface
     {
+        
+
         private static string budgetFolder = "Budgets";
         private string initialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), budgetFolder);
         private Presenter presenter;
@@ -104,6 +107,7 @@ namespace TestProject1
 
         //good
         [Fact]
+
         public void TestConstructor()
         {
             UnitTest1 view = new UnitTest1();
@@ -170,6 +174,7 @@ namespace TestProject1
             presenter.DisplayBudgetItemsByMonth(DateTime.Now, DateTime.Now, false, 0);
             // Assert
             Assert.True(view.displayBudgetItemsByMonth);
+            presenter.CloseDB();
         }
 
         [Fact]
@@ -189,22 +194,26 @@ namespace TestProject1
         [Fact]
         public void TestDisplayBudgetCatAndMonth()
         {
+            
             // Arrange
             var view = new UnitTest1();
             var presenter = new Presenter(view);
             var budgetItemsByCatAndByMonth = new List<Dictionary<string, object>>();
             var categories = new List<Category>();
+            
             presenter.Connection("test", false);
             // act
             presenter.DisplayBudgetItemsByCatAndMonth(DateTime.Now, DateTime.Now, false, 0);
 
             //assert
             Assert.True(view.displayBudgetCatAndMonth);
+            presenter.CloseDB();
         }
 
         [Fact]
         public void CreateExpense()
         {
+            
             //arrange
             UnitTest1 view = new UnitTest1();
             presenter = new Presenter(view);
@@ -215,6 +224,7 @@ namespace TestProject1
             int addedExpenses = 0;
 
             // act 
+
             presenter.Connection("test", false);
 
             //check
@@ -231,15 +241,17 @@ namespace TestProject1
             Assert.True(view.resetFields);
             Assert.Equal(addedExpenses, presenter.count);
             Assert.True(view.filter);
+            presenter.CloseDB();
         }
 
         [Fact]
         public void CreateCategory()
         {
+            
             //arrange
             UnitTest1 view = new UnitTest1();
             presenter = new Presenter(view);
-            presenter.Connection("test", false);
+            presenter.Connection("test", true);
 
             string description = "test";
             int index = 0;
@@ -256,9 +268,9 @@ namespace TestProject1
 
             // assert
             Assert.True(view.displayCatList);  //Change displayList to DisplayCategoriesList
-            Assert.True(newCatCount == catCount);
+            Assert.True(newCatCount != catCount);
+            presenter.CloseDB();
         }
-
         [Fact]
         public void DisplayCategoryType()
         {
@@ -293,6 +305,8 @@ namespace TestProject1
             //assert
             Assert.True(view.displayCatList);
             Assert.True(view.filter);
+
+            presenter.CloseDB();
 
         }
 
